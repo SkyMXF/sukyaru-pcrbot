@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'user/css/login.css' %}" rel="stylesheet" />
     <title>登录</title>
 </head>
 <body>
@@ -17,7 +19,7 @@
                         <input type="text" name='userqq' class="form-control" id="id_userqq" placeholder="QQ" autofocus required>
                     </div>
                     <div class="form-group">
-                        <label for="id_password">密码：</label>
+                        <label for="id_password">密码(不是QQ密码)：</label>
                         <input type="password" name='password' class="form-control" id="id_password" placeholder="密码(不是QQ密码)" required>
                     </div>
                 <div>
