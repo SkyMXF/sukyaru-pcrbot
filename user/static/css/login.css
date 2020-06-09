@@ -2,7 +2,6 @@ body {
     height: 100%;
     background-image: url('../image/bg.jpg');
     background-repeat: no-repeat;
-    background-position: center top;
     background-size: cover;
   }
   .form-login {
