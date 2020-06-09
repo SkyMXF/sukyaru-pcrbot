@@ -1,5 +1,5 @@
 from django.db import models
-from ..group.models import GroupInfo
+from group.models import GroupInfo
 
 # Create your models here.
 class UserInfo(models.Model):
