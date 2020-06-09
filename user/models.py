@@ -2,12 +2,11 @@ from django.db import models
 
 # Create your models here.
 class UserInfo(models.Model):
-    user_qq_id = models.BigIntegerField()
-    qq_group_id = models.BigIntegerField()
-    nickname = models.CharField(max_length=128)
+    user_qq_id = models.BigIntegerField(unique=True)
     password = models.CharField(max_length=256)
 
-    def __str__(self):
-        return "qq: %s, group id: %s, nickname: %s"%(
-            self.user_qq_id, self.qq_group_id, self.nickname
-        )
+class UserGroup(models.Model):
+    # 一个qq可以属于多个群
+    user_qq_id = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
+    group_id = models.BigIntegerField()
+    nickname = models.CharField(max_length=256)

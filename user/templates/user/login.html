@@ -2,9 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <title>登录</title>
 </head>
 <body>
-    <h1>默认登录界面</h1>
+    <div class="container">
+        <div class="col">
+            <form class="form-login" action="/user/" method="post">
+                <h3 class="text-center">欢迎登录</h3>
+                    <div class="form-group">
+                        <label for="id_userqq">QQ：</label>
+                        <input type="text" name='userqq' class="form-control" id="id_userqq" placeholder="QQ" autofocus required>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_password">密码：</label>
+                        <input type="password" name='password' class="form-control" id="id_password" placeholder="密码(不是QQ密码)" required>
+                    </div>
+                <div>
+                    <button type="submit" class="btn btn-primary float-right">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
