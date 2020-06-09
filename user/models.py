@@ -11,8 +11,8 @@ class UserInfo(models.Model):
 
 class UserGroup(models.Model):
     # 一个qq可以属于多个群
-    user_qq_id = models.ForeignKey(UserInfo, to_field=UserInfo.user_qq_id, on_delete=models.CASCADE)
-    group_id = models.ForeignKey(GroupInfo, to_field=GroupInfo.group_id, on_delete=models.CASCADE)
+    user_qq_id = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
+    group_id = models.ForeignKey(GroupInfo, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=256)
     
     def __str__(self):
