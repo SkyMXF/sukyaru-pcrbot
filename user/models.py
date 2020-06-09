@@ -1,4 +1,5 @@
 from django.db import models
+from ..group.models import GroupInfo
 
 # Create your models here.
 class UserInfo(models.Model):
@@ -10,8 +11,8 @@ class UserInfo(models.Model):
 
 class UserGroup(models.Model):
     # 一个qq可以属于多个群
-    user_qq_id = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
-    group_id = models.BigIntegerField()
+    user_qq_id = models.ForeignKey(UserInfo.user_qq_id, on_delete=models.CASCADE)
+    group_id = models.ForeignKey(GroupInfo.group_id, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=256)
     
     def __str__(self):
