@@ -9,7 +9,6 @@ class UserInfo(models.Model):
     def __str__(self):
         return "qq: %s, pwd: %s"%(str(self.user_qq_id), str(self.password))
 
-
 class UserGroup(models.Model):
     # 一个qq可以属于多个群
     user_qq_id = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
