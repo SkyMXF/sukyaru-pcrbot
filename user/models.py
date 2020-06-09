@@ -4,7 +4,8 @@ from django.db import models
 class UserInfo(models.Model):
     user_qq_id = models.BigIntegerField()
     qq_group_id = models.BigIntegerField()
-    nickname = models.CharField(max_length=30)
+    nickname = models.CharField(max_length=128)
+    password = models.CharField(max_length=256)
 
     def __str__(self):
         return "qq: %s, group id: %s, nickname: %s"%(
