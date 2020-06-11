@@ -40,7 +40,7 @@ def login(request):
             return render(request, "user/login.html", {"message": message, "login_form": login_form})
 
     # 直接url访问
-    login_form = forms.UserForm()
+    login_form = forms.UserLoginForm()
     return render(request, 'user/login.html')
 
 def setpwd(request):
