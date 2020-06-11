@@ -15,7 +15,7 @@ def userinfo(request):
 def login(request):
 
     if request.session.get('is_login', None):  # 不允许重复登录
-        return redirect('/user/')
+        return redirect('/user')
 
     if request.method == "POST":
         login_form = forms.UserLoginForm(request.POST)
@@ -48,7 +48,7 @@ def login(request):
                 elif user.user_auth == 2:
                     user_auth_str = "普通群员"
                 request.session['user_auth'] = user_auth_str
-                return redirect("/user/")
+                return redirect("/user")
             else:
                 message = "密码不正确，如果忘记可私聊发送'重置密码'进行重置"
                 return render(request, 'user/login.html', {"message": message, "login_form": login_form})
@@ -64,7 +64,7 @@ def login(request):
 def setpwd(request):
     if not request.session.get('is_login', None):
         # 未登录
-        return redirect("/user/login/")
+        return redirect("/user/login")
     
     if request.method == "POST":
         setpwd_form = forms.SetPasswordForm(request.POST)
@@ -86,7 +86,7 @@ def setpwd(request):
             userinfo.password = password
             userinfo.save()
                 
-            return redirect("/user/logout/")
+            return redirect("/user/logout")
 
         else:
             message = "密码输入格式错误"
@@ -98,6 +98,6 @@ def setpwd(request):
 def logout(request):
     if not request.session.get('is_login', None):
         # 未登录
-        return redirect("/user/login/")
+        return redirect("/user/login")
     request.session.flush()
-    return redirect("/user/login/")
+    return redirect("/user/login")
