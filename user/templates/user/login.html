@@ -18,9 +18,14 @@
                 {% endif %}
                 {% csrf_token %}
                 <h3 class="text-center">欢迎登录</h3>
-                
-                {{ login_form }}
-
+                    <div class="form-group">
+                        {{ login_form.user_qq.label_tag }}
+                        {{ login_form.user_qq}}
+                    </div>
+                    <div class="form-group">
+                        {{ login_form.password.label_tag }}
+                        {{ login_form.password}}
+                    </div>
                 <div>
                     <button type="submit" class="btn btn-primary float-right">登录</button>
                 </div>
