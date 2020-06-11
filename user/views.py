@@ -48,7 +48,7 @@ def login(request):
                 elif user.user_auth == 2:
                     user_auth_str = "普通群员"
                 request.session['user_auth'] = user_auth_str
-                return redirect("user")
+                return redirect("user/")
             else:
                 message = "密码不正确，如果忘记可私聊发送'重置密码'进行重置"
                 return render(request, 'user/login.html', {"message": message, "login_form": login_form})
