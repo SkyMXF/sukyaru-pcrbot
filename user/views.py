@@ -8,7 +8,7 @@ from . import models
 def userinfo(request):
     if not request.session.get('is_login', None):
         # 未登录
-        return redirect('/user/login/')
+        return redirect('/login/')
 
     return render(request, 'user/userinfo.html')
 
