@@ -1,8 +1,16 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from . import forms
 
+import hashlib
+
+from . import forms
 from . import models
+
+def pwd_hash(s, salt='dfssaltsalt'):# 加点盐
+    h = hashlib.sha256()
+    s += salt
+    h.update(s.encode())  # update方法只接收bytes类型
+    return h.hexdigest()
 
 # Create your views here.
 def userinfo(request):
@@ -36,7 +44,7 @@ def login(request):
                 message = "没有此QQ记录，请联系公会管理人员添加"
                 return render(request, 'user/login.html', {"message": message, "login_form": login_form})
             
-            if user.password == password:
+            if user.password == pwd_hash(password):
                 request.session['is_login'] = True
                 request.session['userqq'] = user.user_qq_id
                 request.session['user_name'] = user.nickname
@@ -83,7 +91,7 @@ def setpwd(request):
             except:
                 message = "Unknown ERROR: No record for this qq."
                 return render(request, 'user/setpwd.html', {"message": message, "setpwd_form": setpwd_form})
-            userinfo.password = password
+            userinfo.password = pwd_hash(password)
             userinfo.save()
                 
             return redirect("/user/logout")
