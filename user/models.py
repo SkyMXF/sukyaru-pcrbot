@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class UserInfo(models.Model):
     user_qq_id = models.BigIntegerField(unique=True)
-    password = models.CharField(max_length=20)
+    password = models.CharField(max_length=256)
     nickname = models.CharField(max_length=30)
     user_auth = models.IntegerField(default=2)  # 0-会长, 1-管理员, 2-普通群员
     user_add_type = models.IntegerField(default=0)  # 0-自动添加, 1-特殊途径添加(群内不存在的qq)
