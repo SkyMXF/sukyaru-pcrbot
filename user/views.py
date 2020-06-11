@@ -41,7 +41,7 @@ def login(request):
 
     # 直接url访问
     login_form = forms.UserLoginForm()
-    return render(request, 'user/login.html')
+    return render(request, 'user/login.html', {"login_form": login_form})
 
 def setpwd(request):
     return render(request, 'user/setpwd.html')
