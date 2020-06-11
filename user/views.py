@@ -17,6 +17,7 @@ def login(request):
             password = login_form.cleaned_data.get('password')
             # 验证输入qq为数字
             try:
+                print(userqq)
                 userqq = int(userqq)
             except:
                 message = "输入QQ号格式错误"
