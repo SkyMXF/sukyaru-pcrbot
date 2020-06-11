@@ -74,7 +74,7 @@ def setpwd(request):
 
             if password != retype_password:
                 message = "两次输入的密码不一致"
-                return render(request, 'user/setpwd.html', {"message": message})
+                return render(request, 'user/setpwd.html', {"message": message, "setpwd_form": setpwd_form})
             
             # 修改数据库    
             userqq = request.session['userqq']
@@ -82,7 +82,7 @@ def setpwd(request):
                 userinfo = models.UserInfo.objects.get(user_qq_id=userqq)
             except:
                 message = "Unknown ERROR: No record for this qq."
-                return render(request, 'user/setpwd.html', {"message": message})
+                return render(request, 'user/setpwd.html', {"message": message, "setpwd_form": setpwd_form})
             userinfo.password = password
             userinfo.save()
                 
@@ -90,7 +90,7 @@ def setpwd(request):
 
         else:
             message = "密码输入格式错误"
-            return render(request, "user/setpwd.html", {"message": message})
+            return render(request, "user/setpwd.html", {"message": message, "setpwd_form": setpwd_form})
 
     setpwd_form = forms.SetPasswordForm()
     return render(request, 'user/setpwd.html', {"setpwd_form": setpwd_form})
