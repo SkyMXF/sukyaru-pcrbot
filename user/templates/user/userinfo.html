@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>骑士君信息</title>
+    <title>骑士君{request.session.user_name}</title>
 </head>
 <body>
-    <h1>默认骑士君信息</h1>
+    <h1>欢迎骑士君{request.session.user_name}, 权限：{request.session.user_auth}</h1>
+    <p>
+        <a href="/setpwd/">修改密码</a>
+    </p>
+    <p>
+        <a href="/logout/">退出登录</a>
+    </p>
 </body>
 </html>
