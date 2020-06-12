@@ -11,7 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
 	</head>
 	<body class="is-preload">
 
@@ -38,12 +38,12 @@
 					<h1>欢迎来到凯露酱的荣誉殿堂~</h1>
 					<div class="author">
                         <div class="image">
-                            <img src="images/pic01.jpg" alt="" />
+                            <img src="{% static 'images/pic01.jpg' %}" alt="" />
                         </div>
                         <p class="credit">- <strong>Jane Doe</strong> <span>CEO - ABC Inc.</span></p>
                     </div>
 				</div>
-				<video autoplay loop muted playsinline src="images/banner.mp4"></video>
+				<video autoplay loop muted playsinline src="{% static 'images/banner.mp4' %}"></video>
 			</section>
 
 		<!-- Highlights -->
