@@ -685,7 +685,7 @@ table.alt tbody tr td {
   .highlights > * {
     width: 33.3333333333%; }
   .highlights > * {
-    padding: 1.5rem;
+    padding: 0.5rem;
     width: calc(33.3333333333% + 1rem); }
   .highlights > :nth-child(-n + 3) {
     padding-top: 0; }
