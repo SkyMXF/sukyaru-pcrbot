@@ -7,7 +7,7 @@
 -->
 <html>
 	<head>
-		<title>Industrious by TEMPLATED</title>
+		<title>凯露酱档案馆</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
@@ -36,11 +36,16 @@
 		<!-- Banner -->
 			<section id="banner">
 				<div class="inner">
-					<h1>Industrious</h1>
-					<p>A responsive business oriented template with a video background<br />
-					designed by <a href="https://templated.co/">TEMPLATED</a> and released under the Creative Commons License.</p>
+					<h1>欢迎来到凯露酱掌管的公会档案馆</h1>
+					<div class="image">
+						<img src="{% static 'images/pic02.jpg' %}" alt="" />
+					</div>
+					<p class="credit">- <strong>Janet Smith</strong> <span>CEO - ABC Inc.</span></p>
 				</div>
-				<video autoplay loop muted playsinline src="{% static 'images/banner.mp4' %}"></video>
+				<video autoplay loop muted playsinline>
+					<source src="{% static 'images/banner.mp4' %}">
+					<source src="{% static 'images/banner.ogg' %}">
+				</video>
 			</section>
 
 		<!-- Highlights -->
