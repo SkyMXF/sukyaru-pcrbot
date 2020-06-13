@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>凯露酱档案馆</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="/user">凯露酱档案馆</a>
+			</header>
+
+		<!-- Banner -->
+        <section id="banner">
+            <div class="inner">
+                <h1>凯露酱的公会档案馆</h1>
+                <br></br>
+                <div class="kyaru">
+                    <div class="image">
+                        <img src="{% static 'images/kyaru.jpg' %}" alt="" />
+                    </div>
+                    <div class="kyarutalk">
+                        {% if message %}
+                        <p class="alert-warning">{{message}}</p>
+                        {% else %}
+                        <p class="kyarutalktext">欢迎来到凯露酱的公会档案馆(￣▽￣)／请先登录~</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+                    <div class="content">
+                        <form method="post" action="/user/login">
+                            {% csrf_token %}
+                            <div class="row gtr-uniform">
+                                <div class="col-12">
+                                    {{ login_form.userqq.label_tag }}
+                                    {{ login_form.userqq}}
+                                </div>
+                                <div class="col-12">
+                                    {{ login_form.password.label_tag }}
+                                    {{ login_form.password}}
+                                </div>
+                                <div class="col-12">
+                                    <ul class="actions">
+                                        <li><input type="submit" value="登录" class="primary" /></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+        <footer id="footer">
+            <div class="inner">
+                <div class="copyright">
+                    &copy;SkyF.
+                </div>
+            </div>
+        </footer>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>
