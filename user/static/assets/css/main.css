@@ -2701,44 +2701,7 @@ body {
   border-radius: 4px;
   margin-bottom: 2rem;
   padding: 3rem; }
-  #main .inner .form-login {
-    width: 100%;
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
-  }
-  #main .inner .form-login{
-    margin-top:1rem;
-    font-weight: 400;
-  }
-  #main .inner .form-login .form-control {
-    position: relative;
-    box-sizing: border-box;
-    height: auto;
-    padding: 10px;
-    font-size: 16px;
-
-  }
-  #main .inner .form-login .form-control:focus {
-    z-index: 2;
-  }
-  #main .inner .form-login input[type="text"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-  #main .inner .form-login input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-  #main .inner form a{
-    display: inline-block;
-    margin-top:5px;
-    margin-bottom: 25px;
-    font-size: 12px;
-    line-height: 2px;
-  }
+  
   @media screen and (max-width: 980px) {
     #main .content {
       padding: 2rem; } }
