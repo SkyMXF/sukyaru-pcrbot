@@ -1996,7 +1996,7 @@ ul.icons {
           font-size: 1.3rem;
           text-align: left; }
       #banner > .inner .kyaru .image {
-        margin-right: 0.2rem;
+        margin: 0 0.2rem 0 0;
         width: 20%; }
       #banner > .inner .kyaru .image img {
         border-radius: 60%;
