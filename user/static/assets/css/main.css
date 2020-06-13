@@ -1965,10 +1965,10 @@ ul.icons {
     opacity: 1;
     position: relative;
     z-index: 3; }
-    #banner > .inner .image {
+    #banner > .inner > .image {
       margin-right: 2rem;
       width: 20%; }
-      #banner > .inner .image img {
+      #banner > .inner > .image > img {
         border-radius: 100%;
         max-width: 100%; }
     #banner > .inner > :last-child {
