@@ -2242,7 +2242,7 @@ ul.icons {
 #footer {
   background-color: #111111;
   color: rgba(255, 255, 255, 0.5);
-  padding: 8rem 0 6rem 0 ; }
+  padding: 0 0 0 0 ; }
   #footer input, #footer select, #footer textarea {
     color: #ffffff; }
   #footer a {
@@ -2393,7 +2393,7 @@ ul.icons {
   #footer .copyright {
     font-size: 0.8rem;
     opacity: 0.5;
-    padding: 2rem 0;
+    padding: 1.0rem ;
     text-align: center; }
   @media screen and (max-width: 1280px) {
     #footer {
