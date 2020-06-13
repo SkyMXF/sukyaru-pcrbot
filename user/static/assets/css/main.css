@@ -660,7 +660,7 @@ table.alt tbody tr td {
 /* Highlights */
 .highlights {
   width: 100%;
-  margin: 0.25rem 0;
+  margin: 1.0rem 0;
   display: -moz-flex;
   display: -webkit-flex;
   display: -ms-flex;
@@ -701,7 +701,7 @@ table.alt tbody tr td {
   .highlights .content {
     border-radius: 10px;
     height: 100%;
-    width: 80%;
+    width: 90%;
     padding: 1.5rem;
     text-align: center; }
     .highlights .content .icon {
