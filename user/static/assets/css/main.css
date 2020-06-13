@@ -2699,28 +2699,19 @@ body {
 #main .content {
   background: #ffffff00;
   border-radius: 4px;
-  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.025);
   margin-bottom: 2rem;
   padding: 3rem; }
-#main .login_box {
-  background: #ffffff3a;
-  border-radius: 4px;
-  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.025);
-  margin-bottom: 2rem;
-  padding: 3rem; 
-  width: 100%;
-  padding: 0 30% 0 30%;}
-  #main .inner .login_box .form-login {
+  #main .inner .form-login {
     width: 100%;
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
   }
-  #main .inner .login_box .form-login{
+  #main .inner .form-login{
     margin-top:1rem;
     font-weight: 400;
   }
-  #main .inner .login_box .form-login .form-control {
+  #main .inner .form-login .form-control {
     position: relative;
     box-sizing: border-box;
     height: auto;
@@ -2728,20 +2719,20 @@ body {
     font-size: 16px;
 
   }
-  #main .inner .login_box .form-login .form-control:focus {
+  #main .inner .form-login .form-control:focus {
     z-index: 2;
   }
-  #main .inner .login_box .form-login input[type="text"] {
+  #main .inner .form-login input[type="text"] {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
-  #main .inner .login_box .form-login input[type="password"] {
+  #main .inner .form-login input[type="password"] {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
-  #main .inner .login_box form a{
+  #main .inner form a{
     display: inline-block;
     margin-top:25px;
     font-size: 12px;
