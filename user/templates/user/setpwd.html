@@ -31,7 +31,11 @@
                         <img src="{% static 'images/kyaru.jpg' %}" alt="" />
                     </div>
                     <div class="kyarutalk">
-                        <p class="kyarutalktext">想要修改成什么密码呢~由于凯露酱的安全措施有限o(╥﹏╥)o，请不要设置成自己的重要密码以免被盗噢</p>
+                        {% if message %}
+                        <p class="alert-warning">{{message}}</p>
+                        {% else %}
+                        <p class="kyarutalktext">想要修改成什么密码呢~由于凯露酱的安全措施有限o(╥﹏╥)o，请不要设置成与自己其他重要账号一样的密码以免被盗噢</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -44,11 +48,6 @@
                         <form method="post" action="/user/setpwd">
                             {% csrf_token %}
                             <div class="row gtr-uniform">
-                                {% if message %}
-                                <div class="col-12">
-                                    <p class="alert-warning">{{message}}</p>
-                                </div>
-                                {% endif %}
                                 <div class="col-12">
                                     {{ setpwd_form.password.label_tag }}
                                     {{ setpwd_form.password}}

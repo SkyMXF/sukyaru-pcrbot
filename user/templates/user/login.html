@@ -31,7 +31,11 @@
                         <img src="{% static 'images/kyaru.jpg' %}" alt="" />
                     </div>
                     <div class="kyarutalk">
+                        {% if message %}
+                        <p class="alert-warning">{{message}}</p>
+                        {% else %}
                         <p class="kyarutalktext">欢迎来到凯露酱的公会档案馆(￣▽￣)／请先登录~</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -44,11 +48,6 @@
                         <form method="post" action="/user/login">
                             {% csrf_token %}
                             <div class="row gtr-uniform">
-                                {% if message %}
-                                <div class="col-12">
-                                    <p class="alert-warning">{{message}}</p>
-                                </div>
-                                {% endif %}
                                 <div class="col-12">
                                     {{ login_form.userqq.label_tag }}
                                     {{ login_form.userqq}}
