@@ -1968,7 +1968,9 @@ ul.icons {
     #banner > .inner .content {
       border-radius: 4px;
       height: 100%;
-      padding: 3rem; }
+      padding: 3rem; 
+      background: #ffffff;
+      box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.025); }
     #banner > .inner > :last-child {
       margin-bottom: 0; }
   #banner h1 {
@@ -2059,11 +2061,6 @@ ul.icons {
     opacity: 0; }
   body.is-preload #banner:before {
     opacity: 1; }
-.banner > .inner .content {
-  background: #ffffff;
-  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.025); }
-  .banner .content .credit strong {
-    color: #00bfff; }
 
 /* CTA */
 #cta {
