@@ -674,6 +674,7 @@ table.alt tbody tr td {
   -ms-align-items: -ms-stretch;
   align-items: stretch; }
   .highlights > * {
+    margin-top: 0.5rem;
     -moz-flex-shrink: 1;
     -webkit-flex-shrink: 1;
     -ms-flex-shrink: 1;
