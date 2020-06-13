@@ -102,3 +102,4 @@ def logout(request):
         return redirect("/user/login")
     request.session.flush()
     return redirect("/user/login")
+    
