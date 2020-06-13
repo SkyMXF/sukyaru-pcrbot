@@ -685,8 +685,8 @@ table.alt tbody tr td {
   .highlights > * {
     width: 33.3333333333%; }
   .highlights > * {
-    padding: 0.5rem;
-    width: calc(33.3333333333% + 0.6rem); }
+    padding: 1.5rem;
+    width: calc(33.3333333333% + 1.0rem); }
   .highlights > :nth-child(-n + 3) {
     padding-top: 0; }
   .highlights > :nth-last-child(-n + 3) {
@@ -700,7 +700,7 @@ table.alt tbody tr td {
     width: calc(33.3333333333% + -0.5rem); }
   .highlights .content {
     border-radius: 10px;
-    height: 80%;
+    height: 100%;
     width: 80%;
     padding: 1.5rem;
     text-align: center; }
