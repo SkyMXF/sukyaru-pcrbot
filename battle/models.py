@@ -29,7 +29,7 @@ class BossInfo(models.Model):
 class NowBattleRecord(models.Model):
     # 当前公会战报刀记录
     record_id = models.IntegerField(unique=True)  # 记录id(用于撤销)
-    record_date = models.DateTimeField(auto_now=True)
+    record_date = models.DateTimeField()
     user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     boss_stage = models.IntegerField()       # 周目数
     boss_id = models.IntegerField()     # boss编号

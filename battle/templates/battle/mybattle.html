@@ -34,7 +34,7 @@
                         {% if message %}
                         <p class="alert-warning">{{message}}</p>
                         {% else %}
-                        <p class="kyarutalktext">欢迎来到凯露酱的公会档案馆(￣▽￣)／请先登录~</p>
+                        <p class="kyarutalktext">这里是个人公会战伤害记录面板~</p>
                         {% endif %}
                     </div>
                 </div>
@@ -45,7 +45,8 @@
 			<section id="main" class="wrapper">
 				<div class="inner">
                     <div class="content">
-                        <form method="post" action="/user/login">
+                        {% if own_page %}
+                        <form method="post" action="/battle/mybattle">
                             {% csrf_token %}
                             <div class="row gtr-uniform">
                                 <div class="col-12">
@@ -63,6 +64,7 @@
                                 </div>
                             </div>
                         </form>
+                        {% endif %}
                     </div>
 				</div>
 			</section>
