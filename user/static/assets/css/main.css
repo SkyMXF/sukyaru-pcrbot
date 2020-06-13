@@ -1969,6 +1969,7 @@ ul.icons {
     z-index: 3; }
     #banner > .inner .kyaru {
       border-radius: 10px;
+      margin-top: 0;
       height: 30%;
       width: 70%;
       padding: 0.1rem; 
