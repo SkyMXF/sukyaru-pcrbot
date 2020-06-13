@@ -1955,7 +1955,7 @@ ul.icons {
     #banner .testimonials .content .credit strong {
       color: #00bfff; }
   #banner > .inner {
-    margin-top: 3.5rem;
+    margin-top: 3.0rem;
     -moz-transform: scale(1.0);
     -webkit-transform: scale(1.0);
     -ms-transform: scale(1.0);
@@ -1985,7 +1985,7 @@ ul.icons {
       align-items: center; }
       #banner > .inner .kyaru .kyarutalk {
         border-radius: 10px;
-        height: 80%;
+        height: 60%;
         width: 100%;
         padding: 1.5rem; 
         background: #ffffff21;
