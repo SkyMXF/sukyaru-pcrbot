@@ -19,7 +19,8 @@ from . import views
 
 urlpatterns = [
     path('user/', include('user.urls')),
-    path('clan_battle/', include('clan_battle.urls')),
+    path('battle/', include('battle.urls')),
+    path('guild/', include('guild.urls')),
     path('admin/', admin.site.urls),
-    path('', views.index, name="index")
+    path('', include('user.urls'))
 ]
