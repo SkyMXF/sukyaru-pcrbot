@@ -2710,6 +2710,9 @@ body {
   padding: 3rem; 
   width: 100%;
   padding: 0 30% 0 30%;}
+  #main .inner .login_box .content {
+    background: #ffffff00;
+  }
   #main .inner .login_box .form-login {
     width: 100%;
     max-width: 330px;
