@@ -1969,7 +1969,7 @@ ul.icons {
       border-radius: 10px;
       height: 30%;
       width: 50%;
-      padding: 2rem; 
+      padding: 0.5rem; 
       background: #ffffff22;
       box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.025);
       display: -moz-flex;
@@ -1988,8 +1988,8 @@ ul.icons {
         margin-right: 2rem;
         width: 20%; }
         #banner > .inner .kyaru .image img {
-          border-radius: 100%;
-          max-width: 100%; }
+          border-radius: 80%;
+          max-width: 80%; }
     #banner > .inner > :last-child {
       margin-bottom: 0; }
   #banner h1 {
