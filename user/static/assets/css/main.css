@@ -127,6 +127,9 @@ em, i {
 
 p {
   margin: 0 0 2rem 0; }
+p .alert-warning {
+  color: #b71824;
+}
 
 header.special {
   text-align: center;

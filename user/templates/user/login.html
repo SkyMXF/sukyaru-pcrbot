@@ -37,9 +37,15 @@
 		<!-- Main -->
 			<section id="main" class="wrapper">
 				<div class="inner">
-                    <div class="content" width=50%>
+                    <div class="content">
                         <form method="post" action="/user/login">
+                            {% csrf_token %}
                             <div class="row gtr-uniform">
+                                {% if message %}
+                                <div class="col-12">
+                                    <p class="alert-warning">{{message}}</p>
+                                </div>
+                                {% endif %}
                                 <div class="col-12">
                                     {{ login_form.userqq.label_tag }}
                                     {{ login_form.userqq}}
