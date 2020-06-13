@@ -1976,10 +1976,10 @@ ul.icons {
       display: -webkit-flex;
       display: -ms-flex;
       display: flex;
-      -moz-align-items: center;
-      -webkit-align-items: center;
-      -ms-align-items: center;
-      align-items: center; }
+      -moz-align-items: left;
+      -webkit-align-items: left;
+      -ms-align-items: left;
+      align-items: left; }
       #banner > .inner .kyaru .credit {
         color: #dddddd;
         font-size: 1.3rem; }
