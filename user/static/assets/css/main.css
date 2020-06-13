@@ -1965,20 +1965,20 @@ ul.icons {
     opacity: 1;
     position: relative;
     z-index: 3; }
-    #banner > .inner .content {
+    #banner > .inner .kyaru {
       border-radius: 10px;
       height: 100%;
       width: 50%;
       padding: 3rem; 
       background: #ffffff22;
       box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.025); }
-      #banner > .inner .content .credit {
+      #banner > .inner .kyaru .credit {
         color: #dddddd;
         font-size: 1.3rem; }
-        #banner > .inner .content .image {
+        #banner > .inner .kyaru .image {
         margin-right: 2rem;
         width: 20%; }
-        #banner > .inner .content .image img {
+        #banner > .inner .kyaru .image img {
           border-radius: 100%;
           max-width: 100%; }
     #banner > .inner > :last-child {
