@@ -1965,6 +1965,10 @@ ul.icons {
     opacity: 1;
     position: relative;
     z-index: 3; }
+    #banner > .inner .content {
+      border-radius: 4px;
+      height: 100%;
+      padding: 3rem; }
     #banner > .inner > :last-child {
       margin-bottom: 0; }
   #banner h1 {
