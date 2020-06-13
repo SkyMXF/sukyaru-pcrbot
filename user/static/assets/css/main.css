@@ -659,7 +659,7 @@ table.alt tbody tr td {
 
 /* Highlights */
 .highlights {
-  width: 100%;
+  width: 80%;
   margin: 0.2rem 0;
   display: -moz-flex;
   display: -webkit-flex;
