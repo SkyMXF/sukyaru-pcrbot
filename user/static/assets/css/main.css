@@ -1965,12 +1965,21 @@ ul.icons {
     opacity: 1;
     position: relative;
     z-index: 3; }
-    #banner > .inner > .image {
-      margin-right: 2rem;
-      width: 20%; }
-      #banner > .inner > .image > img {
-        border-radius: 100%;
-        max-width: 100%; }
+    #banner > .inner > .kyaru {
+      display: -moz-flex;
+      display: -webkit-flex;
+      display: -ms-flex;
+      display: flex;
+      -moz-align-items: center;
+      -webkit-align-items: center;
+      -ms-align-items: center;
+      align-items: center; }
+      #banner > .inner > .kyaru > .image {
+        margin-right: 2rem;
+        width: 20%; }
+        #banner > .inner > .kyaru > .image > img {
+          border-radius: 100%;
+          max-width: 100%; }
     #banner > .inner > :last-child {
       margin-bottom: 0; }
   #banner h1 {
