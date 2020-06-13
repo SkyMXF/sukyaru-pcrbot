@@ -1,43 +1,85 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{% static 'css/setpwd.css' %}" rel="stylesheet" />
-    <title>修改密码</title>
-</head>
-<body>
-    <div class="container">
-        <div class="col">
-            <form class="form-login" action="/user/setpwd" method="post">
-                {% if message %}
-                    <div class="alert alert-warning">{{ message }}</div>
-                {% endif %}
-                {% csrf_token %}
-                <h3 class="text-center">修改密码</h3>
-                    <div class="form-group">
-                        {{ setpwd_form.password.label_tag }}
-                        {{ setpwd_form.password}}
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>凯露酱档案馆</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="/user">凯露酱档案馆</a>
+			</header>
+
+		<!-- Heading -->
+			<div id="heading" >
+                <h1>凯露酱的公会档案馆</h1>
+                <div class="kyaru">
+                    <div class="image">
+                        <img src="{% static 'images/kyaru.jpg' %}" alt="" />
                     </div>
-                    <div class="form-group">
-                        {{ setpwd_form.retype_password.label_tag }}
-                        {{ setpwd_form.retype_password}}
+                    <div class="kyarutalk">
+                        <p class="kyarutalktext">欢迎来到凯露酱的公会档案馆(￣▽￣)／只要不叫凯露酱臭鼬，骑士君就是伙伴噢~</p>
                     </div>
-                <div>
-                    <button type="submit" class="btn btn-primary float-right">修改密码</button>
                 </div>
-            </form>
-        </div>
-    </div>
+			</div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
-    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</body>
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+                    <div class="content">
+                        <form method="post" action="/user/setpwd">
+                            {% csrf_token %}
+                            <div class="row gtr-uniform">
+                                {% if message %}
+                                <div class="col-12">
+                                    <p class="alert-warning">{{message}}</p>
+                                </div>
+                                {% endif %}
+                                <div class="col-12">
+                                    {{ setpwd_form.password.label_tag }}
+                                    {{ setpwd_form.password}}
+                                </div>
+                                <div class="col-12">
+                                    {{ setpwd_form.retype_password.label_tag }}
+                                    {{ setpwd_form.retype_password}}
+                                </div>
+                                <div class="col-12">
+                                    <ul class="actions">
+                                        <li><input type="submit" value="修改密码" class="primary" /></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+        <footer id="footer">
+            <div class="inner">
+                <div class="copyright">
+                    &copy;SkyF.
+                </div>
+            </div>
+        </footer>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
 </html>
-
