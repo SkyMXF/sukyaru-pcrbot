@@ -27,14 +27,14 @@ def login(request):
             try:
                 userqq = int(userqq)
             except:
-                message = "输入QQ号格式错误"
+                message = "输入QQ号格式不对噢0.0"
                 return render(request, "user/login.html", {"message": message, "login_form": login_form})
 
             # 查询数据库
             try:
                 user = models.UserInfo.objects.get(user_qq_id=userqq)
             except:
-                message = "没有此QQ记录，请联系公会管理人员添加"
+                message = "凯露酱没有此QQ记录0.0，请联系公会管理人员添加噢~"
                 return render(request, 'user/login.html', {"message": message, "login_form": login_form})
             
             if user.password == utils.pwd_hash(password):
@@ -51,11 +51,11 @@ def login(request):
                 request.session['user_auth'] = user_auth_str
                 return redirect("/user")
             else:
-                message = "密码不正确，如果忘记可私聊发送'重置密码'进行重置"
+                message = "密码不正确0.0，如果忘记可私聊凯露酱发送'重置密码'进行重置"
                 return render(request, 'user/login.html', {"message": message, "login_form": login_form})
 
         else:
-            message = "QQ或密码输入格式错误"
+            message = "QQ或密码输入格式错误0.0"
             return render(request, "user/login.html", {"message": message, "login_form": login_form})
 
     # 直接url访问
@@ -74,7 +74,7 @@ def setpwd(request):
             retype_password = setpwd_form.cleaned_data.get('retype_password')
 
             if password != retype_password:
-                message = "两次输入的密码不一致"
+                message = "两次输入的密码不一样噢0.0"
                 return render(request, 'user/setpwd.html', {"message": message, "setpwd_form": setpwd_form})
             
             # 修改数据库    
@@ -90,7 +90,7 @@ def setpwd(request):
             return redirect("/user/logout")
 
         else:
-            message = "密码输入格式错误"
+            message = "密码输入格式错误0.0"
             return render(request, "user/setpwd.html", {"message": message, "setpwd_form": setpwd_form})
 
     setpwd_form = forms.SetPasswordForm()
