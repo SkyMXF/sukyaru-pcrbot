@@ -1976,13 +1976,14 @@ ul.icons {
       display: -webkit-flex;
       display: -ms-flex;
       display: flex;
-      -moz-align-items: left;
-      -webkit-align-items: left;
-      -ms-align-items: left;
-      align-items: left; }
-      #banner > .inner .kyaru .credit {
+      -moz-align-items: center;
+      -webkit-align-items: center;
+      -ms-align-items: center;
+      align-items: center; }
+      #banner > .inner .kyaru .kyarutalk {
         color: #dddddd;
-        font-size: 1.3rem; }
+        font-size: 1.3rem;
+        text-align: left; }
         #banner > .inner .kyaru .image {
         margin-right: 2rem;
         width: 20%; }
