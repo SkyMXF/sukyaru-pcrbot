@@ -1971,7 +1971,15 @@ ul.icons {
       width: 50%;
       padding: 3rem; 
       background: #ffffff22;
-      box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.025); }
+      box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.025);
+      display: -moz-flex;
+      display: -webkit-flex;
+      display: -ms-flex;
+      display: flex;
+      -moz-align-items: center;
+      -webkit-align-items: center;
+      -ms-align-items: center;
+      align-items: center; }
       #banner > .inner .kyaru .credit {
         color: #dddddd;
         font-size: 1.3rem; }
