@@ -1816,7 +1816,7 @@ ul.icons {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  border-top: 0;
+  border-top: 2.5rem;
   display: -ms-flexbox;
   height: 15rem !important;
   min-height: 15rem;
