@@ -1968,7 +1968,7 @@ ul.icons {
     #banner > .inner .kyaru {
       border-radius: 10px;
       height: 30%;
-      width: 50%;
+      width: 70%;
       padding: 0.5rem; 
       background: #ffffff00;
       box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.025);
@@ -1982,15 +1982,15 @@ ul.icons {
       align-items: center; }
       #banner > .inner .kyaru .kyarutalk {
         border-radius: 10px;
-        height: 50%;
+        height: 80%;
         width: 100%;
-        padding: 2.5rem; 
+        padding: 1.5rem; 
         background: #ffffff21;
         box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.025);
       }
         #banner > .inner .kyaru .kyarutalk .kyarutalktext {
           color: #dddddd;
-          font-size: 1.0rem;
+          font-size: 1.3rem;
           text-align: left; }
       #banner > .inner .kyaru .image {
         margin-right: 2rem;
