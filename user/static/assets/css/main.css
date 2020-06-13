@@ -2737,7 +2737,7 @@ body {
     margin-top:5px;
     margin-bottom: 25px;
     font-size: 12px;
-    line-height: 10px;
+    line-height: 2px;
   }
   @media screen and (max-width: 980px) {
     #main .content {
