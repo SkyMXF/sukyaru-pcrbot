@@ -700,8 +700,9 @@ table.alt tbody tr td {
     width: calc(33.3333333333% + -0.5rem); }
   .highlights .content {
     border-radius: 10px;
-    height: 100%;
-    padding: 2.0rem;
+    height: 80%;
+    width: 80%;
+    padding: 1.5rem;
     text-align: center; }
     .highlights .content .icon {
       font-size: 5rem; }
