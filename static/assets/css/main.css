@@ -2001,10 +2001,10 @@ ul.icons {
           text-align: left; }
       #banner > .inner .kyaru .image {
         margin: 0 0.2rem 0 0;
-        width: 50%; }
+        width: 100%; }
       #banner > .inner .kyaru .image img {
-        border-radius: 100%;
-        max-width: 100%; }
+        border-radius: 60%;
+        max-width: 60%; }
     #banner > .inner > :last-child {
       margin-bottom: 1.0rem; }
   #banner h1 {
