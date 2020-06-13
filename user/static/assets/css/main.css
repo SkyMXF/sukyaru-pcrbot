@@ -1816,7 +1816,7 @@ ul.icons {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  border-top: 2.5rem;
+  border-top: 0;
   display: -ms-flexbox;
   height: 15rem !important;
   min-height: 15rem;
@@ -1955,6 +1955,7 @@ ul.icons {
     #banner .testimonials .content .credit strong {
       color: #00bfff; }
   #banner > .inner {
+    margin-top: 2.5rem;
     -moz-transform: scale(1.0);
     -webkit-transform: scale(1.0);
     -ms-transform: scale(1.0);
