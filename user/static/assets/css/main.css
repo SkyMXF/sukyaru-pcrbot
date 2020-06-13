@@ -2734,7 +2734,8 @@ body {
   }
   #main .inner form a{
     display: inline-block;
-    margin-top:25px;
+    margin-top:5px;
+    margin-bottom: 25px;
     font-size: 12px;
     line-height: 10px;
   }
