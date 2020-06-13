@@ -1969,8 +1969,11 @@ ul.icons {
       border-radius: 4px;
       height: 100%;
       padding: 3rem; 
-      background: #ffffff;
+      background: #ffffff00;
       box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.025); }
+      #banner > .inner .content .credit {
+        color: #111111;
+        font-size: 0.75rem; }
     #banner > .inner > :last-child {
       margin-bottom: 0; }
   #banner h1 {
