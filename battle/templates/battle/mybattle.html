@@ -229,11 +229,11 @@
                 function showTab() {
                     for(var i = 0, len = tabs.length; i < len; i++) {
                         if(tabs[i] === this) {
-                            if (tabs[i].className === 'table_wrapper') continue
+                            if (contents[i].className === 'table_wrapper') continue
                             tabs[i].className = 'selected';
                             contents[i].className = 'show';
                         } else {
-                            if (tabs[i].className === 'table_wrapper') continue
+                            if (contents[i].className === 'table_wrapper') continue
                             tabs[i].className = '';
                             contents[i].className = 'hide';
                         }
