@@ -189,14 +189,6 @@
             <script>
                 var tabs = document.getElementsByClassName('tab-head')[0].getElementsByTagName('h3'),
                 contents = document.getElementsByClassName('tab-content')[0].getElementsByTagName('div');
-                for(i = 0, len = contents.length; i < len; i++){
-                    if (contents[i].className === "table-wrapper"){
-                        console.log(i)
-                        console.log(contents[i].className)
-                        contents.splice(i);
-                        i--;
-                    }
-                }
 
                 (function changeTab(tab) {
                     for(var i = 0, len = tabs.length; i < len; i++) {
@@ -205,13 +197,17 @@
                 })();
 
                 function showTab() {
+                    var jump_counter = 0
                     for(var i = 0, len = tabs.length; i < len; i++) {
+                        while (contents[i + jump_counter].className === "table-content") {
+                            jump_counter += 1
+                        }
                         if(tabs[i] === this) {
                             tabs[i].className = 'selected';
-                            contents[i].className = 'show';
+                            contents[i + jump_counter].className = 'show';
                         } else {
                             tabs[i].className = '';
-                            contents[i].className = '';
+                            contents[i + jump_counter].className = '';
                         }
                     }
                 }
