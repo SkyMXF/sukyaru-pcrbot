@@ -21,9 +21,9 @@ def mybattle(request):
     user_all_battle_record = models.NowBattleRecord.objects.filter(user_qq_id=now_page_qq)
     for now_battle_date in battle_date_list:
         user_now_date_battle_record = user_all_battle_record.filter(
-            record_date__year=now_battle_date.year,
-            record_date__month=now_battle_date.month,
-            record_date__day=now_battle_date.day,
+            record_date__year=now_battle_date.battle_date.year,
+            record_date__month=now_battle_date.battle_date.month,
+            record_date__day=now_battle_date.battle_date.day,
         ).order_by("record_date")
         print(user_now_date_battle_record)
 

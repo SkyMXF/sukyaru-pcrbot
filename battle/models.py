@@ -35,9 +35,8 @@ class BattleDate(models.Model):
 
 class NowBattleRecord(models.Model):
     # 当前公会战报刀记录
-    record_id = models.IntegerField(unique=True)  # 记录id(用于撤销)
     record_date = models.DateTimeField()
-    user_qq_id = models.BigIntegerField()
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     boss_stage = models.IntegerField()       # 周目数
     boss_id = models.IntegerField()     # boss编号
     damage = models.IntegerField()      # 造成伤害
@@ -45,13 +44,13 @@ class NowBattleRecord(models.Model):
     comp_flag = models.BooleanField(default=False)  # 补偿刀标记
 
     def __str__(self):
-        return "id_%d, %d-%d, %d"%(self.record_id, self.boss_stage, self.boss_id, self.damage)
+        return "id_%d, %s, %s, %d-%d, %d"%(self.id, self.user_info.nickname, str(self.record_date), self.boss_stage, self.boss_id, self.damage)
 
 class LastBattleRecord(models.Model):
     # 上次公会战报刀记录
     record_id = models.IntegerField(unique=True)  # 记录id(用于撤销)
     record_date = models.DateTimeField()
-    user_qq_id = models.BigIntegerField()
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     boss_stage = models.IntegerField()       # 周目数
     boss_id = models.IntegerField()     # boss编号
     damage = models.IntegerField()      # 造成伤害
@@ -59,4 +58,4 @@ class LastBattleRecord(models.Model):
     comp_flag = models.BooleanField(default=False)  # 补偿刀标记
 
     def __str__(self):
-        return "id_%d, %d-%d, %d"%(self.record_id, self.boss_stage, self.boss_id, self.damage)
+        return "id_%d, %s, %s, %d-%d, %d"%(self.id, self.user_info.nickname, str(self.record_date), self.boss_stage, self.boss_id, self.damage)
