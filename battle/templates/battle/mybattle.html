@@ -86,14 +86,10 @@
                                 <div class="col-2 col-6-medium">
                                     {{ battle_record_form.final_kill}}
                                     {{ battle_record_form.final_kill.label_tag}}
-                                    <!-- <input type="checkbox" id="final_kill" name="checkbox"> -->
-                                    <!-- <label for="final_kill">尾刀</label> -->
                                 </div>
                                 <div class="col-2 col-6-medium">
                                     {{ battle_record_form.comp_flag}}
                                     {{ battle_record_form.comp_flag.label_tag}}
-                                    <!-- <input type="checkbox" id="comp_flag" name="checkbox"> -->
-                                    <!-- <label for="comp_flag">补偿刀</label> -->
                                 </div>
                                 <div class="col-8 col-12-medium">
                                     <ul class="actions">
@@ -122,9 +118,12 @@
                         <div class="row gtr-uniform">
                             <div class="col-12">
                                 <div class="tab-head">
-                                    <h3 class="selected">6月2日</h3>
-                                    <h3>6月3日</h3>
-                                    <h3>6月4日</h3>
+                                    {% if len(battle_date_list) > 0 %}
+                                    <h3 class="selected">{{battle_date_list[0]}}</h3>
+                                    {% endif %}
+                                    {% for d in battle_date_list[1:] %}
+                                    <h3>{{d}}</h3>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
