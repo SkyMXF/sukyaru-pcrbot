@@ -46,6 +46,7 @@ def mybattle(request):
                 "record_time": record_pcr_date.tz_datetime().strftime("%m-%d %H:%M:%S"),
                 "boss_info": "%s(%d-%d)"%(now_date_record.boss_info.boss_name, now_date_record.boss_real_stage, now_date_record.boss_info.boss_id),
                 "damage": now_date_record.damage,
+                "score": int(now_date_record.boss_info.score_fac * now_date_record.damage),
                 "final_kill": "√" if now_date_record.final_kill else "×",
                 "comp_flag": "√" if now_date_record.comp_flag else "×"
             })
