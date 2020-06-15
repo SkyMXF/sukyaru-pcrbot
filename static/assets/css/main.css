@@ -242,7 +242,7 @@ hr {
 
 /* Inner */
 .inner {
-  margin: 0 auto;
+  margin: 0 0 0 0;
   width: 75rem;
   max-width: calc(100% - 6rem); }
   @media screen and (max-width: 480px) {
@@ -1781,16 +1781,15 @@ ul.icons {
 
 /* Wrapper */
 .wrapper {
-  padding: 1rem 0 1rem 0 ;
+  padding: 3rem 0 3rem 0 ;
   position: relative;
-  height: 80%;
   z-index: 1; }
   @media screen and (max-width: 1280px) {
     .wrapper {
-      padding: 1rem 0 1rem 0 ; } }
+      padding: 3rem 0 3rem 0 ; } }
   @media screen and (max-width: 736px) {
     .wrapper {
-      padding: 1rem 0 1rem 0 ; } }
+      padding: 2rem 0 2rem 0 ; } }
   @media screen and (max-width: 480px) {
     .wrapper {
       padding: 1rem 0 1rem 0 ; } }
