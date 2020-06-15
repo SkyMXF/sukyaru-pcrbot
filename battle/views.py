@@ -12,9 +12,8 @@ def mybattle(request):
 
     now_page_qq = request.session.get('userqq', None)
     battle_record_form = forms.BattleRecordForm()
-    print(now_page_qq)
-    print(request.session.get('userqq', None))
-    return render(request, 'battle/mybattle.html', {"now_page_qq": now_page_qq, "battle_record_form": battle_record_form})
+    self_page = True
+    return render(request, 'battle/mybattle.html', {"self_page": self_page, "battle_record_form": battle_record_form})
 
 def guildbattle(request):
     if not request.session.get('is_login', None):

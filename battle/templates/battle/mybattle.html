@@ -45,7 +45,7 @@
 			<section id="main" class="wrapper">
 				<div class="inner">
                     <div class="content">
-                        {% if now_page_qq == requeset.session.userqq %}
+                        {% if self_page %}
                         <form method="post" action="/battle/mybattle">
                             {% csrf_token %}
                             <div class="row gtr-uniform">
