@@ -2,19 +2,6 @@ from django.db import models
 from user.models import UserInfo
 
 # Create your models here.
-class BossStatus(models.Model):
-    # Boss状态
-    boss_info = models.ForeignKey(BossInfo, on_delete=models.CASCADE)
-    boss_real_stage = models.IntegerField()       # 真实周目数
-    #boss_stage = models.IntegerField()       # 周目数
-    #boss_id = models.IntegerField()     # boss编号
-    health = models.IntegerField()      # 当前生命值
-    now_battle = models.BooleanField(default=False)  # 当前正在作战
-    killed = models.BooleanField(default=False)     # 已击杀
-    
-    def __str__(self):
-        return "%s(%d-%d)"%(self.boss_info.boss_name, self.boss_real_stage, self.boss_info.boss_id)
-
 class BossInfo(models.Model):
     # Boss信息
     boss_stage = models.IntegerField()  # 周目数(与属性、倍率对应)
@@ -28,6 +15,19 @@ class BossInfo(models.Model):
     def __str__(self):
         return "%s(%d-%d)"%(self.boss_name, self.boss_stage, self.boss_id)
 
+class BossStatus(models.Model):
+    # Boss状态
+    boss_info = models.ForeignKey(BossInfo, on_delete=models.CASCADE)
+    boss_real_stage = models.IntegerField()       # 真实周目数
+    #boss_stage = models.IntegerField()       # 周目数
+    #boss_id = models.IntegerField()     # boss编号
+    health = models.IntegerField()      # 当前生命值
+    now_battle = models.BooleanField(default=False)  # 当前正在作战
+    killed = models.BooleanField(default=False)     # 已击杀
+    
+    def __str__(self):
+        return "%s(%d-%d)"%(self.boss_info.boss_name, self.boss_real_stage, self.boss_info.boss_id)
+        
 class BattleDate(models.Model):
     # 当前公会战举行日期列表
     battle_date = models.DateField(unique=True)
