@@ -612,6 +612,7 @@ ul.alt li {
   overflow-x: auto; 
   background-color: #ffffff4f;
   padding: 0.5rem;
+  border-radius: 10px;
 }
 
 table {
