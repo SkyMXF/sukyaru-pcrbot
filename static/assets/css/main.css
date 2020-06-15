@@ -609,7 +609,9 @@ ul.alt li {
 /* Table */
 .table-wrapper {
   -webkit-overflow-scrolling: touch;
-  overflow-x: auto; }
+  overflow-x: auto; 
+  background-color: #ffffff4f;
+}
 
 table {
   margin: 0 0 2rem 0;
