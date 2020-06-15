@@ -1,22 +1,25 @@
-var tabs = document.getElementsByClassName('tab-head')[0].getElementsByClassName('selected');
-tabs = tabs.concat(document.getElementsByClassName('tab-head')[0].getElementsByClassName('unselected'));
-contents = document.getElementsByClassName('tab-content')[0].getElementsByClassName('show');
-contents = contents.concat(document.getElementsByClassName('tab-content')[0].getElementsByClassName('hide'));
+var tabs = document.getElementsByClassName('tab-head')[0].getElementsByTagName('h3'),
+contents = document.getElementsByClassName('tab-content')[0].getElementsByTagName('div');
 
 (function changeTab(tab) {
     for(var i = 0, len = tabs.length; i < len; i++) {
-        tabs[i].onmouseover = showTab;
+        tabs[i].onmousedown = showTab;
     }
 })();
 
 function showTab() {
+    var content_pos = 0
     for(var i = 0, len = tabs.length; i < len; i++) {
+        while (contents[content_pos].className === "table-wrapper") {
+            content_pos += 1;
+        }
         if(tabs[i] === this) {
             tabs[i].className = 'selected';
-            contents[i].className = 'show';
+            contents[content_pos].className = 'show';
         } else {
-            tabs[i].className = 'unselected';
-            contents[i].className = 'hide';
+            tabs[i].className = '';
+            contents[content_pos].className = '';
         }
+        content_pos++;
     }
 }
