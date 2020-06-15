@@ -2731,6 +2731,7 @@ body {
   margin: 0;
   float: left;
   text-align: center;
+  color: #00bfff;
 }
 #main .inner .content .tab-content {
   border: solid #00bfff 1px;
