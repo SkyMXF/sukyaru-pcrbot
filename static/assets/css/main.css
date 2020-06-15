@@ -2442,7 +2442,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
-    opacity: 0.05; }   /*背景透明度*/
+    opacity: 0.5; }   /*背景透明度*/
 
 #header {
   -moz-align-items: center;
@@ -2705,14 +2705,6 @@ body {
   border-radius: 4px;
   margin-bottom: 2rem;
   padding: 3rem; }
-  #main .content input::-webkit-input-placeholder {
-    color: rgb(255, 255, 255) !important; }
-  #main .content input:-moz-placeholder {
-    color: rgb(255, 255, 255) !important; }
-  #main .content input::-moz-placeholder {
-    color: rgb(255, 255, 255) !important; }
-  #main .content input:-ms-input-placeholder {
-    color: rgb(255, 255, 255) !important; }
   
   @media screen and (max-width: 980px) {
     #main .content {
@@ -2720,6 +2712,14 @@ body {
   @media screen and (max-width: 480px) {
     #main .content {
       padding: 1.5rem; } }
+#main ::-webkit-input-placeholder {
+  color: rgb(34, 34, 34) !important; }
+#main :-moz-placeholder {
+  color: rgb(34, 34, 34) !important; }
+#main ::-moz-placeholder {
+  color: rgb(34, 34, 34) !important; }
+#main :-ms-input-placeholder {
+  color: rgb(34, 34, 34) !important; }
 #main .alert-warning {
   color: #b71824;
 }
