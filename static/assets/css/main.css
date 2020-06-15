@@ -2731,12 +2731,12 @@ body {
   background-color: #00bfff;
   color: #ffffff;
 }
-#main .inner .content .tab-content div{
-  display: none;
-}
-#main .inner .content .selected {
+#main .inner .content .tab-head .selected {
   background-color: #006eff;
   color: #ffffff;
+}
+#main .inner .content .tab-content div{
+  display: none;
 }
 #main .inner .content .tab-content .show{
   display: block;
