@@ -199,7 +199,7 @@
                 function showTab() {
                     var content_pos = 0
                     for(var i = 0, len = tabs.length; i < len; i++) {
-                        while (contents[content_pos].className === "table-content") {
+                        while (contents[content_pos].className === "table-wrapper") {
                             content_pos += 1;
                         }
                         console.log(i, content_pos, tabs[i].className, contents[content_pos].className)
