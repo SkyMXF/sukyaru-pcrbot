@@ -2054,7 +2054,7 @@ ul.icons {
     width: 100%;
     z-index: 1; }
   #banner:after {
-    background: linear-gradient(135deg, #00bfff62 0%, #11111162 74%);
+    background: linear-gradient(135deg, #00bfff8c 0%, #1111118c 74%);
     content: ' ';
     display: block;
     height: 100%;
