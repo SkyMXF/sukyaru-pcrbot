@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.utils.timezone import get_default_timezone
 
 from . import models
 from . import forms
@@ -33,7 +34,7 @@ def mybattle(request):
         ).order_by("record_date")
         for now_date_record in user_now_date_battle_records:
             user_now_date_battle_record_list.append({
-                "record_time": str(now_date_record.record_date.hour) + ":" + str(now_date_record.record_date.minute) + ":" + str(now_date_record.record_date.second),
+                "record_time": str(now_date_record.record_date.astimezone(get_default_timezone()).hour) + ":" + str(now_date_record.record_date.minute) + ":" + str(now_date_record.record_date.second),
                 "boss_info": str(now_date_record.boss_stage) + "-" + str(now_date_record.boss_id),
                 "damage": now_date_record.damage,
                 "final_kill": "√" if now_date_record.final_kill else "×",
