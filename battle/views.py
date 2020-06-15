@@ -28,7 +28,7 @@ def mybattle(request):
     user_all_battle_record = models.NowBattleRecord.objects.filter(user_info__user_qq_id=now_page_qq)
     for now_battle_date in battle_dates:
         now_battle_pcr_date = utils.PCRDate(now_battle_date.battle_date, tzinfo=get_default_timezone())
-        if now_datetime.tz_datetime() < now_battle_pcr_date.day_begin():
+        if now_datetime.tz_datetime() >= now_battle_pcr_date.day_end():
             now_day_id += 1
 
         # 记录日期
