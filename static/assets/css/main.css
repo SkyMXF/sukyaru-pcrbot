@@ -2240,12 +2240,12 @@ ul.icons {
   #cta .inner {
     position: relative;
     z-index: 3; }
-  #cta .inner p{
-    margin: 1rem 0 1rem 0;
-  }
   @media screen and (max-width: 980px) {
     #cta {
       background-attachment: scroll; } }
+#cta .inner p{
+  margin: 1rem 0 1rem 0;
+}
 
 /* Footer */
 #footer {
