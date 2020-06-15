@@ -2726,8 +2726,6 @@ body {
 #main .inner .content h3 {
   border-top: solid #00bfff 1px;
   border-left: solid #00bfff 1px;
-  width: 50px;
-  height: 25px;
   margin: 0;
   float: left;
   text-align: center;
@@ -2735,8 +2733,6 @@ body {
 }
 #main .inner .content .tab-content {
   border: solid #00bfff 1px;
-  width: 152px;
-  height: 100px;
 }
 #main .inner .content .tab-content div{
   display: none;
