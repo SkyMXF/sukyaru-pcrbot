@@ -611,6 +611,7 @@ ul.alt li {
   -webkit-overflow-scrolling: touch;
   overflow-x: auto; 
   background-color: #ffffff4f;
+  padding: 0.5rem;
 }
 
 table {
