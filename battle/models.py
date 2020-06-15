@@ -26,6 +26,10 @@ class BossInfo(models.Model):
     def __str__(self):
         return "%s(%d-%d)"%(self.boss_name, self.boss_stage, self.boss_id)
 
+class BattleDate(models.Model):
+    # 当前公会战举行日期列表
+    battle_date = models.DateField()
+
 class NowBattleRecord(models.Model):
     # 当前公会战报刀记录
     record_id = models.IntegerField(unique=True)  # 记录id(用于撤销)
