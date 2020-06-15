@@ -542,16 +542,16 @@ input[type="radio"]:focus + label:before {
   box-shadow: 0 0 0 1px #00bfff; }
 
 ::-webkit-input-placeholder {
-  color: #bbbbbb !important; }
+  color: #3b3b3b !important; }
 
 :-moz-placeholder {
-  color: #bbbbbb !important; }
+  color: #3b3b3b !important; }
 
 ::-moz-placeholder {
-  color: #bbbbbb !important; }
+  color: #3b3b3b !important; }
 
 :-ms-input-placeholder {
-  color: #bbbbbb !important; }
+  color: #3b3b3b !important; }
 
 /* List */
 ol {
