@@ -197,18 +197,20 @@
                 })();
 
                 function showTab() {
-                    var jump_counter = 0
+                    var content_pos = 0
                     for(var i = 0, len = tabs.length; i < len; i++) {
-                        while (contents[i + jump_counter].className === "table-content") {
-                            jump_counter += 1
+                        while (contents[content_pos].className === "table-content") {
+                            content_pos += 1;
                         }
+                        console.log(i, content_pos, tabs[i].className, contents[content_pos].className)
                         if(tabs[i] === this) {
                             tabs[i].className = 'selected';
-                            contents[i + jump_counter].className = 'show';
+                            contents[content_pos].className = 'show';
                         } else {
                             tabs[i].className = '';
-                            contents[i + jump_counter].className = '';
+                            contents[content_pos].className = '';
                         }
+                        content_pos++;
                     }
                 }
             </script>
