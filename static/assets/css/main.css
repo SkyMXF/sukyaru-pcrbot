@@ -2705,13 +2705,13 @@ body {
   border-radius: 4px;
   margin-bottom: 2rem;
   padding: 3rem; }
-  #main ::-webkit-input-placeholder {
+  #main .content ::-webkit-input-placeholder {
     color: rgb(255, 255, 255) !important; }
-  #main :-moz-placeholder {
+  #main .content :-moz-placeholder {
     color: rgb(255, 255, 255) !important; }
-  #main ::-moz-placeholder {
+  #main .content ::-moz-placeholder {
     color: rgb(255, 255, 255) !important; }
-  #main :-ms-input-placeholder {
+  #main .content :-ms-input-placeholder {
     color: rgb(255, 255, 255) !important; }
   
   @media screen and (max-width: 980px) {
