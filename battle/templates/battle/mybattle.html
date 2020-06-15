@@ -160,7 +160,7 @@
 
                 (function changeTab(tab) {
                     for(var i = 0, len = tabs.length; i < len; i++) {
-                        tabs[i].click = showTab;
+                        tabs[i].onmousedown = showTab;
                     }
                 })();
 
