@@ -2713,13 +2713,13 @@ body {
     #main .content {
       padding: 1.5rem; } }
 #main ::-webkit-input-placeholder {
-  color: rgb(34, 34, 34) !important; }
+  color: rgb(158, 158, 158) !important; }
 #main :-moz-placeholder {
-  color: rgb(34, 34, 34) !important; }
+  color: rgb(158, 158, 158) !important; }
 #main ::-moz-placeholder {
-  color: rgb(34, 34, 34) !important; }
+  color: rgb(158, 158, 158) !important; }
 #main :-ms-input-placeholder {
-  color: rgb(34, 34, 34) !important; }
+  color: rgb(158, 158, 158) !important; }
 #main .alert-warning {
   color: #b71824;
 }
