@@ -2744,7 +2744,7 @@ body {
 #main .inner .content .tab-content div{
   display: none;
 }
-#main .inner .content .tab-content .show{
+#main .inner .content .tab-content .show *{
   display: block;
 }
 
