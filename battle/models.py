@@ -27,7 +27,7 @@ class BossStatus(models.Model):
     
     def __str__(self):
         return "%s(%d-%d)"%(self.boss_info.boss_name, self.boss_real_stage, self.boss_info.boss_id)
-        
+
 class BattleDate(models.Model):
     # 当前公会战举行日期列表
     battle_date = models.DateField(unique=True)
@@ -48,4 +48,4 @@ class NowBattleRecord(models.Model):
     comp_flag = models.BooleanField(default=False)  # 补偿刀标记
 
     def __str__(self):
-        return "id_%d, %s, %s, (%d-%d), %d"%(self.id, self.user_info.nickname, str(self.record_date), self.boss_info.boss_name, self.boss_real_stage, self.boss_info.boss_id, self.damage)
+        return "id_%d, %s, %s, %s(%d-%d), %d"%(self.id, self.user_info.nickname, str(self.record_date), self.boss_info.boss_name, self.boss_real_stage, self.boss_info.boss_id, self.damage)
