@@ -20,12 +20,16 @@ def mybattle(request):
     self_page = True
     
     # 获取出刀记录
+    now_datetime = utils.PCRDate(datetime.datetime.utcnow(), tzinfo=get_default_timezone())
+    now_day_id = 1
     user_battle_record_list_by_day = []         # 每个列表元素为一天的记录
     battle_date_list = []                       # 每个列表元素为一个日期
     battle_dates = models.BattleDate.objects.order_by("battle_date")
     user_all_battle_record = models.NowBattleRecord.objects.filter(user_info__user_qq_id=now_page_qq)
     for now_battle_date in battle_dates:
         now_battle_pcr_date = utils.PCRDate(now_battle_date.battle_date, tzinfo=get_default_timezone())
+        if now_datetime() < now_battle_pcr_date.day_begin():
+            now_day_id += 1
 
         # 记录日期
         battle_date_list.append("%d月%d日"%(now_battle_pcr_date().month, now_battle_pcr_date().day))
@@ -46,8 +50,6 @@ def mybattle(request):
                 "comp_flag": "√" if now_date_record.comp_flag else "×"
             })
         user_battle_record_list_by_day.append(user_now_date_battle_record_list)
-    
-    now_day_id = 3
 
     return render(
         request, 'battle/mybattle.html',
