@@ -5,5 +5,5 @@ class BattleRecordForm(forms.Form):
     boss_id = forms.IntegerField(label="BOSS编号(1-5)", widget=forms.TextInput(attrs={'placeholder': "BOSS编号(1-5)"}))
     damage = forms.IntegerField(label="伤害", widget=forms.TextInput(attrs={'placeholder': "伤害"}))
     record_date = forms.DateTimeField(label="时间", widget=forms.DateTimeInput(attrs={'type':'datetime-local', 'placeholder': "出刀时间"}))
-    final_kill = forms.MultipleChoiceField(label="是尾刀", widget=forms.CheckboxInput(attrs={'type':'checkbox', 'value': "尾刀"}))
-    comp_flag = forms.MultipleChoiceField(label="是补偿刀", widget=forms.CheckboxInput(attrs={'type':'checkbox', 'value': "补偿刀"}))
+    final_kill = forms.MultipleChoiceField(label="尾刀", widget=forms.CheckboxSelectMultiple())
+    comp_flag = forms.MultipleChoiceField(label="补偿刀", widget=forms.CheckboxSelectMultiple())
