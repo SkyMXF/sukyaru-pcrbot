@@ -118,46 +118,22 @@
 				<div class="inner">
                     <div class="content">
                         <h2>个人伤害记录</h2>
-                        {% if self_page %}
-                        <form method="post" action="/battle/mybattle">
-                            {% csrf_token %}
-                            <div class="row gtr-uniform">
-                                <div class="col-2 col-6-medium">
-                                    {{ battle_record_form.boss_stage.label_tag}}
-                                    {{ battle_record_form.boss_stage}}
-                                </div>
-                                <div class="col-2 col-6-medium">
-                                    {{ battle_record_form.boss_id.label_tag}}
-                                    {{ battle_record_form.boss_id}}
-                                </div>
-                                <div class="col-4 col-12-medium">
-                                    {{ battle_record_form.damage.label_tag}}
-                                    {{ battle_record_form.damage}}
-                                </div>
-                                <div class="col-4 col-12-medium">
-                                    {{ battle_record_form.record_date.label_tag}}
-                                    {{ battle_record_form.record_date}}
-                                </div>
-                                <div class="col-4 col-6-medium">
-                                    {{ battle_record_form.final_kill}}
-                                    {{ battle_record_form.final_kill.label_tag}}
-                                    <!-- <input type="checkbox" id="final_kill" name="checkbox"> -->
-                                    <!-- <label for="final_kill">尾刀</label> -->
-                                </div>
-                                <div class="col-4 col-6-medium">
-                                    {{ battle_record_form.comp_flag}}
-                                    {{ battle_record_form.comp_flag.label_tag}}
-                                    <!-- <input type="checkbox" id="comp_flag" name="checkbox"> -->
-                                    <!-- <label for="comp_flag">补偿刀</label> -->
-                                </div>
-                                <div class="col-4 col-12-medium">
-                                    <ul class="actions">
-                                        <li><input type="submit" value="提交" class="primary" /></li>
-                                    </ul>
-                                </div>
+                        <div class="tab-head">
+                            <h3 class="selected">6月2日</h3>
+                            <h3>6月3日</h3>
+                            <h3>6月4日</h3>
+                        </div>
+                        <div class="tab-content">
+                            <div class="show">
+                                content1
                             </div>
-                        </form>
-                        {% endif %}
+                            <div class="show">
+                                content2
+                            </div>
+                            <div class="show">
+                                content3
+                            </div>
+                        </div>
                     </div>
 				</div>
             </section>
@@ -177,6 +153,7 @@
 			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
 			<script src="{% static 'assets/js/util.js' %}"></script>
 			<script src="{% static 'assets/js/main.js' %}"></script>
+			<script src="{% static 'assets/js/day_tab.js' %}"></script>
 
 	</body>
 </html>

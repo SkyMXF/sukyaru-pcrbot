@@ -2723,6 +2723,29 @@ body {
 #main .alert-warning {
   color: #b71824;
 }
+#main .inner .content h3 {
+  border-top: solid cornflowerblue 1px;
+  border-left: solid cornflowerblue 1px;
+  width: 50px;
+  height: 25px;
+  margin: 0;
+  float: left;
+  text-align: center;
+}
+#main .inner .content .tab-content {
+  border: solid 00bfff 1px;
+  width: 152px;
+  height: 100px;
+}
+#main .inner .content .tab-content div{
+  display: none;
+}
+#main .inner .content .selected {
+  background-color: 00bfff;
+}
+#main .inner .content .tab-content .show{
+  display: block;
+}
 
 /* Menu */
 #menu {
