@@ -36,8 +36,8 @@ def mybattle(request):
                 "record_time": str(now_date_record.record_date.hour) + ":" + str(now_date_record.record_date.minute) + ":" + str(now_date_record.record_date.second),
                 "boss_info": str(now_date_record.boss_stage) + "-" + str(now_date_record.boss_id),
                 "damage": now_date_record.damage,
-                "final_kill": now_date_record.final_kill,
-                "comp_flag": now_date_record.comp_flag
+                "final_kill": "√" if now_date_record.final_kill else "×",
+                "comp_flag": "√" if now_date_record.comp_flag else "×"
             })
         user_battle_record_list_by_day.append(user_now_date_battle_record_list)
     
