@@ -41,7 +41,7 @@ def mybattle(request):
             })
         user_battle_record_list_by_day.append(user_now_date_battle_record_list)
     
-    now_day = 1
+    now_day_id = 1
 
     return render(
         request, 'battle/mybattle.html',
@@ -50,7 +50,7 @@ def mybattle(request):
             "battle_record_form": battle_record_form,
             "user_battle_record": user_battle_record_list_by_day,
             "battle_date_list": battle_date_list,
-            "now_date": now_day
+            "now_day_id": now_day_id
         }
     )
 

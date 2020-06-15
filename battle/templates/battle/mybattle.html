@@ -119,14 +119,19 @@
                             <div class="col-12">
                                 <div class="tab-head">
                                     {% for d in battle_date_list %}
-                                    <h3>{{d}}</h3>
+                                    <h3 id="tabhead{{forloop.counter}}">{{d}}</h3>
                                     {% endfor %}
                                 </div>
+                                <script>
+                                    var now_day_id = {{now_day_id}};
+                                    tab = document.getElementById('tabhead' + now_day_id.toString());
+                                    tab.className = 'selected'
+                                </script>
                             </div>
                         </div>
                         <div class="tab-content">
                             {% for records in user_battle_record %}
-                            <div>
+                            <div id="tabcontent{{forloop.counter}}">
                                 <div class="table-wrapper">
                                     <table>
                                         <thead>
@@ -155,6 +160,11 @@
                                 </div>
                             </div>
                             {% endfor %}
+                            <script>
+                                var now_day_id = {{now_day_id}};
+                                content = document.getElementById('tabcontent' + now_day_id.toString());
+                                content.className = 'show'
+                            </script>
                         </div>
                     </div>
 				</div>
