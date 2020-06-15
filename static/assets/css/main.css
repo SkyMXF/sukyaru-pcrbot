@@ -2737,6 +2737,7 @@ body {
 }
 #main .inner .content .selected {
   background-color: #00bfff;
+  color: #363636;
 }
 #main .inner .content .tab-content .show{
   display: block;
