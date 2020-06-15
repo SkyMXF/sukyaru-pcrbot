@@ -28,7 +28,10 @@ class BossInfo(models.Model):
 
 class BattleDate(models.Model):
     # 当前公会战举行日期列表
-    battle_date = models.DateField()
+    battle_date = models.DateField(unique=True)
+
+    def __str__(self):
+        return str(self.battle_date)
 
 class NowBattleRecord(models.Model):
     # 当前公会战报刀记录
