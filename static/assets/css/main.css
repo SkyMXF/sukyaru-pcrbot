@@ -2728,17 +2728,14 @@ body {
   margin: 1rem;
   float: left;
   text-align: center;
+  background-color: #00bfff;
   color: #ffffff;
-  /* -webkit-touch-callout: none; */
+  -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-#main .inner .content .tab-head .unselected {
-  background-color: #00bfff;
-  color: #ffffff;
 }
 #main .inner .content .tab-head .selected {
   background-color: #006eff;
@@ -2747,7 +2744,13 @@ body {
 #main .inner .content .tab-content .hide {
   display: none;
 }
+#main .inner .content .tab-content .hide > * {
+  display: none;
+}
 #main .inner .content .tab-content .show {
+  display: block;
+}
+#main .inner .content .tab-content .show > * {
   display: block;
 }
 
