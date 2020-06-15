@@ -10,8 +10,23 @@ def userinfo(request):
     if not request.session.get('is_login', None):
         # 未登录
         return redirect('/user/login')
+    
+    show_info_dict = {}
 
-    return render(request, 'user/userinfo.html')
+    # 查询用户权限称号信息
+    user_qq_id = request.session.get('userqq', None)
+    user = models.UserInfo.objects.get(user_qq_id=user_qq_id)
+    user_auth_str = "Unknown"
+    if user.user_auth == 0:
+        user_auth_str = "会长"
+    elif user.user_auth == 1:
+        user_auth_str = "管理员"
+    elif user.user_auth == 2:
+        user_auth_str = "普通群员"
+    show_info_dict["user_auth_str"] = user_auth_str
+    show_info_dict["user_name"] = user.nickname
+
+    return render(request, 'user/userinfo.html', show_info_dict)
 
 def login(request):
 
@@ -41,14 +56,7 @@ def login(request):
                 request.session['is_login'] = True
                 request.session['userqq'] = user.user_qq_id
                 request.session['user_name'] = user.nickname
-                user_auth_str = "Unknown"
-                if user.user_auth == 0:
-                    user_auth_str = "会长"
-                elif user.user_auth == 1:
-                    user_auth_str = "管理员"
-                elif user.user_auth == 2:
-                    user_auth_str = "普通群员"
-                request.session['user_auth'] = user_auth_str
+                request.session['user_auth'] = user.user_auth
                 return redirect("/user")
             else:
                 message = "密码不正确0.0，如果忘记可私聊凯露酱发送'重置密码'进行重置"

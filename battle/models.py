@@ -4,14 +4,16 @@ from user.models import UserInfo
 # Create your models here.
 class BossStatus(models.Model):
     # Boss状态
-    boss_stage = models.IntegerField()       # 周目数
-    boss_id = models.IntegerField()     # boss编号
+    boss_info = models.ForeignKey(BossInfo, on_delete=models.CASCADE)
+    boss_real_stage = models.IntegerField()       # 真实周目数
+    #boss_stage = models.IntegerField()       # 周目数
+    #boss_id = models.IntegerField()     # boss编号
     health = models.IntegerField()      # 当前生命值
     now_battle = models.BooleanField(default=False)  # 当前正在作战
     killed = models.BooleanField(default=False)     # 已击杀
     
     def __str__(self):
-        return "%d-%d"%(self.boss_stage, self.boss_id)
+        return "%s(%d-%d)"%(self.boss_info.boss_name, self.boss_real_stage, self.boss_info.boss_id)
 
 class BossInfo(models.Model):
     # Boss信息
@@ -37,25 +39,13 @@ class NowBattleRecord(models.Model):
     # 当前公会战报刀记录
     record_date = models.DateTimeField()
     user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
-    boss_stage = models.IntegerField()       # 周目数
-    boss_id = models.IntegerField()     # boss编号
+    boss_info = models.ForeignKey(BossInfo, on_delete=models.CASCADE)
+    boss_real_stage = models.IntegerField()       # 真实周目数
+    #boss_stage = models.IntegerField()       # 周目数
+    #boss_id = models.IntegerField()     # boss编号
     damage = models.IntegerField()      # 造成伤害
     final_kill = models.BooleanField(default=False)  # 尾刀标记
     comp_flag = models.BooleanField(default=False)  # 补偿刀标记
 
     def __str__(self):
-        return "id_%d, %s, %s, %d-%d, %d"%(self.id, self.user_info.nickname, str(self.record_date), self.boss_stage, self.boss_id, self.damage)
-
-class LastBattleRecord(models.Model):
-    # 上次公会战报刀记录
-    record_id = models.IntegerField(unique=True)  # 记录id(用于撤销)
-    record_date = models.DateTimeField()
-    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
-    boss_stage = models.IntegerField()       # 周目数
-    boss_id = models.IntegerField()     # boss编号
-    damage = models.IntegerField()      # 造成伤害
-    final_kill = models.BooleanField(default=False)  # 尾刀标记
-    comp_flag = models.BooleanField(default=False)  # 补偿刀标记
-
-    def __str__(self):
-        return "id_%d, %s, %s, %d-%d, %d"%(self.id, self.user_info.nickname, str(self.record_date), self.boss_stage, self.boss_id, self.damage)
+        return "id_%d, %s, %s, (%d-%d), %d"%(self.id, self.user_info.nickname, str(self.record_date), self.boss_info.boss_name, self.boss_real_stage, self.boss_info.boss_id, self.damage)
