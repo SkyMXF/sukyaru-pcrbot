@@ -2703,7 +2703,7 @@ body {
 #main .content {
   background: #ffffff80;
   border-radius: 4px;
-  margin-bottom: 2rem;
+  margin-bottom: 0rem;
   padding: 3rem; }
   
   @media screen and (max-width: 980px) {
