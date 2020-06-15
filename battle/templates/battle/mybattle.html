@@ -191,6 +191,8 @@
                 contents = document.getElementsByClassName('tab-content')[0].getElementsByTagName('div');
                 for(i = 0, len = contents.length; i < len; i++){
                     if (contents[i].className === "table-wrapper"){
+                        console.log(i)
+                        console.log(contents[i].className)
                         contents.splice(i);
                         i--;
                     }
