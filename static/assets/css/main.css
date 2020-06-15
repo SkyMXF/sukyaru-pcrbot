@@ -2728,15 +2728,13 @@ body {
   margin: 1rem;
   float: left;
   text-align: center;
+  background-color: #00bfff;
+  color: #ffffff;
 }
 #main .inner .content .tab-content div{
   display: none;
 }
 
-#main .inner .content {
-  background-color: #00bfff;
-  color: #ffffff;
-}
 #main .inner .content .selected {
   background-color: #006eff;
   color: #ffffff;
