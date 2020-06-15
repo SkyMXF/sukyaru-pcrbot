@@ -126,7 +126,7 @@ em, i {
   font-style: italic; }
 
 p {
-  margin: 0 0 0 0; }
+  margin: 0 0 2rem 0; }
 
 header.special {
   text-align: center;
@@ -1781,7 +1781,7 @@ ul.icons {
 
 /* Wrapper */
 .wrapper {
-  padding: 3rem 0 3rem 0 ;
+  margin: 3rem 0 3rem 0 ;
   position: relative;
   z-index: 1; }
   @media screen and (max-width: 1280px) {
@@ -2243,9 +2243,6 @@ ul.icons {
   @media screen and (max-width: 980px) {
     #cta {
       background-attachment: scroll; } }
-#cta .inner p{
-  margin: 1rem 0 1rem 0;
-}
 
 /* Footer */
 #footer {
