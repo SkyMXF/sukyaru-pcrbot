@@ -67,15 +67,19 @@
                             {% csrf_token %}
                             <div class="row gtr-uniform">
                                 <div class="col-2 col-6-medium">
+                                    {{ battle_record_form.boss_stage.label_tag}}
                                     {{ battle_record_form.boss_stage}}
                                 </div>
                                 <div class="col-2 col-6-medium">
+                                    {{ battle_record_form.boss_id.label_tag}}
                                     {{ battle_record_form.boss_id}}
                                 </div>
                                 <div class="col-4 col-12-medium">
+                                    {{ battle_record_form.damage.label_tag}}
                                     {{ battle_record_form.damage}}
                                 </div>
                                 <div class="col-4 col-12-medium">
+                                    {{ battle_record_form.record_date.label_tag}}
                                     {{ battle_record_form.record_date}}
                                 </div>
                                 <div class="col-4 col-6-medium">
