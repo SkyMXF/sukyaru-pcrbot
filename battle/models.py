@@ -37,7 +37,7 @@ class NowBattleRecord(models.Model):
     # 当前公会战报刀记录
     record_id = models.IntegerField(unique=True)  # 记录id(用于撤销)
     record_date = models.DateTimeField()
-    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
+    user_qq_id = models.BigIntegerField()
     boss_stage = models.IntegerField()       # 周目数
     boss_id = models.IntegerField()     # boss编号
     damage = models.IntegerField()      # 造成伤害
@@ -51,7 +51,7 @@ class LastBattleRecord(models.Model):
     # 上次公会战报刀记录
     record_id = models.IntegerField(unique=True)  # 记录id(用于撤销)
     record_date = models.DateTimeField()
-    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
+    user_qq_id = models.BigIntegerField()
     boss_stage = models.IntegerField()       # 周目数
     boss_id = models.IntegerField()     # boss编号
     damage = models.IntegerField()      # 造成伤害
