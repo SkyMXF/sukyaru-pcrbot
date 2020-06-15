@@ -2241,6 +2241,7 @@ ul.icons {
     position: relative;
     z-index: 3; }
   #cta .inner p{
+    margin: 10% 0 10% 0;
     padding: 10% 0 10% 0;
   }
   @media screen and (max-width: 980px) {
