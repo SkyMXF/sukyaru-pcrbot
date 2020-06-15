@@ -38,9 +38,9 @@ def mybattle(request):
                 tzinfo=get_default_timezone()
             ),
             record_date__lt=datetime.datetime(
-                now_battle_date.battle_date+datetime.timedelta(days=1).year, 
-                now_battle_date.battle_date+datetime.timedelta(days=1).month, 
-                now_battle_date.battle_date+datetime.timedelta(days=1).day,
+                (now_battle_date.battle_date+datetime.timedelta(days=1)).year, 
+                (now_battle_date.battle_date+datetime.timedelta(days=1)).month, 
+                (now_battle_date.battle_date+datetime.timedelta(days=1)).day,
                 5, 0, 0, 0,     #次日早上5:00
                 tzinfo=get_default_timezone()
             )
