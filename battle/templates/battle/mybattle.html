@@ -122,14 +122,14 @@
                             <div class="col-12">
                                 <div class="tab-head">
                                     <h3 class="selected">6月2日</h3>
-                                    <h3 class="unselected">6月3日</h3>
-                                    <h3 class="unselected">6月4日</h3>
+                                    <h3>6月3日</h3>
+                                    <h3>6月4日</h3>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-content">
-                            <div class="show">
-                                <div class="table-wrapper">
+                        <div class="table-wrapper">
+                            <div class="tab-content">
+                                <div class="show">
                                     <table>
                                         <thead>
                                             <tr>
@@ -158,12 +158,12 @@
                                         </tfoot>
                                     </table>
                                 </div>
-                            </div>
-                            <div class="hide">
-                                content2
-                            </div>
-                            <div class="hide">
-                                content3
+                                <div>
+                                    content2
+                                </div>
+                                <div>
+                                    content3
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -187,10 +187,8 @@
 			<script src="{% static 'assets/js/main.js' %}"></script>
             <!-- <script src="{% static 'assets/js/day_tab.js' %}"></script> -->
             <script>
-                var tabs = document.getElementsByClassName('tab-head')[0].getElementsByClassName('selected');
-                tabs = tabs.concat(document.getElementsByClassName('tab-head')[0].getElementsByClassName('unselected'));
-                contents = document.getElementsByClassName('tab-content')[0].getElementsByClassName('show');
-                contents = contents.concat(document.getElementsByClassName('tab-content')[0].getElementsByClassName('hide'));
+                var tabs = document.getElementsByClassName('tab-head')[0].getElementsByTagName('h3'),
+                contents = document.getElementsByClassName('tab-content')[0].getElementsByTagName('div');
 
                 (function changeTab(tab) {
                     for(var i = 0, len = tabs.length; i < len; i++) {
@@ -204,8 +202,8 @@
                             tabs[i].className = 'selected';
                             contents[i].className = 'show';
                         } else {
-                            tabs[i].className = 'unselected';
-                            contents[i].className = 'hide';
+                            tabs[i].className = '';
+                            contents[i].className = '';
                         }
                     }
                 }
