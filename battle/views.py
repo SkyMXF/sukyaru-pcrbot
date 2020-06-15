@@ -12,6 +12,8 @@ def mybattle(request):
 
     now_page_qq = request.session.get('userqq', None)
     battle_record_form = forms.BattleRecordForm()
+    print(now_page_qq)
+    print(request.session.get('userqq', None))
     return render(request, 'battle/mybattle.html', {"now_page_qq": now_page_qq, "battle_record_form": battle_record_form})
 
 def guildbattle(request):
