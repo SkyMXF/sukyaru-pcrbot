@@ -189,6 +189,12 @@
             <script>
                 var tabs = document.getElementsByClassName('tab-head')[0].getElementsByTagName('h3'),
                 contents = document.getElementsByClassName('tab-content')[0].getElementsByTagName('div');
+                for(i = 0, len = tabs.length; i < len; i++){
+                    if (contents[i].className === "table-wrapper"){
+                        contents.splice(i);
+                        i--;
+                    }
+                }
 
                 (function changeTab(tab) {
                     for(var i = 0, len = tabs.length; i < len; i++) {
