@@ -2239,7 +2239,6 @@ ul.icons {
       color: #00bfff; }
   #cta .inner {
     position: relative;
-    padding: 10% 0 10% 0;
     z-index: 3; }
   @media screen and (max-width: 980px) {
     #cta {
