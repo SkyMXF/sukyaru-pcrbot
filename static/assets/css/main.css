@@ -2744,7 +2744,13 @@ body {
 #main .inner .content .tab-content .hide {
   display: none;
 }
+#main .inner .content .tab-content .hide > * {
+  display: none;
+}
 #main .inner .content .tab-content .show {
+  display: block;
+}
+#main .inner .content .tab-content .show > * {
   display: block;
 }
 
