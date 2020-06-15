@@ -13,28 +13,6 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
         <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
-        <script>
-            var tabs = document.getElementsByClassName('tab-head')[0].getElementsByTagName('h3'),
-            contents = document.getElementsByClassName('tab-content')[0].getElementsByTagName('div');
-
-            (function changeTab(tab) {
-                for(var i = 0, len = tabs.length; i < len; i++) {
-                    tabs[i].onmouseover = showTab;
-                }
-            })();
-
-            function showTab() {
-                for(var i = 0, len = tabs.length; i < len; i++) {
-                    if(tabs[i] === this) {
-                        tabs[i].className = 'selected';
-                        contents[i].className = 'show';
-                    } else {
-                        tabs[i].className = '';
-                        contents[i].className = '';
-                    }
-                }
-            }
-        </script>
 	</head>
 	<body class="is-preload">
 
@@ -176,7 +154,28 @@
 			<script src="{% static 'assets/js/util.js' %}"></script>
 			<script src="{% static 'assets/js/main.js' %}"></script>
             <!-- <script src="{% static 'assets/js/day_tab.js' %}"></script> -->
-            
+            <script>
+                var tabs = document.getElementsByClassName('tab-head')[0].getElementsByTagName('h3'),
+                contents = document.getElementsByClassName('tab-content')[0].getElementsByTagName('div');
+
+                (function changeTab(tab) {
+                    for(var i = 0, len = tabs.length; i < len; i++) {
+                        tabs[i].onmouseover = showTab;
+                    }
+                })();
+
+                function showTab() {
+                    for(var i = 0, len = tabs.length; i < len; i++) {
+                        if(tabs[i] === this) {
+                            tabs[i].className = 'selected';
+                            contents[i].className = 'show';
+                        } else {
+                            tabs[i].className = '';
+                            contents[i].className = '';
+                        }
+                    }
+                }
+            </script>
 			
 
 	</body>
