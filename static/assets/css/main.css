@@ -2723,7 +2723,7 @@ body {
 #main .alert-warning {
   color: #b71824;
 }
-#main .inner .content h3 {
+#main .inner .content .tab-head h3 {
   padding: 0.5rem 1rem 0.5rem 1rem;
   margin: 1rem;
   float: left;
@@ -2734,7 +2734,6 @@ body {
 #main .inner .content .tab-content div{
   display: none;
 }
-
 #main .inner .content .selected {
   background-color: #006eff;
   color: #ffffff;
