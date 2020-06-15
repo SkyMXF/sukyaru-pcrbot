@@ -2239,7 +2239,9 @@ ul.icons {
       color: #00bfff; }
   #cta .inner {
     position: relative;
-    z-index: 3; }
+    z-index: 3; 
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;}
   @media screen and (max-width: 980px) {
     #cta {
       background-attachment: scroll; } }
