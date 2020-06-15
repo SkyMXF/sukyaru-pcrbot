@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.utils.timezone import get_default_timezone
 
+import datetime
+
 from . import models
 from . import forms
 
@@ -28,9 +30,20 @@ def mybattle(request):
         # 构建当日出刀信息list
         user_now_date_battle_record_list = []
         user_now_date_battle_records = user_all_battle_record.filter(
-            record_date__year=now_battle_date.battle_date.year,
-            record_date__month=now_battle_date.battle_date.month,
-            record_date__day=now_battle_date.battle_date.day,
+            record_date__gte=datetime.datetime(
+                now_battle_date.battle_date.year, 
+                now_battle_date.battle_date.month, 
+                now_battle_date.battle_date.day,
+                5, 0, 0, 0,     #早上5:00
+                tzinfo=get_default_timezone()
+            ),
+            record_date__lt=datetime.datetime(
+                now_battle_date.battle_date+datetime.timedelta(days=1).year, 
+                now_battle_date.battle_date+datetime.timedelta(days=1).month, 
+                now_battle_date.battle_date+datetime.timedelta(days=1).day,
+                5, 0, 0, 0,     #次日早上5:00
+                tzinfo=get_default_timezone()
+            )
         ).order_by("record_date")
         for now_date_record in user_now_date_battle_records:
             user_now_date_battle_record_list.append({
