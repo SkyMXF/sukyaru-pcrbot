@@ -45,21 +45,36 @@
 			<section id="main" class="wrapper">
 				<div class="inner">
                     <div class="content">
-                        {% if own_page %}
+                        {% if now_page_qq == requeset.session.userqq %}
                         <form method="post" action="/battle/mybattle">
                             {% csrf_token %}
                             <div class="row gtr-uniform">
-                                <div class="col-12">
-                                    {{ login_form.userqq.label_tag }}
-                                    {{ login_form.userqq}}
+                                <div class="col-2 col-6-medium">
+                                    {{ battle_record_form.boss_stage}}
                                 </div>
-                                <div class="col-12">
-                                    {{ login_form.password.label_tag }}
-                                    {{ login_form.password}}
+                                <div class="col-2 col-6-medium">
+                                    {{ battle_record_form.boss_id}}
                                 </div>
-                                <div class="col-12">
+                                <div class="col-4 col-12-medium">
+                                    {{ battle_record_form.damage}}
+                                </div>
+                                <div class="col-4 col-12-medium">
+                                    {{ battle_record_form.record_date}}
+                                </div>
+                                <div class="col-4 col-12-medium">
+                                    {{ battle_record_form.record_date}}
+                                </div>
+                                <div class="col-4 col-6-medium">
+                                    {{ battle_record_form.final_kill.label_tag}}
+                                    {{ battle_record_form.final_kill}}
+                                </div>
+                                <div class="col-4 col-6-medium">
+                                    {{ battle_record_form.comp_flag.label_tag}}
+                                    {{ battle_record_form.comp_flag}}
+                                </div>
+                                <div class="col-4 col-12-medium">
                                     <ul class="actions">
-                                        <li><input type="submit" value="登录" class="primary" /></li>
+                                        <li><input type="submit" value="提交" class="primary" /></li>
                                     </ul>
                                 </div>
                             </div>
