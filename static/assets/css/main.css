@@ -2741,10 +2741,10 @@ body {
   background-color: #006eff;
   color: #ffffff;
 }
-#main .inner .content .tab-content div{
+#main .inner .content .tab-content .hide {
   display: none;
 }
-#main .inner .content .tab-content .show > * {
+#main .inner .content .tab-content .show {
   display: block;
 }
 
