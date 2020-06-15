@@ -118,7 +118,7 @@
                         <div class="row gtr-uniform">
                             <div class="col-12">
                                 <div class="tab-head">
-                                    {% if len(battle_date_list) > 0 %}
+                                    {% if battle_date_list.length > 0 %}
                                     <h3 class="selected">{{battle_date_list[0]}}</h3>
                                     {% endif %}
                                     {% for d in battle_date_list[1:] %}
