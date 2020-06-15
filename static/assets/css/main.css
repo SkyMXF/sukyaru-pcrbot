@@ -2726,14 +2726,11 @@ body {
 #main .inner .content h3 {
   border-top: solid #00bfff 1px;
   border-left: solid #00bfff 1px;
+  padding: 0.5rem;
   margin: 0;
   float: left;
   text-align: center;
   color: #00bfff;
-}
-#main .inner .content .tab-content {
-  border: solid #00bfff 1px;
-  padding: 0.5rem;
 }
 #main .inner .content .tab-content div{
   display: none;
