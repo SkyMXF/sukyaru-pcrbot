@@ -28,7 +28,7 @@ def mybattle(request):
         now_battle_pcr_date = utils.PCRDate(now_battle_date.battle_date, tzinfo=get_default_timezone())
 
         # 记录日期
-        battle_date_list.append("%d月%d日"%(now_battle_pcr_date.month, now_battle_pcr_date.day))
+        battle_date_list.append("%d月%d日"%(now_battle_pcr_date.tz_datetime().month, now_battle_pcr_date.tz_datetime().day))
 
         # 构建当日出刀信息list
         user_now_date_battle_record_list = []
