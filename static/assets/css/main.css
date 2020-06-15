@@ -126,7 +126,7 @@ em, i {
   font-style: italic; }
 
 p {
-  margin: 0 0 2rem 0; }
+  margin: 0 0 0 0; }
 
 header.special {
   text-align: center;
@@ -2239,9 +2239,7 @@ ul.icons {
       color: #00bfff; }
   #cta .inner {
     position: relative;
-    z-index: 3; 
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;}
+    z-index: 3; }
   @media screen and (max-width: 980px) {
     #cta {
       background-attachment: scroll; } }
