@@ -2724,19 +2724,21 @@ body {
   color: #b71824;
 }
 #main .inner .content h3 {
-  border-top: solid #00bfff;
-  border-left: solid #00bfff;
-  padding: 0.5rem;
-  margin: 0.5rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: 1rem;
   float: left;
   text-align: center;
-  color: #555555;
 }
 #main .inner .content .tab-content div{
   display: none;
 }
-#main .inner .content .selected {
+
+#main .inner .content {
   background-color: #00bfff;
+  color: #ffffff;
+}
+#main .inner .content .selected {
+  background-color: #006eff;
   color: #ffffff;
 }
 #main .inner .content .tab-content .show{
