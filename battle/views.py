@@ -40,6 +40,8 @@ def mybattle(request):
                 "comp_flag": now_date_record.comp_flag
             })
         user_battle_record_list_by_day.append(user_now_date_battle_record_list)
+    
+    now_day = 1
 
     return render(
         request, 'battle/mybattle.html',
@@ -47,7 +49,8 @@ def mybattle(request):
             "self_page": self_page,
             "battle_record_form": battle_record_form,
             "user_battle_record": user_battle_record_list_by_day,
-            "battle_date_list": battle_date_list
+            "battle_date_list": battle_date_list,
+            "now_date": now_day
         }
     )
 

@@ -118,81 +118,43 @@
                         <div class="row gtr-uniform">
                             <div class="col-12">
                                 <div class="tab-head">
-                                    {% if battle_date_list.length > 0 %}
-                                    <h3 class="selected">{{battle_date_list[0]}}</h3>
-                                    {% endif %}
-                                    {% for d in battle_date_list[1:] %}
+                                    {% for d in battle_date_list %}
                                     <h3>{{d}}</h3>
                                     {% endfor %}
                                 </div>
                             </div>
                         </div>
                         <div class="tab-content">
-                            <div class="show">
-                                <div class="table-wrapper">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Description</th>
-                                                <th>Price</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Alpha</td>
-                                                <td>Ante turpis integer aliquet porttitor.</td>
-                                                <td>10.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Beta</td>
-                                                <td>Vis ac commodo adipiscing arcu aliquet.</td>
-                                                <td>20.00</td>
-                                            </tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="2"></td>
-                                                <td>360.00</td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            </div>
-                            <div>
-                                content2
-                            </div>
+                            {% for records in user_battle_record %}
                             <div>
                                 <div class="table-wrapper">
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Description</th>
-                                                <th>Price</th>
+                                                <th>BOSS</th>
+                                                <th>伤害</th>
+                                                <th>时间</th>
+                                                <th>尾刀</th>
+                                                <th>补偿刀</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {% for one_record in records %}
                                             <tr>
-                                                <td>Alpha</td>
-                                                <td>Ante turpis integer aliquet porttitor.</td>
-                                                <td>10.00</td>
+                                                <td>{{one_record.boss_info}}</td>
+                                                <td>{{one_record.damage}}</td>
+                                                <td>{{one_record.record_time}}</td>
+                                                <td>{{one_record.final_kill}}</td>
+                                                <td>{{one_record.comp_flag}}</td>
                                             </tr>
-                                            <tr>
-                                                <td>Beta</td>
-                                                <td>Vis ac commodo adipiscing arcu aliquet.</td>
-                                                <td>20.00</td>
-                                            </tr>
+                                            {% endfor}
                                         </tbody>
                                         <tfoot>
-                                            <tr>
-                                                <td colspan="2"></td>
-                                                <td>360.00</td>
-                                            </tr>
                                         </tfoot>
                                     </table>
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
                     </div>
 				</div>
