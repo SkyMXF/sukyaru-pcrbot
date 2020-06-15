@@ -6,6 +6,7 @@ import datetime
 
 from . import models
 from . import forms
+from main import utils
 
 # Create your views here.
 def mybattle(request):
@@ -24,31 +25,22 @@ def mybattle(request):
     battle_dates = models.BattleDate.objects.order_by("battle_date")
     user_all_battle_record = models.NowBattleRecord.objects.filter(user_info__user_qq_id=now_page_qq)
     for now_battle_date in battle_dates:
+        now_battle_pcr_date = utils.PCRDate(now_battle_date.battle_date)
+
         # 记录日期
-        battle_date_list.append("%d月%d日"%(now_battle_date.battle_date.month, now_battle_date.battle_date.day))
+        battle_date_list.append("%d月%d日"%(now_battle_pcr_date.month, now_battle_pcr_date.day))
 
         # 构建当日出刀信息list
         user_now_date_battle_record_list = []
         user_now_date_battle_records = user_all_battle_record.filter(
-            record_date__gte=datetime.datetime(
-                now_battle_date.battle_date.year, 
-                now_battle_date.battle_date.month, 
-                now_battle_date.battle_date.day,
-                5, 0, 0, 0,     #当日早上5:00
-                tzinfo=get_default_timezone()
-            ),
-            record_date__lt=datetime.datetime(
-                (now_battle_date.battle_date+datetime.timedelta(days=1)).year, 
-                (now_battle_date.battle_date+datetime.timedelta(days=1)).month, 
-                (now_battle_date.battle_date+datetime.timedelta(days=1)).day,
-                5, 0, 0, 0,     #次日早上5:00
-                tzinfo=get_default_timezone()
-            )
+            record_date__gte=now_battle_pcr_date.day_begin(),
+            record_date__lt=now_battle_pcr_date.day_end()
         ).order_by("record_date")
         for now_date_record in user_now_date_battle_records:
+            record_pcr_date = utils.PCRDate(now_date_record.record_date)
             user_now_date_battle_record_list.append({
-                "record_time": now_date_record.record_date.astimezone(get_default_timezone()).strftime("%m-%d %H:%M:%S"),
-                "boss_info": str(now_date_record.boss_stage) + "-" + str(now_date_record.boss_id),
+                "record_time": record_pcr_date.tz_datetime().strftime("%m-%d %H:%M:%S"),
+                "boss_info": "%s(%d-%d)"%(now_date_record.boss_info.boss_name, now_date_record.boss_real_stage, now_date_record.boss_info.boss_id),
                 "damage": now_date_record.damage,
                 "final_kill": "√" if now_date_record.final_kill else "×",
                 "comp_flag": "√" if now_date_record.comp_flag else "×"
