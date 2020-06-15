@@ -1,5 +1,5 @@
 var tabs = document.getElementsByClassName('tab-head')[0].getElementsByTagName('h3'),
-var contents = document.getElementsByClassName('tab-content')[0].getElementsByTagName('div');
+contents = document.getElementsByClassName('tab-content')[0].getElementsByTagName('div');
 
 (function changeTab(tab) {
     for(var i = 0, len = tabs.length; i < len; i++) {
