@@ -126,7 +126,7 @@ em, i {
   font-style: italic; }
 
 p {
-  margin: 0 0 0rem 0; }
+  margin: 0 0 2rem 0; }
 
 header.special {
   text-align: center;
@@ -2240,8 +2240,6 @@ ul.icons {
   #cta .inner {
     position: relative;
     z-index: 3; }
-    #cta .inner p {
-      margin: 0 0 0 0; }
   @media screen and (max-width: 980px) {
     #cta {
       background-attachment: scroll; } }
