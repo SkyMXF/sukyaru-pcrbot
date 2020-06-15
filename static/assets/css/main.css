@@ -2724,8 +2724,8 @@ body {
   color: #b71824;
 }
 #main .inner .content h3 {
-  border-top: solid cornflowerblue 1px;
-  border-left: solid cornflowerblue 1px;
+  border-top: solid #00bfff 1px;
+  border-left: solid #00bfff 1px;
   width: 50px;
   height: 25px;
   margin: 0;
@@ -2733,7 +2733,7 @@ body {
   text-align: center;
 }
 #main .inner .content .tab-content {
-  border: solid 00bfff 1px;
+  border: solid #00bfff 1px;
   width: 152px;
   height: 100px;
 }
@@ -2741,7 +2741,7 @@ body {
   display: none;
 }
 #main .inner .content .selected {
-  background-color: 00bfff;
+  background-color: #00bfff;
 }
 #main .inner .content .tab-content .show{
   display: block;
