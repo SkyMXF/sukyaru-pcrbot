@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>凯露酱档案馆</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+        <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="/user">凯露酱档案馆</a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+			</header>
+        
+        <!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="/user">主页</a></li>
+					<li><a href="/user/setpwd">修改密码</a></li>
+					<li><a href="/battle/mybattle">我的公会战</a></li>
+					<li><a href="/user">公会总记录</a></li>
+					<li><a href="/user">小工具</a></li>
+					<li><a href="/user">优秀员工墙</a></li>
+					<li><a href="/user">管理公会</a></li>
+					<li><a href="/user/logout">退出登录</a></li>
+				</ul>
+			</nav>
+
+		<!-- Banner -->
+        <section id="banner">
+            <div class="inner">
+                <h1>凯露酱的公会档案馆</h1>
+                <br></br>
+                <div class="kyaru">
+                    <div class="image">
+                        <img src="{% static 'images/kyaru.jpg' %}" alt="" />
+                    </div>
+                    <div class="kyarutalk">
+                        {% if message %}
+                        <p class="alert-warning">{{message}}</p>
+                        {% else %}
+                        <p class="kyarutalktext">这里是个人公会战伤害记录面板~</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+                    <div class="content">
+                        <h2>公会总伤害记录</h2>
+                        <div class="row gtr-uniform">
+                            <div class="col-12">
+                                <div class="tab-head">
+                                    {% for d in battle_date_list %}
+                                    <h3 id="tabhead{{forloop.counter}}">{{d}}</h3>
+                                    {% endfor %}
+                                </div>
+                                <script>
+                                    var now_day_id = {{now_day_id}};
+                                    tab = document.getElementById('tabhead' + now_day_id.toString());
+                                    tab.className = 'selected'
+                                </script>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <!-- {% for records in user_battle_record %} -->
+                            <div id="tabcontent{{forloop.counter}}">
+                                <div class="table-wrapper">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th rowspan="2">昵称</th>
+                                                <th colspan="2">第一刀</th>
+                                                <th colspan="2">第二刀</th>
+                                                <th colspan="2">第三刀</th>
+                                                <th rowspan="2">SL</th>
+                                                <th rowspan="2">积分</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>伤害</td>
+                                                <td>补偿刀</td>
+                                                <td>伤害</td>
+                                                <td>补偿刀</td>
+                                                <td>伤害</td>
+                                                <td>补偿刀</td>
+                                            </tr>
+                                            {% for one_record in records %}
+                                            <tr>
+                                                <td>{{one_record.boss_info}}</td>
+                                                <td>{{one_record.damage}}</td>
+                                                <td>{{one_record.score}}</td>
+                                                <td>{{one_record.record_time}}</td>
+                                                <td>{{one_record.final_kill}}</td>
+                                                <td>{{one_record.comp_flag}}</td>
+                                                <td><a href="#">撤销</href></td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- {% endfor %} -->
+                            <script>
+                                var now_day_id = {{now_day_id}};
+                                content = document.getElementById('tabcontent' + now_day_id.toString());
+                                content.className = 'show'
+                            </script>
+                        </div>
+                    </div>
+				</div>
+            </section>
+
+		<!-- Footer -->
+        <footer id="footer">
+            <div class="inner">
+                <div class="copyright">
+                    &copy;SkyF.
+                </div>
+            </div>
+        </footer>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+            <script src="{% static 'assets/js/day_tab.js' %}"></script>
+            
+	</body>
+</html>
