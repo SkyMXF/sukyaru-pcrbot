@@ -2070,7 +2070,8 @@ ul.icons {
     min-height: 30vh; }
   @media screen and (max-width: 1280px) {
     #banner video {
-      display: none; } }
+      /* display: none; */
+     } }
   @media screen and (max-width: 736px) {
     #banner {
       height: auto !important;
