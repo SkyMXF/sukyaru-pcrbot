@@ -1,5 +1,5 @@
 $(document).on('click','th',function(){
-    var table = $(this).parents('table').eq(0);
+    var table = $(this).parents('alt').eq(0);
     var rows = table.find('tr:gt(1)').toArray().sort(comparer($(this).index()));
     this.asc = !this.asc;
     if (!this.asc){rows = rows.reverse();}
