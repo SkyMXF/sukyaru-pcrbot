@@ -67,5 +67,11 @@ def guildbattle(request):
     if not request.session.get('is_login', None):
         # 未登录
         return redirect('/user/login')
+    
+    battle_date_list = ["6月1日", "6月2日"]
 
-    return render(request, 'battle/guildbattle.html')
+    show_dict = {
+        "battle_date_list": battle_date_list
+    }
+
+    return render(request, 'battle/guildbattle.html', show_dict)
