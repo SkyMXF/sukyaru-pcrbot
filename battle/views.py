@@ -71,7 +71,8 @@ def guildbattle(request):
     battle_date_list = ["6月1日", "6月2日"]
 
     show_dict = {
-        "battle_date_list": battle_date_list
+        "battle_date_list": battle_date_list,
+        "now_day_id": 1
     }
 
     return render(request, 'battle/guildbattle.html', show_dict)
