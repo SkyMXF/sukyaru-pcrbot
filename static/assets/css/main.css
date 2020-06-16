@@ -627,7 +627,7 @@ table {
   table th {
     font-size: 0.9rem;
     font-weight: 600;
-    padding: 0 0.75rem 0.75rem 0.75rem;
+    padding: 0 0.75rem 0 0.75rem;
     text-align: center; }
   table thead {
     border-bottom: solid 2px; }
