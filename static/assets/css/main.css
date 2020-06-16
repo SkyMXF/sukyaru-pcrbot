@@ -2086,7 +2086,8 @@ ul.icons {
       #banner p {
         font-size: 1.25rem; }
       #banner br {
-        display: none; }
+        /* display: none;  */
+      }
       #banner .button {
         width: 100%; } }
   @media screen and (max-width: 480px) {
