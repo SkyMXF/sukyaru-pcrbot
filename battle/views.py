@@ -110,7 +110,7 @@ def guildbattle(request):
                 "damage_2": "",
                 "comp_2": "",
                 "SL": "×",
-                "score": "" 
+                "score": 0
             }
             battle_counter = -1      # 现在计算第x刀及补偿刀
             score = 0.0
@@ -131,7 +131,7 @@ def guildbattle(request):
                     now_user_date_battle_record.damage
                 )
                 score += now_user_date_battle_record.boss_info.score_fac * now_user_date_battle_record.damage
-            row_dict["score"] = "%d"%(int(score))
+            row_dict["score"] = int(score)
             now_date_battle_record_list.append(row_dict)
         
         # 该页加入总list
