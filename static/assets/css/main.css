@@ -627,7 +627,7 @@ table {
   table th {
     font-size: 0.9rem;
     font-weight: 600;
-    padding: 0 0.75rem 0 0.75rem;
+    padding: 0.3rem 0.75rem 0.3rem 0.75rem;
     text-align: center; }
   table thead {
     border-bottom: solid 2px; }
@@ -635,7 +635,7 @@ table {
     border-top: solid 2px; }
   table.alt {
     border-collapse: separate; }
-    table.alt tbody tr td {
+    table.alt tbody tr td th {
       border: solid 1px;
       border-left-width: 0;
       border-top-width: 0; }
