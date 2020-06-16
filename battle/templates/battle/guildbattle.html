@@ -78,7 +78,7 @@
                             </div>
                         </div>
                         <div class="tab-content">
-                            <!-- {% for records in user_battle_record %} -->
+                            {% for records in battle_record_list_by_day %}
                             <div id="tabcontent{{forloop.counter}}">
                                 <div class="table-wrapper">
                                     <table>
@@ -103,13 +103,15 @@
                                             </tr>
                                             {% for one_record in records %}
                                             <tr>
-                                                <td>{{one_record.boss_info}}</td>
-                                                <td>{{one_record.damage}}</td>
+                                                <td>{{one_record.user_name}}</td>
+                                                <td>{{one_record.damage_0}}</td>
+                                                <td>{{one_record.comp_0}}</td>
+                                                <td>{{one_record.damage_1}}</td>
+                                                <td>{{one_record.comp_1}}</td>
+                                                <td>{{one_record.damage_2}}</td>
+                                                <td>{{one_record.comp_2}}</td>
+                                                <td>{{one_record.SL}}</td>
                                                 <td>{{one_record.score}}</td>
-                                                <td>{{one_record.record_time}}</td>
-                                                <td>{{one_record.final_kill}}</td>
-                                                <td>{{one_record.comp_flag}}</td>
-                                                <td><a href="#">撤销</href></td>
                                             </tr>
                                             {% endfor %}
                                         </tbody>
@@ -118,7 +120,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <!-- {% endfor %} -->
+                            {% endfor %}
                             <script>
                                 var now_day_id = {{now_day_id}};
                                 content = document.getElementById('tabcontent' + now_day_id.toString());
