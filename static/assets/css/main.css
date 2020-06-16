@@ -628,7 +628,8 @@ table {
     font-size: 0.9rem;
     font-weight: 600;
     padding: 0.3rem 0.75rem 0.3rem 0.75rem;
-    text-align: center; }
+    text-align: center; 
+    vertical-align: middle;}
   table thead {
     border-bottom: solid 2px; }
   table tfoot {
