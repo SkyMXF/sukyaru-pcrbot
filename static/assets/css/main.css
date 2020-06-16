@@ -2028,8 +2028,8 @@ ul.icons {
     transform: translateX(50%) translateY(50%);
     bottom: 50%;
     height: auto;
-    min-height: 100%;
-    min-width: 100%;
+    min-height: 50%;
+    min-width: 50%;
     overflow: hidden;
     position: absolute;
     right: 50%;
