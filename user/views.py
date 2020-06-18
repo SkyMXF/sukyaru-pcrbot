@@ -175,4 +175,31 @@ def logout(request):
         return redirect("/user/login")
     request.session.flush()
     return redirect("/user/login")
+
+def setname(request):
+    if not request.session.get('is_login', None):
+        # 未登录
+        return redirect("/user/login")
     
+    if request.method == "POST":
+        setname_form = forms.SetNameForm(request.POST)
+        if setname_form.is_valid():
+            newname = setname_form.cleaned_data.get('nickname')
+
+            # 修改数据库    
+            userqq = request.session['userqq']
+            try:
+                userinfo = models.UserInfo.objects.get(user_qq_id=userqq)
+            except:
+                message = "Unknown ERROR: No record for this qq."
+                return render(request, 'user/setname.html', {"message": message, "setname_form": setname_form})
+            userinfo.nickname = newname
+                
+            return redirect("/user")
+
+        else:
+            message = "输入格式错误0.0"
+            return render(request, "user/setname.html", {"message": message, "setname_form": setname_form})
+
+    setname_form = forms.SetNameForm()
+    return render(request, 'user/setname.html', {"setname_form": setname_form})

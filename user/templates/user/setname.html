@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>凯露酱档案馆</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="/user">凯露酱档案馆</a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="/user">主页</a></li>
+					<li><a href="/user/setpwd">修改密码</a></li>
+					<li><a href="/battle/mybattle">我的公会战</a></li>
+					<li><a href="/battle/guildbattle">公会总记录</a></li>
+					<li><a href="/user">小工具(施工中)</a></li>
+					<li><a href="/user">优秀员工墙(施工中)</a></li>
+					<li><a href="/user">管理公会(施工中)</a></li>
+					<li><a href="/user/logout">退出登录</a></li>
+				</ul>
+			</nav>
+
+		<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<h1>凯露酱的公会档案馆</h1>
+					<br></br>
+					<div class="kyaru">
+						<div class="image">
+							<img src="{% static 'images/kyaru.jpg' %}" alt="" />
+						</div>
+						<div class="kyarutalk">
+							{% if message %}
+                        <p class="alert-warning">{{message}}</p>
+                        {% else %}
+                        <p class="kyarutalktext">想要修改成什么新名字呢~</p>
+                        {% endif %}
+						</div>
+					</div>
+				</div>
+				<video autoplay loop muted playsinline>
+					<source src="{% static 'images/banner.mp4' %}">
+				</video>
+			</section>
+
+		<!-- Main -->
+		<section id="main" class="wrapper">
+			<div class="inner">
+				<div class="content">
+					<form method="post" action="/user/setname">
+						{% csrf_token %}
+						<div class="row gtr-uniform">
+							<div class="col-12">
+								{{ setname_form.nickname.label_tag }}
+								{{ setname_form.nickname}}
+							</div>
+							<div class="col-12">
+								<ul class="actions">
+									<li><input type="submit" value="修改昵称" class="primary" /></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="copyright">
+						&copy;SkyF.
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>

@@ -7,3 +7,7 @@ class UserLoginForm(forms.Form):
 class SetPasswordForm(forms.Form):
     password = forms.CharField(label="新的登录密码", max_length=20, widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder': "新的登录密码"}))
     retype_password = forms.CharField(label="再输入一遍", max_length=20, widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder': "再输入一遍"}))
+
+class SetNameForm(forms.Form):
+    nickname = forms.CharField(label="新的昵称", max_length=20, widget=forms.TextInput(attrs={'class': 'form-control','placeholder': "新的昵称"}))
+    
