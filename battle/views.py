@@ -45,6 +45,7 @@ def mybattle(request):
                 utils.upload_battle_record(post_record_dict)
             except ValueError as e:
                 message = str(e)
+                print(message)
                 show_dict["message"] = message
                 show_dict["battle_record_form"] = post_battle_record_form
             
