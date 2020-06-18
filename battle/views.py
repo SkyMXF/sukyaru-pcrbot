@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.utils.timezone import get_default_timezone
+from django.db import transaction
 
 import datetime
 
@@ -14,58 +15,64 @@ def mybattle(request):
     if not request.session.get('is_login', None):
         # 未登录
         return redirect('/user/login')
+    
+    # 默认查询当前用户报刀记录
+    query_qq = request.session.get('userqq', None)
 
     # 报刀表单相关
-    now_page_qq = request.session.get('userqq', None)
     battle_record_form = forms.BattleRecordForm()
-    self_page = True
     
-    # 获取出刀记录
-    now_datetime = utils.PCRDate(datetime.datetime.utcnow(), tzinfo=get_default_timezone())
-    now_day_id = 1
-    user_battle_record_list_by_day = []         # 每个列表元素为一天的记录
-    battle_date_list = []                       # 每个列表元素为一个日期
-    battle_dates = models.BattleDate.objects.order_by("battle_date")
-    user_all_battle_record = models.NowBattleRecord.objects.filter(user_info__user_qq_id=now_page_qq)
-    for now_battle_date in battle_dates:
-        now_battle_pcr_date = utils.PCRDate(now_battle_date.battle_date, tzinfo=get_default_timezone())
-        if now_datetime.tz_datetime() >= now_battle_pcr_date.day_end():
-            now_day_id += 1
+    # 输出相关
+    show_dict = {
+        "self_page": True,
+        "battle_record_form": battle_record_form
+    }
+    message = None
 
-        # 记录日期
-        battle_date_list.append("%d月%d日"%(now_battle_pcr_date().month, now_battle_pcr_date().day))
+    if request.method == "GET":
+        # 撤销报刀记录
+        redo_record_id = request.GET.get("redoreid", None)
+        if redo_record_id:
+            redo_record_id = int(redo_record_id)
+            try:
+                now_record = models.NowBattleRecord.objects.get(id=redo_record_id)
+            except: # 没有改id记录
+                message = "出错了...凯露酱这里没有这条需要撤销的记录诶"
+                show_dict["message"] = message
+                return render(
+                    request, 'battle/mybattle.html', show_dict
+                )
+            # 检查权限
+            if request.session['userqq'] == now_record.user_info.user_qq_id or request.session['user_auth'] < 2:    # 本人删除或管理员删除
+                try:
+                    utils.boss_status_redo(now_record)
+                except:
+                    message = "重置BOSS状态时出现问题~"
+                    show_dict["message"] = message
+                try:
+                    now_record.delete()
+                except:
+                    message = "删除记录时出现了错误~该记录可能已经被清除了"
+                    show_dict["message"] = message
+            else:
+                message = "骑士君没有删除这条记录的权限噢~"
+                show_dict["message"] = message
+                return render(
+                    request, 'battle/mybattle.html', show_dict
+                )
 
-        # 构建当日出刀信息list
-        user_now_date_battle_record_list = []
-        user_now_date_battle_records = user_all_battle_record.filter(
-            record_date__gte=now_battle_pcr_date.day_begin(),
-            record_date__lt=now_battle_pcr_date.day_end()
-        ).order_by("record_date")
-        for now_date_record in user_now_date_battle_records:
-            record_pcr_date = utils.PCRDate(now_date_record.record_date, tzinfo=get_default_timezone())
-            user_now_date_battle_record_list.append({
-                "record_id": now_date_record.id,
-                "record_time": record_pcr_date.tz_datetime().strftime("%m-%d %H:%M:%S"),
-                "boss_info": "%s(%d-%d)"%(now_date_record.boss_info.boss_name, now_date_record.boss_real_stage, now_date_record.boss_info.boss_id),
-                "damage": now_date_record.damage,
-                "score": int(now_date_record.boss_info.score_fac * now_date_record.damage),
-                "final_kill": "√" if now_date_record.final_kill else "×",
-                "comp_flag": "√" if now_date_record.comp_flag else "×"
-            })
-        user_battle_record_list_by_day.append(user_now_date_battle_record_list)
+        # 查询他人记录
+        query_qq = int(request.GET.get("queryqq", None))
+        if query_qq:
+            query_qq = int(query_qq)
+            if query_qq != request.session["userqq"]:
+                show_dict["self_page"] = False
     
-    if now_day_id > len(battle_date_list):  # 访问时间已过公会战期间
-        now_day_id = 1
+    # 查询个人出刀记录
+    show_dict.update(get_user_record_dict(now_page_qq=query_qq))
 
     return render(
-        request, 'battle/mybattle.html',
-        {
-            "self_page": self_page,
-            "battle_record_form": battle_record_form,
-            "user_battle_record": user_battle_record_list_by_day,
-            "battle_date_list": battle_date_list,
-            "now_day_id": now_day_id
-        }
+        request, 'battle/mybattle.html', show_dict
     )
 
 def guildbattle(request):
@@ -104,6 +111,7 @@ def guildbattle(request):
             ).order_by("record_date")
             row_dict = {
                 "user_name": now_user_info.nickname,
+                "user_qq": now_user_info.user_qq_id,
                 "damage_0": "",
                 "comp_0": "",       # 补偿刀
                 "damage_1": "",
@@ -148,3 +156,49 @@ def guildbattle(request):
     }
 
     return render(request, 'battle/guildbattle.html', show_dict)
+
+def get_user_record_dict(now_page_qq):
+    # 获取出刀记录
+    now_datetime = utils.PCRDate(datetime.datetime.utcnow(), tzinfo=get_default_timezone())
+    now_day_id = 1
+    user_battle_record_list_by_day = []         # 每个列表元素为一天的记录
+    battle_date_list = []                       # 每个列表元素为一个日期
+    battle_dates = models.BattleDate.objects.order_by("battle_date")
+    user_all_battle_record = models.NowBattleRecord.objects.filter(user_info__user_qq_id=now_page_qq)
+    for now_battle_date in battle_dates:
+        now_battle_pcr_date = utils.PCRDate(now_battle_date.battle_date, tzinfo=get_default_timezone())
+        if now_datetime.tz_datetime() >= now_battle_pcr_date.day_end():
+            now_day_id += 1
+
+        # 记录日期
+        battle_date_list.append("%d月%d日"%(now_battle_pcr_date().month, now_battle_pcr_date().day))
+
+        # 构建当日出刀信息list
+        user_now_date_battle_record_list = []
+        user_now_date_battle_records = user_all_battle_record.filter(
+            record_date__gte=now_battle_pcr_date.day_begin(),
+            record_date__lt=now_battle_pcr_date.day_end()
+        ).order_by("record_date")
+        for now_date_record in user_now_date_battle_records:
+            record_pcr_date = utils.PCRDate(now_date_record.record_date, tzinfo=get_default_timezone())
+            user_now_date_battle_record_list.append({
+                "record_id": now_date_record.id,
+                "record_time": record_pcr_date.tz_datetime().strftime("%m-%d %H:%M:%S"),
+                "boss_info": "%s(%d-%d)"%(now_date_record.boss_info.boss_name, now_date_record.boss_real_stage, now_date_record.boss_info.boss_id),
+                "damage": now_date_record.damage,
+                "score": int(now_date_record.boss_info.score_fac * now_date_record.damage),
+                "final_kill": "√" if now_date_record.final_kill else "×",
+                "comp_flag": "√" if now_date_record.comp_flag else "×"
+            })
+        user_battle_record_list_by_day.append(user_now_date_battle_record_list)
+    
+    if now_day_id > len(battle_date_list):  # 访问时间已过公会战期间
+        now_day_id = 1
+    
+    show_dict = {
+        "user_battle_record": user_battle_record_list_by_day,
+        "battle_date_list": battle_date_list,
+        "now_day_id": now_day_id
+    }
+
+    return show_dict

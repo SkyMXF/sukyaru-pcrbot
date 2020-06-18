@@ -1,5 +1,6 @@
 import hashlib
 import datetime
+from battle.models import NowBattleRecord
 
 def pwd_hash(s, salt='dfssaltsalt'):# 加点盐
     h = hashlib.sha256()
@@ -36,3 +37,9 @@ class PCRDate():
     
     def __call__(self):
         return self.real_datetime
+
+def boss_status_promote(battle_record):
+    pass
+
+def boss_status_redo(battle_record):
+    pass
