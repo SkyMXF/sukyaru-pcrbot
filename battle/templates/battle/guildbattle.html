@@ -103,7 +103,7 @@
                                         <tbody>
                                             {% for one_record in records %}
                                             <tr>
-                                                <td><a herf="/battle/mybattle?queryqq={{one_record.user_qq}}">{{one_record.user_name}}</href></td>
+                                                <td><a herf="/battle/mybattle?queryqq={{one_record.user_qq}}">{{one_record.user_name}}</a></td>
                                                 <td>{{one_record.damage_0}}</td>
                                                 <td>{{one_record.comp_0}}</td>
                                                 <td>{{one_record.damage_1}}</td>
@@ -147,7 +147,7 @@
 			<script src="{% static 'assets/js/util.js' %}"></script>
 			<script src="{% static 'assets/js/main.js' %}"></script>
             <script src="{% static 'assets/js/day_tab.js' %}"></script>
-            <script src="{% static 'assets/js/table_sort.js' %}"></script>
+            <!-- <script src="{% static 'assets/js/table_sort.js' %}"></script> -->
             
 	</body>
 </html>
