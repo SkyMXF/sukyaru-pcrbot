@@ -6,7 +6,7 @@ class TitleName(models.Model):
     name = models.CharField(max_length=30)    # 称号名称
 
     def __str__(self):
-        return "id_%d, %s"%(self.name)
+        return "id_%d, %s"%(self.id, self.name)
 
 class Title(models.Model):
     title_prefix = models.CharField(max_length=30)  # 称号前缀（如：第X期，在部分页面不显示）
