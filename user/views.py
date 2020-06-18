@@ -194,6 +194,7 @@ def setname(request):
                 message = "Unknown ERROR: No record for this qq."
                 return render(request, 'user/setname.html', {"message": message, "setname_form": setname_form})
             userinfo.nickname = newname
+            userinfo.save()
                 
             return redirect("/user")
 
