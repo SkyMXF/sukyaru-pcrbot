@@ -44,6 +44,7 @@ def mybattle(request):
         for now_date_record in user_now_date_battle_records:
             record_pcr_date = utils.PCRDate(now_date_record.record_date, tzinfo=get_default_timezone())
             user_now_date_battle_record_list.append({
+                "record_id": now_date_record.id,
                 "record_time": record_pcr_date.tz_datetime().strftime("%m-%d %H:%M:%S"),
                 "boss_info": "%s(%d-%d)"%(now_date_record.boss_info.boss_name, now_date_record.boss_real_stage, now_date_record.boss_info.boss_id),
                 "damage": now_date_record.damage,
