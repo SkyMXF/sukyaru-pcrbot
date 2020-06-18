@@ -36,7 +36,7 @@ def userinfo(request):
     if len(user_title_info) <= 0:
         show_info_dict["user_title"] = "暂无"
     else:
-        show_info_dict["user_title"] = user_title_info.last().title_name.name
+        show_info_dict["user_title"] = user_title_info.last().title.title_name.name
     
     # 查询出刀次数
     now_datetime = utils.PCRDate(datetime.datetime.utcnow(), tzinfo=get_default_timezone())
