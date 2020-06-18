@@ -29,6 +29,7 @@ def mybattle(request):
     }
 
     # 处理报刀
+    print("刷新了页面")
     if request.method == "POST":
         # 只有自己的页面才可以报刀，所以不存在查询其他qq出刀记录的情况
         post_battle_record_form = forms.BattleRecordForm(request.POST)
@@ -49,7 +50,6 @@ def mybattle(request):
                 print(message)
                 show_dict["message"] = message
                 show_dict["battle_record_form"] = post_battle_record_form
-            
         else:
             message = "报刀信息填写格式有误噢..."
             show_dict["message"] = message
