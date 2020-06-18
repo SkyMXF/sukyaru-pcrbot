@@ -80,6 +80,7 @@ def upload_battle_record(record_dict):
     boss_info_set = BossStatus.objects.filter(boss_info__boss_id=record_dict["boss_id"])
     min_d = 1000
     record_boss_info = None
+    print(boss_info_set)
     for boss_info in boss_info_set:
         if min_d > abs(record_dict["boss_real_stage"] - boss_info.boss_stage):
             record_boss_info = boss_info
