@@ -61,9 +61,9 @@ def mybattle(request):
                 )
 
         # 查询他人记录
-        query_qq = request.GET.get("queryqq", None)
+        get_query_qq = request.GET.get("queryqq", None)
         if query_qq:
-            query_qq = int(query_qq)
+            query_qq = int(get_query_qq)
             if query_qq != request.session["userqq"]:
                 show_dict["self_page"] = False
     
