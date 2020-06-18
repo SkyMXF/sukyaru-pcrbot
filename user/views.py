@@ -36,7 +36,7 @@ def userinfo(request):
     if len(user_title_info) <= 0:
         show_info_dict["user_title"] = "暂无"
     else:
-        show_info_dict["user_title"] = user_title_info.last().title_name
+        show_info_dict["user_title"] = user_title_info.last().title_name.name
     
     # 查询出刀次数
     now_datetime = utils.PCRDate(datetime.datetime.utcnow(), tzinfo=get_default_timezone())
@@ -65,6 +65,30 @@ def userinfo(request):
         show_info_dict["guild_anno"] = "现在没有公告噢"
     else:
         show_info_dict["guild_anno"] = guild_anno.last().anno_detail
+    
+    # 查询上期高级称号
+    MVP_info = UserTitle.objects.filter(title__title_name_id=0).order_by("award_date")     # 0-MVP
+    if len(MVP_info) <= 0:
+        show_info_dict["MVP_name"] = "无"
+        show_info_dict["MVP_record_num"] = 0
+    else:
+        show_info_dict["MVP_name"] = MVP_info.user_info.nickname
+        show_info_dict["MVP_record_num"] = MVP_info.record_num
+    HighDamage_info = UserTitle.objects.filter(title__title_name_id=1).order_by("award_date")   # 1-最高输出
+    if len(MVP_info) <= 0:
+        show_info_dict["HighDamage_name"] = "无"
+        show_info_dict["HighDamage_record_num"] = 0
+    else:
+        show_info_dict["HighDamage_name"] = HighDamage_info.user_info.nickname
+        show_info_dict["HighDamage_record_num"] = HighDamage_info.record_num
+    XTS_info = UserTitle.objects.filter(title__title_name_id=2).order_by("award_date")          # 2-小天使
+    if len(XTS_info) <= 0:
+        show_info_dict["XTS_name"] = "无"
+        show_info_dict["XTS_record_num"] = 0
+    else:
+        show_info_dict["XTS_name"] = XTS_info.user_info.nickname
+        show_info_dict["XTS_record_num"] = XTS_info.record_num
+
 
     return render(request, 'user/userinfo.html', show_info_dict)
 

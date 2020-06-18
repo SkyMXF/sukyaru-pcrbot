@@ -4,11 +4,17 @@ from user.models import UserInfo
 # Create your models here.
 class Title(models.Model):
     title_prefix = models.CharField(max_length=30)  # 称号前缀（如：第X期，在部分页面不显示）
-    title_name = models.CharField(max_length=30)    # 称号名称
+    title_name = models.ForeignKey(TitleName, on_delete=models.CASCADE)    # 称号名称
     good_worker = models.BooleanField(default=False)    # 是否上优秀员工墙
     
     def __str__(self):
         return "[%s]%s, 优秀：%s"%(self.title_prefix, self.title_name, str(self.good_worker))
+
+class TitleName(models.Model):
+    name = models.CharField(max_length=30)    # 称号名称
+
+    def __str__(self):
+        return "id_%d, %s"%(name)
 
 class UserTitle(models.Model):
     user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
