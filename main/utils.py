@@ -65,7 +65,7 @@ def upload_battle_record(record_dict):
         # 确定报刀的pcr日期
         battle_date_pcr = PCRDate(battle_date.battle_date, tzinfo=get_default_timezone())
         if record_datetime_pcr.tz_datetime() >= battle_date_pcr.day_begin() and record_datetime_pcr.tz_datetime() < battle_date_pcr.day_end():
-            record_date = battle_date
+            record_date = battle_date_pcr
             break
     if record_date is None:
         raise ValueError("上传失败：骑士君填写的日期不在公会战日期内噢")
