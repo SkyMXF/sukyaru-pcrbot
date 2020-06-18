@@ -179,11 +179,11 @@ def redo_battle_record(record_id:int, operator_qq:int):
     try:
         with transaction.atomic():
             # 获取报刀记录
-            now_record = models.NowBattleRecord.objects.get(id=record_id)
+            now_record = NowBattleRecord.objects.get(id=record_id)
 
             # 检查权限
             if operator_qq == now_record.user_info.user_qq_id or operator_info.user_auth < 2:    # 本人删除或管理员删除
-                utils.boss_status_redo(now_record)
+                boss_status_redo(now_record)
                 now_record.delete()
             else:
                 message = "骑士君没有删除这条记录的权限噢~"
