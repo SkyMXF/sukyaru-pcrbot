@@ -14,6 +14,8 @@ class UserTitle(models.Model):
     user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     award_date = models.DateTimeField(auto_now=True)
     title = models.ForeignKey(Title, on_delete=models.CASCADE)
+    record_num = models.IntegerField()
+    record_str = models.CharField(max_length=50)
     
     def __str__(self):
         return "[%s]%s, %s"%(str(self.award_date), self.user_info.nickname, self.title)
