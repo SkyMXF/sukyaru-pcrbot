@@ -51,6 +51,7 @@ def mybattle(request):
         else:
             message = "报刀信息填写格式有误噢..."
             show_dict["message"] = message
+            show_dict["battle_record_form"] = post_battle_record_form
     
 
     if request.method == "GET":
