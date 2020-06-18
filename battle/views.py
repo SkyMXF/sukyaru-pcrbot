@@ -34,7 +34,7 @@ def mybattle(request):
         post_battle_record_form = forms.BattleRecordForm(request.POST)
         if post_battle_record_form.is_valid():
             post_record_dict = {
-                "user_qq": query_qq
+                "user_qq": query_qq,
                 "boss_real_stage": post_battle_record_form.cleaned_data.get("boss_stage"),
                 "boss_id": post_battle_record_form.cleaned_data.get("boss_id"),
                 "damage": post_battle_record_form.cleaned_data.get("damage"),
