@@ -92,7 +92,7 @@ def upload_battle_record(record_dict):
     try:
         with transaction.atomic():
             # 检查是否已满3刀
-            user_today_battle_record_set = NowBattleRecord.objects().filter(
+            user_today_battle_record_set = NowBattleRecord.objects.filter(
                 user_info__user_qq_id=record_dict["user_qq"],
                 record_date__gte=record_date.day_begin(),
                 record_date__lt=record_date.day_end(),
