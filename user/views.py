@@ -40,7 +40,7 @@ def userinfo(request):
     
     # 查询出刀次数
     now_datetime = utils.PCRDate(datetime.datetime.utcnow(), tzinfo=get_default_timezone())
-    user_today_battle_record_set = NowBattleRecord.filter(
+    user_today_battle_record_set = NowBattleRecord.objects.filter(
         record_date__gte=now_datetime.day_begin(),
         record_date__lt=now_datetime.day_end(),
         user_info_id=user.id,
