@@ -31,7 +31,7 @@ def mybattle(request):
     if request.method == "GET":
         # 撤销报刀记录
         redo_record_id = request.GET.get("redoreid", None)
-        if not (redo_record_id is None):
+        if redo_record_id:
             redo_record_id = int(redo_record_id)
             try:
                 now_record = models.NowBattleRecord.objects.get(id=redo_record_id)
@@ -61,8 +61,8 @@ def mybattle(request):
                 )
 
         # 查询他人记录
-        query_qq = int(request.GET.get("queryqq", None))
-        if not (query_qq is None):
+        query_qq = request.GET.get("queryqq", None)
+        if query_qq:
             query_qq = int(query_qq)
             if query_qq != request.session["userqq"]:
                 show_dict["self_page"] = False
