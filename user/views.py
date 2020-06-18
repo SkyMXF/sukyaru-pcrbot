@@ -55,6 +55,7 @@ def userinfo(request):
         show_info_dict["now_battle_boss_diff"] = "否"
         show_info_dict["now_battle_boss_health"] = "0/0"
     else:
+        now_battle_boss = now_battle_boss.last()
         show_info_dict["now_battle_boss_name"] = now_battle_boss.now_boss.boss_info.boss_name
         show_info_dict["now_battle_boss_diff"] = "是" if now_battle_boss.now_boss.boss_info.high_difficulty else "否"
         show_info_dict["now_battle_boss_health"] = "%d/%d"%(now_battle_boss.now_boss.health, now_battle_boss.now_boss.boss_info.total_health)
