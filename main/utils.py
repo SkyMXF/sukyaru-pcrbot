@@ -77,7 +77,7 @@ def upload_battle_record(record_dict):
         raise ValueError("上传失败：凯露酱这里没有这位骑士君的qq记录噢")
     
     # 获取boss信息
-    boss_info_set = BossStatus.objects.filter(boss_id=record_dict["boss_id"])
+    boss_info_set = BossStatus.objects.filter(boss_info__boss_id=record_dict["boss_id"])
     min_d = int("inf")
     record_boss_info = None
     for boss_info in boss_info_set:
