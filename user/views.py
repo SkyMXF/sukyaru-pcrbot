@@ -43,7 +43,7 @@ def userinfo(request):
     user_today_battle_record_set = NowBattleRecord.objects.filter(
         record_date__gte=now_datetime.day_begin(),
         record_date__lt=now_datetime.day_end(),
-        user_info__id=user.id,
+        user_info_id=user.id,
         comp_flag=False
     )
     show_info_dict["user_battle_record_count"] = len(user_today_battle_record_set)
