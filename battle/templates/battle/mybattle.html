@@ -58,11 +58,12 @@
             </div>
         </section>
 
+
+        {% if self_page %}
 		<!-- Main -->
 			<section id="main" class="wrapper">
 				<div class="inner">
                     <div class="content">
-                        {% if self_page %}
                         <h2>报告伤害记录</h2>
                         <form method="post" action="/battle/mybattle">
                             {% csrf_token %}
@@ -98,7 +99,6 @@
                                 </div>
                             </div>
                         </form>
-                        {% endif %}
                     </div>
 				</div>
             </section>
@@ -109,6 +109,7 @@
 					<p>"今天三刀出了吗出了吗出了吗出了吗出了吗出了吗"</p>
 				</div>
 			</section>
+        {% endif %}
         
         <!-- Main -->
 			<section id="main" class="wrapper">

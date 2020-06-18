@@ -38,9 +38,6 @@ def mybattle(request):
             except: # 没有改id记录
                 message = "出错了...凯露酱这里没有这条需要撤销的记录诶"
                 show_dict["message"] = message
-                return render(
-                    request, 'battle/mybattle.html', show_dict
-                )
             # 检查权限
             if request.session['userqq'] == now_record.user_info.user_qq_id or request.session['user_auth'] < 2:    # 本人删除或管理员删除
                 try:
@@ -56,9 +53,6 @@ def mybattle(request):
             else:
                 message = "骑士君没有删除这条记录的权限噢~"
                 show_dict["message"] = message
-                return render(
-                    request, 'battle/mybattle.html', show_dict
-                )
 
         # 查询他人记录
         get_query_qq = request.GET.get("queryqq", None)
