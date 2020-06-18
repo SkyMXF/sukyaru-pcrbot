@@ -34,6 +34,7 @@ def mybattle(request):
         # 只有自己的页面才可以报刀，所以不存在查询其他qq出刀记录的情况
         post_battle_record_form = forms.BattleRecordForm(request.POST)
         print("进入了POST")
+        print(post_battle_record_form)
         if post_battle_record_form.is_valid():
             post_record_dict = {
                 "boss_real_stage": post_battle_record_form.cleaned_data.get("boss_stage"),
