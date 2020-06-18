@@ -49,7 +49,7 @@ def userinfo(request):
     show_info_dict["user_battle_record_count"] = len(user_today_battle_record_set)
     
     # 查询当前boss信息
-    now_battle_boss = NowBattleBoss.objects.all.order_by("set_date")
+    now_battle_boss = NowBattleBoss.objects.all().order_by("set_date")
     if len(now_battle_boss) <= 0:
         show_info_dict["now_battle_boss_name"] = "暂无"
         show_info_dict["now_battle_boss_diff"] = "否"
