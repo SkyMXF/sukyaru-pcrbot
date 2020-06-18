@@ -72,22 +72,22 @@ def userinfo(request):
         show_info_dict["MVP_name"] = "无"
         show_info_dict["MVP_record_num"] = 0
     else:
-        show_info_dict["MVP_name"] = MVP_info.user_info.nickname
-        show_info_dict["MVP_record_num"] = MVP_info.record_num
+        show_info_dict["MVP_name"] = MVP_info.last().user_info.nickname
+        show_info_dict["MVP_record_num"] = MVP_info.last().record_num
     HighDamage_info = UserTitle.objects.filter(title__title_name__tid=1).order_by("award_date")   # 1-最高输出
     if len(MVP_info) <= 0:
         show_info_dict["HighDamage_name"] = "无"
         show_info_dict["HighDamage_record_num"] = 0
     else:
-        show_info_dict["HighDamage_name"] = HighDamage_info.user_info.nickname
-        show_info_dict["HighDamage_record_num"] = HighDamage_info.record_num
+        show_info_dict["HighDamage_name"] = HighDamage_info.last().user_info.nickname
+        show_info_dict["HighDamage_record_num"] = HighDamage_info.last().record_num
     XTS_info = UserTitle.objects.filter(title__title_name__tid=2).order_by("award_date")          # 2-小天使
     if len(XTS_info) <= 0:
         show_info_dict["XTS_name"] = "无"
         show_info_dict["XTS_record_num"] = 0
     else:
-        show_info_dict["XTS_name"] = XTS_info.user_info.nickname
-        show_info_dict["XTS_record_num"] = XTS_info.record_num
+        show_info_dict["XTS_name"] = XTS_info.last().user_info.nickname
+        show_info_dict["XTS_record_num"] = XTS_info.last().record_num
 
 
     return render(request, 'user/userinfo.html', show_info_dict)
