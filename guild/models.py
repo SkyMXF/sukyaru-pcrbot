@@ -19,7 +19,7 @@ class Title(models.Model):
 
 class UserTitle(models.Model):
     user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
-    award_date = models.DateTimeField(auto_now=True)
+    award_date = models.DateTimeField(auto_now_add=True)
     title = models.ForeignKey(Title, on_delete=models.CASCADE)
     record_num = models.IntegerField()
     record_str = models.CharField(max_length=50)
