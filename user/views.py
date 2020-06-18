@@ -1,9 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.utils.timezone import get_default_timezone
 
 from main import utils
 from . import forms
 from . import models
+from guild.models import UserTitle, Announcement
+from battle.models import NowBattleRecord, NowBattleBoss
+
+import datetime
 
 # Create your views here.
 def userinfo(request):
@@ -13,7 +18,7 @@ def userinfo(request):
     
     show_info_dict = {}
 
-    # 查询用户权限称号信息
+    # 查询用户昵称权限信息
     user_qq_id = request.session.get('userqq', None)
     user = models.UserInfo.objects.get(user_qq_id=user_qq_id)
     user_auth_str = "Unknown"
@@ -25,6 +30,41 @@ def userinfo(request):
         user_auth_str = "普通群员"
     show_info_dict["user_auth_str"] = user_auth_str
     show_info_dict["user_name"] = user.nickname
+
+    # 查询荣誉称号
+    user_title_info = UserTitle.objects.filter(user_info_id=user.id).order_by("award_date")
+    if len(user_title_info) <= 0:
+        show_info_dict["user_title"] = "暂无"
+    else:
+        show_info_dict["user_title"] = user_title_info.last().title_name
+    
+    # 查询出刀次数
+    now_datetime = utils.PCRDate(datetime.datetime.utcnow(), tzinfo=get_default_timezone())
+    user_today_battle_record_set = NowBattleRecord.filter(
+        record_date__gte=now_datetime.day_begin(),
+        record_date__lt=now_datetime.day_end(),
+        user_info_id=user.id,
+        comp_flag=False
+    )
+    show_info_dict["user_battle_record_count"] = len(user_today_battle_record_set)
+    
+    # 查询当前boss信息
+    now_battle_boss = NowBattleBoss.objects.all.order_by("set_date")
+    if len(now_battle_boss) <= 0:
+        show_info_dict["now_battle_boss_name"] = "暂无"
+        show_info_dict["now_battle_boss_diff"] = "否"
+        show_info_dict["now_battle_boss_health"] = "0/0"
+    else:
+        show_info_dict["now_battle_boss_name"] = now_battle_boss.now_boss.boss_info.boss_name
+        show_info_dict["now_battle_boss_diff"] = "是" if now_battle_boss.now_boss.boss_info.high_difficulty else "否"
+        show_info_dict["now_battle_boss_health"] = "%d/%d"%(now_battle_boss.now_boss.health, now_battle_boss.now_boss.boss_info.total_health)
+
+    # 查询公告
+    guild_anno = Announcement.objects.all().order_by("anno_date")
+    if len(guild_anno) <= 0:
+        show_info_dict["guild_anno"] = "现在没有公告噢"
+    else:
+        show_info_dict["guild_anno"] = guild_anno.last().anno_detail
 
     return render(request, 'user/userinfo.html', show_info_dict)
 

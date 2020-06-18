@@ -4,7 +4,7 @@ import datetime
 from django.db import transaction
 from django.utils.timezone import get_default_timezone
 
-from battle.models import NowBattleRecord, BattleDate, BossInfo, BossStatus
+from battle.models import NowBattleRecord, BattleDate, BossInfo, BossStatus, NowBattleBoss
 from user.models import UserInfo
 
 def pwd_hash(s, salt='dfssaltsalt'):# 加点盐
@@ -43,16 +43,60 @@ class PCRDate():
     def __call__(self):
         return self.real_datetime
 
-def boss_status_promote(battle_record):
-    pass
+def boss_status_promote(record_dict, record_boss_info):
+    # 根据报刀信息，更新boss状态
+    # 返回： 0-普通，1-报刀boss被击杀，2-新boss报刀，疑似前一boss被击杀
+
+    # 尝试获取对应boss状态
+    boss_status_set = BossStatus.objects.filter(boss_real_stage=record_dict["boss_real_stage"], boss_info__boss_id=record_dict["boss_id"])
+    find_boss = None
+    if len(boss_status_set) <= 0:
+        find_boss = None
+    else:
+        find_boss = boss_status_set.first()
+    
+    # 新boss创建信息
+    if find_boss is None:
+        find_boss = BossStatus.create(
+            boss_info_id=record_boss_info.id,
+            boss_real_stage=record_dict["boss_real_stage"],
+            health=record_boss_info.total_health - record_dict["damage"],
+            now_battle=False,
+            killed=False
+        )
+        NowBattleBoss.create(now_boss=find_boss)    # 更新当前作战boss
+        return 2    # 新boss报刀，疑似前一boss被击杀
+    # 更新血量
+    else:
+        find_boss.health = find_boss.health - record_dict["damage"]
+        find_boss.save()
+
+    if find_boss.health <= 0:
+        # 报刀boss被击杀
+        return 1
+    else:
+        return 0    # 一般返回
+        
 
 def boss_status_redo(battle_record):
-    pass
+    # 撤销报刀时更新boss状态
+
+    # 获取对应boss状态
+    boss_status_set = BossStatus.objects.filter(boss_real_stage=battle_record.boss_real_stage, boss_info__boss_id=battle_record.boss_info.boss_id)
+    if len(boss_status_set) <= 0:
+        raise ValueError("异常：撤销报刀时发生错误，不存在报刀记录对应的boss信息")
+    
+    now_boss_status = boss_status_set.first()
+    now_boss_status.health = now_boss_status.health + battle_record.damage
+    now_boss_status.save()
+
+    # 检查报刀记录，如果只有待撤销的记录指向该boss_status，则更新NowBattleBoss表
+    # TODO: 修正错误报刀，更新NowBattleBoss表
 
 def upload_battle_record(record_dict):
     # 公用函数：向数据库上传报刀记录
     # 会调用boss_status_promote更新boss status
-    # 会检查改日是否已满3刀
+    # 会检查该日是否已满3刀
     # 输入：dict, 包含user_qq, boss_real_stage, boss_id, damage, record_date, final_kill, comp_flag
     # 无返回值
     # 异常情况以ValueError形式返回
@@ -111,9 +155,42 @@ def upload_battle_record(record_dict):
                 final_kill=record_dict["final_kill"],
                 comp_flag=record_dict["comp_flag"]
             )
+            boss_status_promote(record_dict, record_boss_info)    # 更新公会战总进度
     
     except ValueError as e:
         raise ValueError(str(e))
     except Exception as e:
         print(e)
         raise ValueError("数据提交给凯露酱时发生错误，请重新提交试试，如果依然出现错误，请联系管理员")
+
+def redo_battle_record(record_id:int, operator_qq:int):
+    # 撤销报刀记录
+    # 会调用boss_status_redo
+    # 输入：record_id: int, 需要删除的记录id。operator_qq: int, 操作者的QQ。
+    # 无返回值
+    # 异常情况以ValueError形式返回
+
+    # 获取操作者权限
+    try:
+        operator_info = UserInfo.objects.get(user_qq_id=operator_qq)
+    except:
+        raise ValueError("撤销失败：凯露酱这里没有操作者的qq的记录")
+    
+    try:
+        with transaction.atomic():
+            # 获取报刀记录
+            now_record = models.NowBattleRecord.objects.get(id=record_id)
+
+            # 检查权限
+            if operator_qq == now_record.user_info.user_qq_id or operator_info.user_auth < 2:    # 本人删除或管理员删除
+                utils.boss_status_redo(now_record)
+                now_record.delete()
+            else:
+                message = "骑士君没有删除这条记录的权限噢~"
+                raise ValueError(message)
+    except ValueError as e:
+        raise ValueError(str(e))
+    except Exception as e:
+        print(e)
+        raise ValueError("撤销时发生错误，请重新撤销试试，如果依然出现错误，请联系管理员")
+    

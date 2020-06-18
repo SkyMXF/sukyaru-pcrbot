@@ -69,8 +69,8 @@
 								</header>
 								<p>
 									职位：{{ user_auth_str }}<br>
-									荣誉称号：MVP<br>
-									今日出刀：0
+									荣誉称号：{{ user_title }}<br>
+									今日出刀：{{ user_battle_record_count }}
 								</p>
 							</div>
 						</section>
@@ -81,9 +81,9 @@
 									<h3>公会战进度</h3>
 								</header>
 								<p>
-									当前BOSS：狂暴牛<br>
-									高难度：是<br>
-									剩余生命：10086/1000000
+									当前BOSS：{{ now_battle_boss_name }}<br>
+									高难度：{{ now_battle_boss_diff }}<br>
+									剩余生命：{{ now_battle_boss_health }}
 								</p>
 							</div>
 						</section>
@@ -93,7 +93,7 @@
 									<a class="icon fa-calendar-check-o"><span class="label">Icon</span></a>
 									<h3>公告牌</h3>
 								</header>
-								<p>现在没有公告噢</p>
+								<p>{{ guild_anno }}</p>
 							</div>
 						</section>
 					</div>

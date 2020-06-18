@@ -60,24 +60,9 @@ def mybattle(request):
         if redo_record_id:
             redo_record_id = int(redo_record_id)
             try:
-                now_record = models.NowBattleRecord.objects.get(id=redo_record_id)
-            except: # 没有改id记录
-                message = "出错了...凯露酱这里没有这条需要撤销的记录诶"
-                show_dict["message"] = message
-            # 检查权限
-            if request.session['userqq'] == now_record.user_info.user_qq_id or request.session['user_auth'] < 2:    # 本人删除或管理员删除
-                try:
-                    utils.boss_status_redo(now_record)
-                except:
-                    message = "重置BOSS状态时出现问题~"
-                    show_dict["message"] = message
-                try:
-                    now_record.delete()
-                except:
-                    message = "删除记录时出现了错误~该记录可能已经被清除了"
-                    show_dict["message"] = message
-            else:
-                message = "骑士君没有删除这条记录的权限噢~"
+                utils.redo_battle_record(redo_record_id, operator_qq=request.session['userqq'])
+            except ValueError as e:
+                message = str(e)
                 show_dict["message"] = message
 
         # 查询他人记录

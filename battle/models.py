@@ -22,8 +22,8 @@ class BossStatus(models.Model):
     #boss_stage = models.IntegerField()       # 周目数
     #boss_id = models.IntegerField()     # boss编号
     health = models.IntegerField()      # 当前生命值
-    now_battle = models.BooleanField(default=False)  # 当前正在作战
-    killed = models.BooleanField(default=False)     # 已击杀
+    now_battle = models.BooleanField(default=False)  # 当前正在作战     # 弃用
+    killed = models.BooleanField(default=False)      # 已击杀           # 弃用
     
     def __str__(self):
         return "%s(%d-%d)"%(self.boss_info.boss_name, self.boss_real_stage, self.boss_info.boss_id)
@@ -49,3 +49,11 @@ class NowBattleRecord(models.Model):
 
     def __str__(self):
         return "id_%d, %s, %s, %s(%d-%d), %d"%(self.id, self.user_info.nickname, str(self.record_date), self.boss_info.boss_name, self.boss_real_stage, self.boss_info.boss_id, self.damage)
+
+class NowBattleBoss(models.Model):
+    # 设置当前作战boss记录
+    now_boss = models.ForeignKey(BossStatus, on_delete=models.CASCADE)
+    set_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "id_%d, %s, %s"%(self.id, str(self.now_boss), str(self.set_date))
