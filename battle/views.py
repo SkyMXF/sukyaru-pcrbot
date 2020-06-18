@@ -21,12 +21,37 @@ def mybattle(request):
 
     # 报刀表单相关
     battle_record_form = forms.BattleRecordForm()
-    
+
     # 输出相关
     show_dict = {
         "self_page": True,
         "battle_record_form": battle_record_form
     }
+
+    # 处理报刀
+    if request.method == "POST":
+        # 只有自己的页面才可以报刀，所以不存在查询其他qq出刀记录的情况
+        post_battle_record_form = forms.BattleRecordForm(request.POST)
+        if post_battle_record_form.is_valid():
+            post_record_dict = {
+                "boss_real_stage": post_battle_record_form.cleaned_data.get("boss_stage"),
+                "boss_id": post_battle_record_form.cleaned_data.get("boss_id"),
+                "damage": post_battle_record_form.cleaned_data.get("damage"),
+                "record_date": post_battle_record_form.cleaned_data.get("record_date"),
+                "final_kill": post_battle_record_form.cleaned_data.get("final_kill"),
+                "comp_flag": post_battle_record_form.cleaned_data.get("comp_flag")
+            }
+            try:
+                utils.upload_battle_record(post_record_dict)
+            except ValueError as e:
+                message = str(e)
+                show_dict["message"] = message
+                show_dict["battle_record_form"] = post_battle_record_form
+            
+        else:
+            message = "报刀信息填写格式有误噢..."
+            show_dict["message"] = message
+    
 
     if request.method == "GET":
         # 撤销报刀记录
