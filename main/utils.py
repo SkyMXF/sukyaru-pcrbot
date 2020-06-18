@@ -57,14 +57,14 @@ def boss_status_promote(record_dict, record_boss_info):
     
     # 新boss创建信息
     if find_boss is None:
-        find_boss = BossStatus.create(
+        find_boss = BossStatus.objects.create(
             boss_info_id=record_boss_info.id,
             boss_real_stage=record_dict["boss_real_stage"],
             health=record_boss_info.total_health - record_dict["damage"],
             now_battle=False,
             killed=False
         )
-        NowBattleBoss.create(now_boss=find_boss)    # 更新当前作战boss
+        NowBattleBoss.objects.create(now_boss=find_boss)    # 更新当前作战boss
         return 2    # 新boss报刀，疑似前一boss被击杀
     # 更新血量
     else:
