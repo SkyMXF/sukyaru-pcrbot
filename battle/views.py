@@ -64,6 +64,7 @@ def mybattle(request):
     # 查询个人出刀记录
     show_dict.update(get_user_record_dict(now_page_qq=query_qq))
 
+    request.GET["queryqq"] = query_qq
     return render(
         request, 'battle/mybattle.html', show_dict
     )
