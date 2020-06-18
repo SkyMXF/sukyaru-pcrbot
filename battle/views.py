@@ -29,14 +29,12 @@ def mybattle(request):
     }
 
     # 处理报刀
-    print("刷新了页面")
     if request.method == "POST":
         # 只有自己的页面才可以报刀，所以不存在查询其他qq出刀记录的情况
         post_battle_record_form = forms.BattleRecordForm(request.POST)
-        print("进入了POST")
-        print(post_battle_record_form)
         if post_battle_record_form.is_valid():
             post_record_dict = {
+                "user_qq": query_qq
                 "boss_real_stage": post_battle_record_form.cleaned_data.get("boss_stage"),
                 "boss_id": post_battle_record_form.cleaned_data.get("boss_id"),
                 "damage": post_battle_record_form.cleaned_data.get("damage"),
@@ -48,7 +46,6 @@ def mybattle(request):
                 utils.upload_battle_record(post_record_dict)
             except ValueError as e:
                 message = str(e)
-                print(message)
                 show_dict["message"] = message
                 show_dict["battle_record_form"] = post_battle_record_form
         else:

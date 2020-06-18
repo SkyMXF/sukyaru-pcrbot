@@ -45,7 +45,6 @@ def boss_status_promote(battle_record):
 def boss_status_redo(battle_record):
     pass
 
-@transaction.atomic
 def upload_battle_record(record_dict):
     # 公用函数：向数据库上传报刀记录
     # 会调用boss_status_promote更新boss status
@@ -53,4 +52,13 @@ def upload_battle_record(record_dict):
     # 输入：dict, 包含boss_real_stage, boss_id, damage, record_date, final_kill, comp_flag
     # 无返回值
     # 异常情况以ValueError形式返回
-    raise ValueError("该功能未实现")
+
+    try:
+        with transaction.atomic():
+            # 检查是否已满3刀
+            
+
+            # 构造record
+    
+    except:
+        raise ValueError("数据提交给凯露酱时发生错误，请重新提交试试，如果依然出现错误，请联系管理员")
