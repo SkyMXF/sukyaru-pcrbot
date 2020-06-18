@@ -67,21 +67,21 @@ def userinfo(request):
         show_info_dict["guild_anno"] = guild_anno.last().anno_detail
     
     # 查询上期高级称号
-    MVP_info = UserTitle.objects.filter(title__title_name_id=0).order_by("award_date")     # 0-MVP
+    MVP_info = UserTitle.objects.filter(title__title_name__tid=0).order_by("award_date")     # 0-MVP
     if len(MVP_info) <= 0:
         show_info_dict["MVP_name"] = "无"
         show_info_dict["MVP_record_num"] = 0
     else:
         show_info_dict["MVP_name"] = MVP_info.user_info.nickname
         show_info_dict["MVP_record_num"] = MVP_info.record_num
-    HighDamage_info = UserTitle.objects.filter(title__title_name_id=1).order_by("award_date")   # 1-最高输出
+    HighDamage_info = UserTitle.objects.filter(title__title_name__tid=1).order_by("award_date")   # 1-最高输出
     if len(MVP_info) <= 0:
         show_info_dict["HighDamage_name"] = "无"
         show_info_dict["HighDamage_record_num"] = 0
     else:
         show_info_dict["HighDamage_name"] = HighDamage_info.user_info.nickname
         show_info_dict["HighDamage_record_num"] = HighDamage_info.record_num
-    XTS_info = UserTitle.objects.filter(title__title_name_id=2).order_by("award_date")          # 2-小天使
+    XTS_info = UserTitle.objects.filter(title__title_name__tid=2).order_by("award_date")          # 2-小天使
     if len(XTS_info) <= 0:
         show_info_dict["XTS_name"] = "无"
         show_info_dict["XTS_record_num"] = 0

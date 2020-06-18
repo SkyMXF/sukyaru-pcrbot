@@ -3,10 +3,11 @@ from user.models import UserInfo
 
 # Create your models here.
 class TitleName(models.Model):
+    tid = models.IntegerField(unique=True)
     name = models.CharField(max_length=30)    # 称号名称
 
     def __str__(self):
-        return "id_%d, %s"%(self.id, self.name)
+        return "tid_%d, %s"%(self.tid, self.name)
 
 class Title(models.Model):
     title_prefix = models.CharField(max_length=30)  # 称号前缀（如：第X期，在部分页面不显示）
