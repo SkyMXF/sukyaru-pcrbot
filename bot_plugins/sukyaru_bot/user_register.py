@@ -38,6 +38,10 @@ async def guild_register(session: CommandSession):
     # nickname
     # auth -暂不需要，默认为2(普通群员)
 
+    # 只有超级用户可操作
+    if session.state["user_qq"] not in bot_config.SUPERUSERS:
+        return
+
     # 获取成员列表
     bot = nonebot.get_bot()
     group_member_list = await bot.get_group_member_list(group_id=bot_config.PCR_group_id)
