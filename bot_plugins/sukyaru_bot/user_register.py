@@ -3,7 +3,7 @@ from nonebot import on_command, CommandSession
 from .lib import configs, user_register
 
 @on_command(name="register", aliases=("注册"))
-async def register(session: CommandSession):
+def register(session: CommandSession):
     # args：
     # qq
     # nickname
@@ -18,12 +18,12 @@ async def register(session: CommandSession):
         }
     )
 
-    await session.send(
+    session.send(
         "%s"%(message)
     )
 
 @register.args_parser
-async def register_parser(session: CommandSession):
+def register_parser(session: CommandSession):
     #arg_text = session.current_arg_text.strip()
 
     session.state["user_qq"] = session.event.sender["user_id"]
