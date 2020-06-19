@@ -12,3 +12,6 @@ PORT = 8080
 
 # 用于调用CQHTTP的API
 API_ROOT = "http://127.0.0.1:5700"
+
+# PCR公会群id
+PCR_group_id = 1028581970

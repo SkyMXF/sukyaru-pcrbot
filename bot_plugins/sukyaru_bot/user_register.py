@@ -2,6 +2,7 @@ from nonebot import on_command, CommandSession
 import nonebot
 
 from .lib import configs, user_register
+import bot_config
 
 @on_command(name="register", aliases=("注册"))
 async def register(session: CommandSession):
@@ -40,6 +41,13 @@ async def guild_register(session: CommandSession):
     bot = nonebot.get_bot()
     groups = await bot.get_group_list()
     print(groups)
+
+    group_info = await bot.get_group_info(bot_config.PCR_group_id)
+    print(group_info)
+
+    group_member_list = await bot.get_group_member_list(bot_config.PCR_group_id)
+    print(group_member_list)
+
 
     '''
     success, message = user_register.register_user(
