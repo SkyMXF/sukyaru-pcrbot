@@ -45,7 +45,7 @@ async def guild_register(session: CommandSession):
     group_info = await bot.get_group_info(group_id=bot_config.PCR_group_id)
     print(group_info)
 
-    group_member_list = await bot.get_group_member_list(bot_config.PCR_group_id)
+    group_member_list = await bot.get_group_member_list(group_id=bot_config.PCR_group_id)
     print(group_member_list)
 
 
