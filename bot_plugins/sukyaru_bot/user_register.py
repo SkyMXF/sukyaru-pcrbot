@@ -38,35 +38,27 @@ async def guild_register(session: CommandSession):
     # nickname
     # auth -暂不需要，默认为2(普通群员)
 
+    # 获取成员列表
     bot = nonebot.get_bot()
-    groups = await bot.get_group_list()
-    print(groups)
-
-    group_info = await bot.get_group_info(group_id=bot_config.PCR_group_id)
-    print(group_info)
-
     group_member_list = await bot.get_group_member_list(group_id=bot_config.PCR_group_id)
-    print(group_member_list)
-
-
-    '''
-    success, message = user_register.register_user(
+    failed_list = []
+    for member_info in group_member_list:
+        # 逐一注册成员
+        success, message = user_register.register_user(
         user_info_dict={
-            "user_qq": int(session.state["user_qq"]),
+            "user_qq": member_info["user_id"],
             "password": configs.reg_default_pwd,
-            "nickname": session.state["nickname"],
+            "nickname": member_info["card"],
             "user_auth": 2
         }
+        if not success:
+            failed_list.append((member_info["user_id"], member_info["card"]))
     )
-    '''
 
     await session.send(
-        "公会注册假装成功"
+        "公会注册完成，失败成员列表：%s"%(str(failed_list))
     )
 
 @guild_register.args_parser
 async def guild_register_parser(session: CommandSession):
-    #arg_text = session.current_arg_text.strip()
-
-    session.state["user_qq"] = session.event.sender["user_id"]
-    session.state["nickname"] = session.event.sender["nickname"]
+    pass
