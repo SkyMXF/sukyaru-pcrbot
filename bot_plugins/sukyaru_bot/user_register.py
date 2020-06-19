@@ -52,7 +52,7 @@ async def guild_register(session: CommandSession):
             user_info_dict={
                 "user_qq": member_info["user_id"],
                 "password": configs.reg_default_pwd,
-                "nickname": member_info["card"],
+                "nickname": member_info["card"] if member_info["card"] != "" else member_info["nickname"],
                 "user_auth": 2
             }
         )
