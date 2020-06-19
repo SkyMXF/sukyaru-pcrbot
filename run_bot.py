@@ -14,7 +14,7 @@ if __name__ == "__main__":
     import django
     django.setup()
 
-    nonebot.init(config)
+    nonebot.init(bot_config)
     nonebot.load_plugins(
         plugin_dir=sukyaru_plugins_dir,
         module_prefix="bot_plugins.sukyaru_bot"
