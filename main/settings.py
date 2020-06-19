@@ -130,5 +130,3 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "sukyaru-web", "static"),
 ]
-
-DJANGO_ALLOW_ASYNC_UNSAFE = True

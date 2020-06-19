@@ -10,6 +10,7 @@ sukyaru_plugins_dir = os.path.join(plugins_dir, "sukyaru_bot")
 
 if __name__ == "__main__":
 
+    os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main.settings')
     import django
     django.setup()
