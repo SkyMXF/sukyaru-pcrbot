@@ -1,4 +1,3 @@
-from db_utils import userinfo, utils
 from user.models import UserInfo
 from main import utils
 
