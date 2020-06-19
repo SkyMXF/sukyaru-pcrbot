@@ -1,4 +1,5 @@
 from nonebot import on_command, CommandSession
+import nonebot
 
 from .lib import configs, user_register
 
@@ -36,7 +37,9 @@ async def guild_register(session: CommandSession):
     # nickname
     # auth -暂不需要，默认为2(普通群员)
 
-    print(session.bot.get_group_list())
+    bot = nonebot.get_bot()
+    groups = await bot.get_group_list()
+    print(groups)
 
     '''
     success, message = user_register.register_user(
