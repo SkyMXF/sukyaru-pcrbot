@@ -65,4 +65,4 @@ async def guild_register(session: CommandSession):
 
 @guild_register.args_parser
 async def guild_register_parser(session: CommandSession):
-    pass
+    session.state["user_qq"] = session.event.sender["user_id"]
