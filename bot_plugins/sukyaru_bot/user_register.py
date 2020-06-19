@@ -49,16 +49,16 @@ async def guild_register(session: CommandSession):
     for member_info in group_member_list:
         # 逐一注册成员
         success, message = user_register.register_user(
-        user_info_dict={
-            "user_qq": member_info["user_id"],
-            "password": configs.reg_default_pwd,
-            "nickname": member_info["card"],
-            "user_auth": 2
-        }
+            user_info_dict={
+                "user_qq": member_info["user_id"],
+                "password": configs.reg_default_pwd,
+                "nickname": member_info["card"],
+                "user_auth": 2
+            }
+        )
         if not success:
             failed_list.append((member_info["user_id"], member_info["card"]))
-    )
-
+    
     await session.send(
         "公会注册完成，失败成员列表：%s"%(str(failed_list))
     )
