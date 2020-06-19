@@ -1,6 +1,6 @@
 from nonebot import on_command, CommandSession
 
-from lib import configs, user_register
+from bot_plugins.sukyaru_bot.lib import configs, user_register
 
 @on_command(name="register", aliases=("注册"))
 async def register(session: CommandSession):
