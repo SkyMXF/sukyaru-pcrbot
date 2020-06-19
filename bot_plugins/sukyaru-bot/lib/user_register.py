@@ -1,5 +1,5 @@
-from .....sukyaru-web.user.models import UserInfo
-from .....sukyaru-web.main import utils
+from user.models import UserInfo
+from main import utils
 
 def register_user(user_info_dict):
     # dict需要: "user_qq", "password", "nickname", "user_auth"
