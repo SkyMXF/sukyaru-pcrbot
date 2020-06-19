@@ -1,1 +1,0 @@
-reg_default_pwd = "123456"      # 默认密码
