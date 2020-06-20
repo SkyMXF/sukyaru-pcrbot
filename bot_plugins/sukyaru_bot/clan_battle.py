@@ -121,7 +121,7 @@ async def battle_sl(session: CommandSession):
         print(e)
         await session.send("异常：传输的QQ不是数字")
 
-    success, message = sl_record(session.state["user_qq"])
+    success, message = sl_record.set_sl(session.state["user_qq"])
 
     await session.send(
         "%s"%(message)
