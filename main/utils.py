@@ -143,15 +143,16 @@ def upload_battle_record(record_dict):
                 user_info__user_qq_id=record_dict["user_qq"],
                 record_date__gte=record_date.day_begin(),
                 record_date__lt=record_date.day_end(),
-                comp_flag=False
             ).order_by("record_date")
-            if len(user_today_battle_record_set) >= 3 and record_dict["comp_flag"] == False:
-                raise ValueError("报刀失败：骑士君这一天已经有3次非补偿刀的报刀了噢")
             if len(user_today_battle_record_set) > 0:
                 if user_today_battle_record_set.last().comp_flag and record_dict["comp_flag"]:
                     raise ValueError("报刀失败：最近的一次报告也是补偿刀，不可以连续报告补偿刀噢")
             elif record_dict["comp_flag"]:
                 raise ValueError("报刀失败：每日第一刀不可以记为补偿刀噢，如果确实需要报告前一日的补偿刀，可以在公会网站中手动报刀，时间选择为前一日最后一刀之后")
+            
+            user_today_battle_record_set = user_today_battle_record_set.filter(comp_flag=False)
+            if len(user_today_battle_record_set) >= 3 and record_dict["comp_flag"] == False:
+                raise ValueError("报刀失败：骑士君这一天已经有3次非补偿刀的报刀了噢")
 
             # 生成record
             upload_record = NowBattleRecord.objects.create(
