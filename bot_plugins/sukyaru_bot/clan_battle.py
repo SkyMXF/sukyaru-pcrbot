@@ -23,7 +23,8 @@ async def report(session: CommandSession):
         session.state["boss_id"] = int(session.state["boss_id"])
         session.state["damage"] = int(session.state["damage"])
         session.state["operator_qq"] = int(session.state["operator_qq"])
-    except:
+    except Exception as e:
+        print(e)
         await session.send("报刀格式有误噢~示例：%s"%(report_example))
 
     success, message = battle_report.report(
