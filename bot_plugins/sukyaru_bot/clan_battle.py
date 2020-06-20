@@ -48,7 +48,7 @@ async def report(session: CommandSession):
 async def report_parser(session: CommandSession):
     arg_text = session.current_arg_text.strip()
 
-    arg_re = re.compile(r"\s*(?P<boss_real_stage>\d+)\-(?P<boss_id>\d+)\s+(?P<damage>\d+)\s+(?P<comp_flag>补偿)?\s*qq=(?P<record_qq>\d+)?\s*")
+    arg_re = re.compile(r"\s*(?P<boss_real_stage>\d+)\-(?P<boss_id>\d+)\s+(?P<damage>\d+)\s*(?P<comp_flag>补偿)?\s*qq=(?P<record_qq>\d+)?\s*")
     match_args = re.search(arg_re, arg_text)
 
     if match_args:
