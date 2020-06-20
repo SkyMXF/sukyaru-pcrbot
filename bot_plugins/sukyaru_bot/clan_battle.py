@@ -131,7 +131,7 @@ async def battle_sl(session: CommandSession):
 async def battle_sl_parser(session: CommandSession):
     session.state["user_qq"] = session.event.sender["user_id"]
 
-@nonebot.scheduler.scheduled_job("cron", hour=21, min=11)
+@nonebot.scheduler.scheduled_job("cron", hour=21, min=14)
 async def reset_every_member_sl():
     print("reset all member's SL status")
     sl_record.reset_all_sl()
