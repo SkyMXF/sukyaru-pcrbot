@@ -4,7 +4,7 @@ import nonebot
 import datetime
 import re
 
-from .lib import configs, battle_report
+from .lib import configs, battle_report, sl_record
 import bot_config
 
 report_example = "报刀 1-1 876543 或 报刀 1-1 54321 补偿"
@@ -70,7 +70,7 @@ async def report_parser(session: CommandSession):
 
 redo_example = "撤销记录 10"
 
-@on_command(name="redo_report", aliases=("撤销记录"), only_to_me=False)
+@on_command(name="redo_report", aliases=("撤销记录"))
 async def redo_report(session: CommandSession):
     
     if not session.state["valid_report"]:
@@ -111,3 +111,26 @@ async def redo_report_parser(session: CommandSession):
     else:
         session.state["valid_report"] = False
 
+@on_command(name="SL", aliases=("SL", "sl"))
+async def battle_sl(session: CommandSession):
+
+    # 输入格式检查
+    try:
+        session.state["user_qq"] = int(session.state["user_qq"])
+    except Exception as e:
+        print(e)
+        await session.send("异常：传输的QQ不是数字")
+
+    success, message = sl_record(session.state["user_qq"])
+
+    await session.send(
+        "%s"%(message)
+    )
+
+@battle_sl.args_parser
+async def battle_sl_parser(session: CommandSession):
+    session.state["user_qq"] = session.event.sender["user_id"]
+
+@nonebot.scheduler.scheduled_job("cron", hour=5)
+async def reset_every_member_sl():
+    sl_record.reset_all_sl()

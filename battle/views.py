@@ -124,7 +124,6 @@ def guildbattle(request):
                 "comp_1": "",
                 "damage_2": "",
                 "comp_2": "",
-                "SL": "×",
                 "score": 0
             }
             battle_counter = -1      # 现在计算第x刀及补偿刀
