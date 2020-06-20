@@ -222,7 +222,7 @@ def cal_season_diam(rank):
     elif rank > 11:
         return 10 * (rank - 11) + cal_season_diam(11)
     else:
-        return 50 * (rank - 1) + 50
+        return 50 * (rank - 1)
 
 def cal_all_season_diam(rank):
     
@@ -245,4 +245,4 @@ def cal_all_season_diam(rank):
     elif rank > 11:
         return 60 * (rank - 11) + cal_all_season_diam(11)
     else:
-        return 550 * (rank - 1) + 550
+        return 550 * (rank - 1)
