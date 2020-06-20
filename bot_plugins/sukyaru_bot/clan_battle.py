@@ -55,7 +55,7 @@ async def report_parser(session: CommandSession):
         # 格式正确
         session.state["valid_report"] = True    # 有效报刀
 
-        now_datetime = datetime.datetime.utcnow()
+        now_datetime = datetime.datetime.now()
 
         session.state["user_qq"] = session.event.sender["user_id"] if match_args.group("record_qq") is None else match_args.group("record_qq")
         session.state["operator_qq"] = session.event.sender["user_id"]
