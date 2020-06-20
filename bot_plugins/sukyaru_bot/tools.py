@@ -39,3 +39,16 @@ async def jjc_query_parser(session: CommandSession):
     
     #arg_text = session.current_arg_text.strip()
     return
+
+guild_url = "http://101.200.128.60:8081/"
+@on_command(name="get_url", aliases=("网址", "地址", "网站", "公会网站"))
+async def get_url(session: CommandSession):
+    await session.send(
+        "凯露酱的公会档案馆：%s"%(guild_url)
+    )
+
+@get_url.args_parser
+async def get_url_parser(session: CommandSession):
+    
+    #arg_text = session.current_arg_text.strip()
+    return
