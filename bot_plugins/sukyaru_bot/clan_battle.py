@@ -41,7 +41,7 @@ async def report_parser(session: CommandSession):
     arg_re = re.compile(r"\s*(?P<boss_real_stage>\d+)-(?P<boss_id>\d+)\s+(?P<damage>\d+)\s*(?P<comp_flag>补偿)?\s*")
     match_args = re.search(arg_re, arg_text)
 
-    session.state["test_field"] = str(match_args)
+    session.state["test_field"] = str(match_args.group())
     return
 
     now_datetime = datetime.datetime.utcnow()
