@@ -66,5 +66,6 @@ async def report_parser(session: CommandSession):
         session.state["final_kill"] = False     # 暂不使用
         session.state["comp_flag"] = False if match_args.group("comp_flag") != "补偿" else True
     else:
+        print("match_args is None")
         session.state["valid_report"] = False
 
