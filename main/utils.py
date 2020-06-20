@@ -145,7 +145,7 @@ def upload_battle_record(record_dict):
                 record_date__lt=record_date.day_end(),
                 comp_flag=False
             )
-            if len(user_today_battle_record_set) >= 3:
+            if len(user_today_battle_record_set) >= 3 and record_dict["comp_flag"] == False:
                 raise ValueError("报刀失败：骑士君这一天已经有3次非补偿刀的报刀了噢")
 
             # 生成record
