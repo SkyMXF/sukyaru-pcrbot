@@ -146,7 +146,7 @@ def upload_battle_record(record_dict):
                 raise ValueError("上传失败：骑士君这一天已经有3次非补偿刀的报刀了噢")
 
             # 生成record
-            NowBattleRecord.objects.create(
+            upload_record = NowBattleRecord.objects.create(
                 record_date=record_dict["record_date"],
                 user_info_id=user_info.id,
                 boss_info_id=record_boss_info.id,
@@ -162,6 +162,8 @@ def upload_battle_record(record_dict):
     except Exception as e:
         print(e)
         raise ValueError("数据提交给凯露酱时发生错误，请重新提交试试，如果依然出现错误，请联系管理员")
+
+    return upload_record
 
 def redo_battle_record(record_id:int, operator_qq:int):
     # 撤销报刀记录

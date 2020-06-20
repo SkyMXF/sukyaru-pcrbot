@@ -9,7 +9,7 @@ import bot_config
 
 report_example = "报刀 1-1 876543 或 报刀 1-1 54321 补偿"
 
-@on_command(name="report", aliases=("报刀"))
+@on_command(name="report", aliases=("报刀"), only_to_me=False)
 async def report(session: CommandSession):
     
     if not session.state["valid_report"]:
@@ -66,6 +66,53 @@ async def report_parser(session: CommandSession):
         session.state["final_kill"] = False     # 暂不使用
         session.state["comp_flag"] = False if match_args.group("comp_flag") != "补偿" else True
     else:
-        print("match_args is None")
+        session.state["valid_report"] = False
+
+@on_command(name="redo_report", aliases=("撤销"), only_to_me=False)
+async def redo_report(session: CommandSession):
+    
+    if not session.state["valid_report"]:
+        await session.send("指令格式有误噢~示例：撤销 10")
+        return
+
+    # 输入格式检查
+    try:
+        session.state["operator_qq"] = int(session.state["operator_qq"])
+    except Exception as e:
+        print(e)
+        await session.send("指令格式有误噢~示例：撤销 10")
+
+    success, message = battle_report.report(
+        battle_record_dict={
+            "user_qq": session.state["user_qq"],
+            "boss_real_stage": session.state["boss_real_stage"],
+            "boss_id": session.state["boss_id"],
+            "damage": session.state["damage"],
+            "record_date": session.state["record_date"],
+            "final_kill": session.state["final_kill"],
+            "comp_flag": session.state["comp_flag"],
+            "operator_qq": session.state["operator_qq"]
+        }
+    )
+
+    await session.send(
+        "%s"%(message)
+    )
+
+@redo_report.args_parser
+async def redo_report_parser(session: CommandSession):
+    arg_text = session.current_arg_text.strip()
+
+    arg_re = re.compile(r"\s*(?P<record_id>\d+)\s*")
+    match_args = re.search(arg_re, arg_text)
+
+    if match_args:
+        # 格式正确
+        session.state["valid_report"] = True    # 有效指令
+
+        session.state["operator_qq"] = session.event.sender["user_id"]
+        session.state["record_id"] = match_args.group("record_id")
+        
+    else:
         session.state["valid_report"] = False
 

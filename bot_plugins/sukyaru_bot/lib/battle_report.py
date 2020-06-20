@@ -14,7 +14,7 @@ def report(battle_record_dict):
 
     # 调用utils函数
     try:
-        utils.upload_battle_record(battle_record_dict)
+        upload_record = utils.upload_battle_record(battle_record_dict)
     except ValueError as e:
         return False, str(e)
 
@@ -30,7 +30,8 @@ def report(battle_record_dict):
     except:
         return False, "报刀失败：出现异常错误，请再试一次或联系管理员"
     
-    return True, "报刀成功：%s对BOSS%s(%d-%d)造成了%d点伤害，BOSS当前血量：%d/%d"%(
+    return True, "报刀成功：[记录id: %d]%s对BOSS%s(%d-%d)造成了%d点伤害，BOSS当前血量：%d/%d"%(
+        upload_record.id,
         user_info.nickname,
         boss_status.boss_info.boss_name,
         battle_record_dict["boss_real_stage"],
@@ -39,3 +40,12 @@ def report(battle_record_dict):
         boss_status.health,
         boss_status.boss_info.total_health
     )
+
+def redo(record_id, operator_qq):
+
+    try:
+        utils.redo_battle_record(record_id, operator_qq)
+    except ValueError as e:
+        return False, str(e)
+    
+    return True, "撤销成功~"
