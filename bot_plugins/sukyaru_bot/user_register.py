@@ -1,4 +1,4 @@
-from nonebot import on_command, CommandSession
+from nonebot import on_command, CommandSession, permission
 import nonebot
 
 from .lib import configs, user_register
@@ -31,16 +31,12 @@ async def register_parser(session: CommandSession):
     session.state["user_qq"] = session.event.sender["user_id"]
     session.state["nickname"] = session.event.sender["nickname"]
 
-@on_command(name="guild_register", aliases=("公会注册"))
+@on_command(name="guild_register", aliases=("公会注册"), permission=permission.SUPERUSER)
 async def guild_register(session: CommandSession):
     # args：
     # qq
     # nickname
     # auth -暂不需要，默认为2(普通群员)
-
-    # 只有超级用户可操作
-    if session.state["user_qq"] not in bot_config.SUPERUSERS:
-        return
 
     # 获取成员列表
     bot = nonebot.get_bot()

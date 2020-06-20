@@ -68,31 +68,26 @@ async def report_parser(session: CommandSession):
     else:
         session.state["valid_report"] = False
 
-@on_command(name="redo_report", aliases=("撤销"), only_to_me=False)
+redo_example = "撤销记录 10"
+
+@on_command(name="redo_report", aliases=("撤销记录"), only_to_me=False)
 async def redo_report(session: CommandSession):
     
     if not session.state["valid_report"]:
-        await session.send("指令格式有误噢~示例：撤销 10")
+        await session.send("指令格式有误噢~示例：%s"%(redo_example))
         return
 
     # 输入格式检查
     try:
+        session.state["record_id"] = int(session.state["record_id"])
         session.state["operator_qq"] = int(session.state["operator_qq"])
     except Exception as e:
         print(e)
-        await session.send("指令格式有误噢~示例：撤销 10")
+        await session.send("指令格式有误噢~示例：%s"%(redo_example))
 
-    success, message = battle_report.report(
-        battle_record_dict={
-            "user_qq": session.state["user_qq"],
-            "boss_real_stage": session.state["boss_real_stage"],
-            "boss_id": session.state["boss_id"],
-            "damage": session.state["damage"],
-            "record_date": session.state["record_date"],
-            "final_kill": session.state["final_kill"],
-            "comp_flag": session.state["comp_flag"],
-            "operator_qq": session.state["operator_qq"]
-        }
+    success, message = battle_report.redo(
+        record_id=session.state["record_id"],
+        operator_qq=session.state["operator_qq"]
     )
 
     await session.send(
