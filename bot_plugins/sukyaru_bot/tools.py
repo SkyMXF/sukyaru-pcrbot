@@ -44,7 +44,7 @@ guild_url = "http://101.200.128.60:8081/"
 @on_command(name="get_url", aliases=("网址", "地址", "网站", "公会网站"))
 async def get_url(session: CommandSession):
     await session.send(
-        "凯露酱的公会档案馆：%s"%(guild_url)
+        "凯露酱的公会档案馆：%s\n使用QQ昊即可登路，初始蜜马为123456，不写错别字就会被当成骗子封号555555"%(guild_url)
     )
 
 @get_url.args_parser
