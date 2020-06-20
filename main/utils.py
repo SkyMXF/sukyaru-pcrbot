@@ -194,5 +194,5 @@ def redo_battle_record(record_id:int, operator_qq:int):
         raise ValueError(str(e))
     except Exception as e:
         print(e)
-        raise ValueError("撤销时发生错误，请重新撤销试试，如果依然出现错误，请联系管理员")
+        raise ValueError("撤销时发生错误，可能该记录已被删除了噢~")
     
