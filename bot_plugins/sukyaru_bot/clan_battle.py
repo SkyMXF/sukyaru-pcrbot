@@ -38,7 +38,7 @@ report_example = "报刀 1-1 876543 或 报刀 1-1 54321 补偿"
 async def report_parser(session: CommandSession):
     arg_text = session.current_arg_text.strip()
 
-    arg_re = re.compile(r"\s*(?P<boss_real_stage>\d+)-(?P<boss_id>\d+)\s+(?P<damage>\d+)\s*(?P<comp_flag>补偿)?\s*")
+    arg_re = re.compile(r"\s*(?P<boss_real_stage>\d+)\-(?P<boss_id>\d+)\s+(?P<damage>\d+)\s*(?P<comp_flag>补偿)?\s*")
     match_args = re.search(arg_re, arg_text)
 
     session.state["test_field"] = str(match_args.group())
