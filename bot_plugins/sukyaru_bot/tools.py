@@ -26,3 +26,16 @@ async def cal_miner_parser(session: CommandSession):
     
     arg_text = session.current_arg_text.strip()
     session.state["now_best_rank"] = arg_text
+
+@on_command(name="jjc_query", aliases=("JJC查询", "jjc查询"))
+async def jjc_query(session: CommandSession):
+
+    await session.send(
+        "目前没有比较好的实现方式，可以直接去这个链接：https://pcrdfans.com/battle 进行查询"
+    )
+
+@jjc_query.args_parser
+async def jjc_query_parser(session: CommandSession):
+    
+    #arg_text = session.current_arg_text.strip()
+    return
