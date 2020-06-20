@@ -18,7 +18,7 @@ async def cal_mine(session: CommandSession):
     season_diam, all_season_diam = utils.cal_mine(session.state["now_best_rank"])
 
     await session.send(
-        "当前赛季剩余钻石：%d, 全部赛季历史排名剩余钻石：%d，请确认输入的排名是当前赛季最高记录(不是当前排名)"%(season_diam, all_season_diam)
+        "当前赛季剩余钻石：%d, 总剩余钻石(含当前赛季)：%d，请确认输入的排名是当前赛季最高记录(不是当前排名)"%(season_diam, all_season_diam)
     )
 
 @cal_mine.args_parser
