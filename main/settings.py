@@ -25,7 +25,7 @@ if not os.path.exists(DATABASE_DIR):
 SECRET_KEY = 'z-oybwsf$uczscmlv-$xgk%0sprc5jkz4m9-nw)r$%6(35xvj7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "101.200.128.60",
