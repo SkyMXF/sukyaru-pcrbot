@@ -167,9 +167,9 @@ def upload_battle_record(record_dict):
     
     except ValueError as e:
         raise ValueError(str(e))
-    #except Exception as e:
-        #print(e)
-        #raise ValueError("数据提交给凯露酱时发生错误，请重新提交试试，如果依然出现错误，请联系管理员")
+    except Exception as e:
+        print(e)
+        raise ValueError("数据提交给凯露酱时发生错误，请重新提交试试，如果依然出现错误，请联系管理员")
 
     return upload_record
 
