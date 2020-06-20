@@ -7,6 +7,7 @@ class UserInfo(models.Model):
     nickname = models.CharField(max_length=30)
     user_auth = models.IntegerField(default=2)  # 0-会长, 1-管理员, 2-普通群员
     user_add_type = models.IntegerField(default=0)  # 0-自动添加, 1-特殊途径添加(群内不存在的qq)
+    active_guild_member = models.BooleanField(default=True) # 是否为当前公会成员(该项为False的成员不会显示在当期伤害记录中)
 
     def __str__(self):
         user_auth_str = "Unknown"

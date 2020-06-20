@@ -112,13 +112,16 @@ def upload_battle_record(record_dict):
             record_date = battle_date_pcr
             break
     if record_date is None:
-        raise ValueError("上传失败：骑士君填写的日期不在公会战日期内噢")
+        raise ValueError("报刀失败：骑士君填写的日期不在公会战日期内噢")
 
     # 获取user的数据库id
     try:
         user_info = UserInfo.objects.get(user_qq_id=record_dict["user_qq"])
     except:
-        raise ValueError("上传失败：凯露酱这里没有这位骑士君的qq记录噢")
+        raise ValueError("报刀失败：凯露酱这里没有这位骑士君的qq记录噢")
+
+    if not user_info.active_guild_member:
+        raise ValueError("报刀失败：公会成员'%s'不是当期公会战成员中噢，请联系管理员设置"%(user_info.nickname))
     
     # 获取boss信息
     boss_info_set = BossInfo.objects.filter(boss_id=record_dict["boss_id"])
@@ -129,7 +132,7 @@ def upload_battle_record(record_dict):
             record_boss_info = boss_info
             min_d = abs(record_dict["boss_real_stage"] - boss_info.boss_stage)
     if record_boss_info is None:
-        raise ValueError("上传失败：凯露酱这里没有指定boss的信息(%d-%d)，如果骑士君确认输入无误，请联系管理员添加噢"%(
+        raise ValueError("报刀失败：凯露酱这里没有指定boss的信息(%d-%d)，如果骑士君确认输入无误，请联系管理员添加噢"%(
         record_dict["boss_real_stage"], record_dict["boss_id"])
     )
 
@@ -143,7 +146,7 @@ def upload_battle_record(record_dict):
                 comp_flag=False
             )
             if len(user_today_battle_record_set) >= 3:
-                raise ValueError("上传失败：骑士君这一天已经有3次非补偿刀的报刀了噢")
+                raise ValueError("报刀失败：骑士君这一天已经有3次非补偿刀的报刀了噢")
 
             # 生成record
             upload_record = NowBattleRecord.objects.create(
@@ -195,4 +198,77 @@ def redo_battle_record(record_id:int, operator_qq:int):
     except Exception as e:
         print(e)
         raise ValueError("撤销时发生错误，可能该记录已被删除了噢~")
-    
+
+def cal_mine(now_best_rank: int):
+
+    season_diam = 0
+    # this_season[1:11] = 50
+    # this_season[11:101] = 10
+    # this_season[101:201] = 5
+    # this_season[201:501] = 3
+    # this_season[501:2001] = 2
+    # this_season[2001:4000] = 1
+    # this_season[4000:8000:100] = 50
+    # this_season[8100:15001:100] = 15
+    if now_best_rank <= 11:
+        season_diam = 50*now_best_rank-50
+    elif now_best_rank <= 101:
+        season_diam = 10*now_best_rank+390
+        # season_diam = 10*(now_best_rank-11) + 50*10
+    elif now_best_rank <= 201:
+        season_diam = 5*now_best_rank+895
+        # season_diam = 5*(now_best_rank-101) + 10*90 + 50*10
+    elif now_best_rank <= 501:
+        season_diam = 3*now_best_rank+1297
+        # season_diam = 3*(now_best_rank-201) + 5*100 +10*90 + 50*10
+    elif now_best_rank <= 2001:
+        season_diam = 2*now_best_rank+1798
+        # season_diam = 2*(now_best_rank-501) + 3*300 + 5*100 +10*90 + 50*10
+    elif now_best_rank <= 4000:
+        season_diam = now_best_rank+3799
+        # season_diam = 1*(now_best_rank-2001) + 2*1500 + 3*300 + 5*100 +10*90 + 50*10
+    elif now_best_rank <= 8000:
+        season_diam = 50*(now_best_rank//100)+5799
+        # season_diam = (now_best_rank-4000)//100*50 + 1*1999 + 2*1500 + 3*300 + 5*100 +10*90 + 50*10
+    else:
+        season_diam = 15*(now_best_rank//100)+8599
+        # season_diam = (now_best_rank-8001)//100*15 + 40*50 + 1*1999 + 2*1500 + 3*300 + 5*100 +10*90 + 50*10
+
+    all_season_diam = 0
+    # all_season[1:11] = 500
+    # all_season[11:101] = 50
+    # all_season[101:201] = 30
+    # all_season[201:501] = 10
+    # all_season[501:1001] = 5
+    # all_season[1001:2001] = 3
+    # all_season[2001:4001] = 2
+    # all_season[4001:7999] = 1
+    # all_season[8100:15001:100] = 30
+    if now_best_rank <= 11:
+        all_season_diam = 500*now_best_rank-500
+    elif now_best_rank <= 101:
+        all_season_diam = 50*now_best_rank+4450
+        # all_season_diam = 50*(now_best_rank-11) + 500*10
+    elif now_best_rank <= 201:
+        all_season_diam = 30*now_best_rank+6470
+        # all_season_diam = 30*(now_best_rank-101) + 50*90 + 500*10
+    elif now_best_rank <= 501:
+        all_season_diam = 10*now_best_rank+10490
+        # all_season_diam = 10*(now_best_rank-201) + 30*100 +50*90 + 500*10
+    elif now_best_rank <= 1001:
+        all_season_diam = 5*now_best_rank+12995
+        # all_season_diam = 5* (now_best_rank-501) + 10*300 + 30*100 +50*90 + 500*10
+    elif now_best_rank <= 2001:
+        all_season_diam = 3*now_best_rank+14997
+        # all_season_diam = 3*(now_best_rank-1001) + 5*500 + 10*300 + 30*100 +50*90 + 500*10
+    elif now_best_rank <= 4001:
+        all_season_diam = 2*now_best_rank+16998
+        # all_season_diam = 2*(now_best_rank-2001) + 3*1000 + 5*500 + 10*300 + 30*100 +50*90 + 500*10
+    elif now_best_rank <= 7999:
+        all_season_diam = now_best_rank+20999
+        # all_season_diam = (now_best_rank-4001) + 2*2000 + 3*1000 + 5*500 + 10*300 + 30*100 +50*90 + 500*10
+    else:
+        all_season_diam = 30*(now_best_rank//100)+26598
+        # all_season_diam = (now_best_rank-8001)//100*30 + 3998 + 2*2000 + 3*1000 + 5*500 + 10*300 + 30*100 +50*90 + 500*10
+
+    return season_diam, all_season_diam

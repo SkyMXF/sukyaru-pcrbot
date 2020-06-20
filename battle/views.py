@@ -93,7 +93,7 @@ def guildbattle(request):
     battle_date_list = []                       # 每个列表元素为一个日期
     battle_dates = models.BattleDate.objects.order_by("battle_date")
     all_battle_record = models.NowBattleRecord.objects.all()
-    user_set = UserInfo.objects.all().order_by("user_auth")
+    user_set = UserInfo.objects.filter(active_guild_member=True).order_by("user_auth")
     # 按日期分表
     for now_battle_date in battle_dates:
         now_battle_pcr_date = utils.PCRDate(now_battle_date.battle_date, tzinfo=get_default_timezone())
