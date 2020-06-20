@@ -201,74 +201,48 @@ def redo_battle_record(record_id:int, operator_qq:int):
 
 def cal_mine(now_best_rank: int):
 
-    season_diam = 0
-    # this_season[1:11] = 50
-    # this_season[11:101] = 10
-    # this_season[101:201] = 5
-    # this_season[201:501] = 3
-    # this_season[501:2001] = 2
-    # this_season[2001:4000] = 1
-    # this_season[4000:8000:100] = 50
-    # this_season[8100:15001:100] = 15
-    if now_best_rank <= 11:
-        season_diam = 50*now_best_rank-50
-    elif now_best_rank <= 101:
-        season_diam = 10*now_best_rank+390
-        # season_diam = 10*(now_best_rank-11) + 50*10
-    elif now_best_rank <= 201:
-        season_diam = 5*now_best_rank+895
-        # season_diam = 5*(now_best_rank-101) + 10*90 + 50*10
-    elif now_best_rank <= 501:
-        season_diam = 3*now_best_rank+1297
-        # season_diam = 3*(now_best_rank-201) + 5*100 +10*90 + 50*10
-    elif now_best_rank <= 2001:
-        season_diam = 2*now_best_rank+1798
-        # season_diam = 2*(now_best_rank-501) + 3*300 + 5*100 +10*90 + 50*10
-    elif now_best_rank <= 4000:
-        season_diam = now_best_rank+3799
-        # season_diam = 1*(now_best_rank-2001) + 2*1500 + 3*300 + 5*100 +10*90 + 50*10
-    elif now_best_rank <= 8000:
-        season_diam = 50*(now_best_rank//100)+5799
-        # season_diam = (now_best_rank-4000)//100*50 + 1*1999 + 2*1500 + 3*300 + 5*100 +10*90 + 50*10
-    else:
-        season_diam = 15*(now_best_rank//100)+8599
-        # season_diam = (now_best_rank-8001)//100*15 + 40*50 + 1*1999 + 2*1500 + 3*300 + 5*100 +10*90 + 50*10
+    return cal_season_diam(now_best_rank), cal_all_season_diam(now_best_rank)
 
-    all_season_diam = 0
-    # all_season[1:11] = 500
-    # all_season[11:101] = 50
-    # all_season[101:201] = 30
-    # all_season[201:501] = 10
-    # all_season[501:1001] = 5
-    # all_season[1001:2001] = 3
-    # all_season[2001:4001] = 2
-    # all_season[4001:7999] = 1
-    # all_season[8100:15001:100] = 30
-    if now_best_rank <= 11:
-        all_season_diam = 500*now_best_rank-500
-    elif now_best_rank <= 101:
-        all_season_diam = 50*now_best_rank+4450
-        # all_season_diam = 50*(now_best_rank-11) + 500*10
-    elif now_best_rank <= 201:
-        all_season_diam = 30*now_best_rank+6470
-        # all_season_diam = 30*(now_best_rank-101) + 50*90 + 500*10
-    elif now_best_rank <= 501:
-        all_season_diam = 10*now_best_rank+10490
-        # all_season_diam = 10*(now_best_rank-201) + 30*100 +50*90 + 500*10
-    elif now_best_rank <= 1001:
-        all_season_diam = 5*now_best_rank+12995
-        # all_season_diam = 5* (now_best_rank-501) + 10*300 + 30*100 +50*90 + 500*10
-    elif now_best_rank <= 2001:
-        all_season_diam = 3*now_best_rank+14997
-        # all_season_diam = 3*(now_best_rank-1001) + 5*500 + 10*300 + 30*100 +50*90 + 500*10
-    elif now_best_rank <= 4001:
-        all_season_diam = 2*now_best_rank+16998
-        # all_season_diam = 2*(now_best_rank-2001) + 3*1000 + 5*500 + 10*300 + 30*100 +50*90 + 500*10
-    elif now_best_rank <= 7999:
-        all_season_diam = now_best_rank+20999
-        # all_season_diam = (now_best_rank-4001) + 2*2000 + 3*1000 + 5*500 + 10*300 + 30*100 +50*90 + 500*10
+def cal_season_diam(rank):
+    
+    if rank > 8100:
+        return 15 * (rank - 1 - 8100) // 100 + 15 + cal_season_diam(8100)
+    if rank > 4000:
+        return 50 * (rank - 1 - 4000) // 100 + 50 + cal_season_diam(4000)
+    elif rank > 2001:
+        return 1 * (rank - 2001) + cal_season_diam(2001)
+    elif rank > 1001:
+        return 2 * (rank - 1001) + cal_season_diam(1001)
+    elif rank > 501:
+        return 2 * (rank - 501) + cal_season_diam(501)
+    elif rank > 201:
+        return 3 * (rank - 201) + cal_season_diam(201)
+    elif rank > 101:
+        return 5 * (rank - 101) + cal_season_diam(101)
+    elif rank > 11:
+        return 10 * (rank - 11) + cal_season_diam(11)
     else:
-        all_season_diam = 30*(now_best_rank//100)+26598
-        # all_season_diam = (now_best_rank-8001)//100*30 + 3998 + 2*2000 + 3*1000 + 5*500 + 10*300 + 30*100 +50*90 + 500*10
+        return 50 * (rank - 1) + 50
 
-    return season_diam, all_season_diam
+def cal_all_season_diam(rank):
+    
+    if rank > 12000:
+        return 45 * (rank - 1 - 12000) // 100 + 80 + cal_all_season_diam(12000)
+    elif rank > 8000:
+        return 95 * (rank - 1 - 8000) // 100 + 95 + cal_all_season_diam(8000)
+    elif rank > 4001:
+        return 1 * (rank - 4001) + cal_all_season_diam(4001)
+    elif rank > 2001:
+        return 3 * (rank - 2001) + cal_all_season_diam(2001)
+    elif rank > 1001:
+        return 5 * (rank - 1001) + cal_all_season_diam(1001)
+    elif rank > 501:
+        return 7 * (rank - 501) + cal_all_season_diam(501)
+    elif rank > 201:
+        return 13 * (rank - 201) + cal_all_season_diam(201)
+    elif rank > 101:
+        return 35 * (rank - 101) + cal_all_season_diam(101)
+    elif rank > 11:
+        return 60 * (rank - 11) + cal_all_season_diam(11)
+    else:
+        return 550 * (rank - 1) + 550
