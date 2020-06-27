@@ -133,5 +133,4 @@ async def battle_sl_parser(session: CommandSession):
 
 @nonebot.scheduler.scheduled_job("cron", hour=5)
 async def reset_every_member_sl():
-    print("reset all member's SL status")
     sl_record.reset_all_sl()

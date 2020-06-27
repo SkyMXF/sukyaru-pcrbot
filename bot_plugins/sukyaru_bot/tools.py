@@ -1,6 +1,9 @@
 from nonebot import on_command, CommandSession
 import nonebot
 
+import pytz
+import datetime
+
 from .lib import configs
 import bot_config
 from main import utils
@@ -52,3 +55,38 @@ async def get_url_parser(session: CommandSession):
     
     #arg_text = session.current_arg_text.strip()
     return
+
+async def send_potion_remind():
+    bot = nonebot.get_bot()
+    now = datetime.datetime.now(pytz.timezone('Asia/Shanghai'))
+    try:
+        await bot.send_group_msg(group_id=configs.guild_group_id,
+                                 message=f'现在是{now.hour}点整~需要经验药水的小伙伴记得买药噢~')
+    except:
+        pass
+
+@nonebot.scheduler.scheduled_job("cron", hour=0)
+async def buy_potion_remind0():
+    await send_potion_remind()
+
+@nonebot.scheduler.scheduled_job("cron", hour=6)
+async def buy_potion_remind6():
+    await send_potion_remind()
+
+@nonebot.scheduler.scheduled_job("cron", hour=12)
+async def buy_potion_remind12():
+    await send_potion_remind()
+
+@nonebot.scheduler.scheduled_job("cron", hour=18)
+async def buy_potion_remind18():
+    await send_potion_remind()
+
+@nonebot.scheduler.scheduled_job("cron", hour=14, minute=30)
+async def jjcremind():
+    bot = nonebot.get_bot()
+    now = datetime.datetime.now(pytz.timezone('Asia/Shanghai'))
+    try:
+        await bot.send_group_msg(group_id=configs.guild_group_id,
+                                 message=f'现在是{now.hour}点{now.minute}分~每日背刺时间~')
+    except:
+        pass
