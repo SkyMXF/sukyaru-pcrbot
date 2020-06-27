@@ -9,7 +9,6 @@ import bot_config
 from main import utils
 
 cal_mine_example = "挖矿计算 15001"
-
 @on_command(name="cal_mine", aliases=("挖矿计算"))
 async def cal_mine(session: CommandSession):
 
