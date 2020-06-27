@@ -34,7 +34,7 @@ async def sukanku_parser(session: CommandSession):
     
     pass
 
-@on_natural_language(keywords={'臭鼬'})
+@on_natural_language(keywords={'臭鼬'}, only_to_me=False)
 async def sukanku_nlp(session: NLPSession):
     return IntentCommand(90.0, 'sukanku')
 
@@ -50,6 +50,6 @@ async def kyaru_parser(session: CommandSession):
 
     pass
 
-@on_natural_language(keywords={'凯露'})
+@on_natural_language(keywords={'凯露'}, only_to_me=False)
 async def kyaru_nlp(session: NLPSession):
     return IntentCommand(90.0, 'kyaru')
