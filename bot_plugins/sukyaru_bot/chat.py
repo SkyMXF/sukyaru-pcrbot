@@ -1,4 +1,4 @@
-from nonebot import on_command, CommandSession
+from nonebot import on_command, CommandSession, on_natural_language, NLPSession, IntentCommand
 import nonebot
 
 import random
@@ -21,7 +21,7 @@ hello_list = [
     "喵噜噜噜zzzzzzzz....!!!\n诶，有人叫我么"
 ]
 
-@on_command(name="sukanku", patterns=r".*臭鼬.*", only_to_me=False)
+@on_command(name="sukanku", only_to_me=False)
 async def sukanku(session: CommandSession):
 
 
@@ -34,7 +34,11 @@ async def sukanku_parser(session: CommandSession):
     
     pass
 
-@on_command(name="kyaru", patterns=r"凯露.*", only_to_me=False)
+@on_natural_language(keywords={'臭鼬'})
+async def sukanku_nlp(session: NLPSession):
+    return IntentCommand(90.0, 'sukanku')
+
+@on_command(name="kyaru", only_to_me=False)
 async def kyaru(session: CommandSession):
 
     await session.send(
@@ -45,3 +49,7 @@ async def kyaru(session: CommandSession):
 async def kyaru_parser(session: CommandSession):
 
     pass
+
+@on_natural_language(keywords={'凯露'})
+async def kyaru_nlp(session: NLPSession):
+    return IntentCommand(90.0, 'kyaru')
