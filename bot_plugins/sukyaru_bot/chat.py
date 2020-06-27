@@ -21,7 +21,7 @@ hello_list = [
     "喵噜噜噜zzzzzzzz....!!!\n诶，有人叫我么"
 ]
 
-@on_command(name="sukanku", aliases=(r".*臭鼬.*"), only_to_me=False)
+@on_command(name="sukanku", patterns=r".*臭鼬.*", only_to_me=False)
 async def sukanku(session: CommandSession):
 
 
@@ -34,7 +34,7 @@ async def sukanku_parser(session: CommandSession):
     
     pass
 
-@on_command(name="kyaru", aliases=(r"凯露.*", r"凯露酱.*"), only_to_me=False)
+@on_command(name="kyaru", patterns=r"凯露.*", only_to_me=False)
 async def kyaru(session: CommandSession):
 
     await session.send(
