@@ -120,7 +120,7 @@ async def clock_parser(session: CommandSession):
     
     arg_text = session.current_arg_text.strip()
 
-    arg_re = re.compile(r"(?P<hour>\d+)(?:\.(?P<minute>\d+))?(?:\.(?P<second>\d+))?(?:\s+(?P<text>.*))?")
+    arg_re = re.compile(r"^(?P<hour>\d+)(?:\.(?P<minute>\d+))?(?:\.(?P<second>\d+))?(?:\s+(?P<text>.*))?$")
     match_args = re.search(arg_re, arg_text)
 
     if match_args:
