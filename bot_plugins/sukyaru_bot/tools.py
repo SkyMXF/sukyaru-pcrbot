@@ -92,10 +92,11 @@ async def jjcremind():
     except:
         pass
     
-@on_command('clock', aliases=("计时"))
+@on_command('clock', aliases=("计时"), )
 async def clock(session: CommandSession):
     print(session.state["valid_cmd"])
     print(session.state["hour"], session.state["minute"], session.state["second"], session.state["text"])
+    print(session.event.group_id())
     return
     await session.send('收到~凯露酱会在8小时后提醒你~')
 
