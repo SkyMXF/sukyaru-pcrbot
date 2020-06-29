@@ -96,7 +96,7 @@ async def jjcremind():
 async def clock(session: CommandSession):
     print(session.state["valid_cmd"])
     print(session.state["hour"], session.state["minute"], session.state["second"], session.state["text"])
-    print(session.event.group_id())
+    print(session.event.group_id)
     return
     await session.send('收到~凯露酱会在8小时后提醒你~')
 
