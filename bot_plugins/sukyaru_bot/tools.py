@@ -1,8 +1,10 @@
-from nonebot import on_command, CommandSession
+from nonebot import on_command, CommandSession, scheduler
 import nonebot
+from apscheduler.triggers.date import DateTrigger
 
 import pytz
 import datetime
+import re
 
 from .lib import configs
 import bot_config
@@ -89,3 +91,45 @@ async def jjcremind():
                                  message=f'现在是{now.hour}点{now.minute}分~每日背刺时间~')
     except:
         pass
+    
+@on_command('clock', aliases=("计时"))
+async def clock(session: CommandSession):
+    print(session.state["valid_cmd"])
+    print(session.state["hour"], session.state["minute"], session.state["second"], session.state["text"])
+    return
+    await session.send('收到~凯露酱会在8小时后提醒你~')
+
+    # 创建触发器
+    delta = datetime.timedelta(hours=8)
+    trigger = DateTrigger(
+        run_date=datetime.datetime.now() + delta
+    )
+
+    # 添加任务
+    scheduler.add_job(
+        func=session.send,  # 要添加任务的函数，不要带参数
+        trigger=trigger,  # 触发器
+        args=('不要再赖床啦！',),  # 函数的参数列表，注意：只有一个值时，不能省略末尾的逗号
+        # kwargs=None,
+        misfire_grace_time=60,  # 允许的误差时间，建议不要省略
+        # jobstore='default',  # 任务储存库，在下一小节中说明
+    )
+
+@clock.args_parser
+async def clock_parser(session: CommandSession):
+    
+    arg_text = session.current_arg_text.strip()
+
+    arg_re = re.compile(r"(?P<hour>\d+)(?:\.(?P<minute>\d+))?(?:\.(?P<second>\d+))?(?:\s+(?P<text>.*))?")
+    match_args = re.search(arg_re, arg_text)
+
+    if match_args:
+        # 格式正确
+        session.state["valid_cmd"] = True   # 有效指令
+
+        session.state["hour"] = match_args.group("hour")
+        session.state["minute"] = match_args.group("minute")
+        session.state["second"] = match_args.group("second")
+        session.state["text"] = match_args.group("text")
+    else:
+        session.state["valid_cmd"] = False
