@@ -91,30 +91,63 @@ async def jjcremind():
                                  message=f'现在是{now.hour}点{now.minute}分~每日背刺时间~')
     except:
         pass
+
+clock_sample = "计时 8.12.3 起床"
     
-@on_command('clock', aliases=("计时"), )
+@on_command('clock', aliases=("闹钟", "计时"), )
 async def clock(session: CommandSession):
-    print(session.state["valid_cmd"])
-    print(session.state["hour"], session.state["minute"], session.state["second"], session.state["text"])
-    print(session.event.group_id)
-    return
-    await session.send('收到~凯露酱会在8小时后提醒你~')
 
-    # 创建触发器
-    delta = datetime.timedelta(hours=8)
-    trigger = DateTrigger(
-        run_date=datetime.datetime.now() + delta
-    )
+    if not session.state["valid_cmd"]:
+        await session.send("闹钟指令格式有误~例如设置8小时12分3秒后的闹钟，内容为'起床'，命令格式为：%s"%(clock_sample))
+        return
+    
+    if session.event.group_id:
+        await session.send("闹钟设置失败~该功能只能通过私聊使用噢~")
+        return
 
-    # 添加任务
-    scheduler.add_job(
-        func=session.send,  # 要添加任务的函数，不要带参数
-        trigger=trigger,  # 触发器
-        args=('不要再赖床啦！',),  # 函数的参数列表，注意：只有一个值时，不能省略末尾的逗号
-        # kwargs=None,
-        misfire_grace_time=60,  # 允许的误差时间，建议不要省略
-        # jobstore='default',  # 任务储存库，在下一小节中说明
-    )
+    try:
+        # 获取时间，生成提示文本
+        time_delta_str = ""
+        hour = int(session.state["hour"])
+        time_delta_str += "%d小时"%(hour)
+        if session.state["minute"]:
+            minute = int(session.state["minute"])
+            time_delta_str += "%d分"%(minute)
+        else:
+            minute = 0
+        if session.state["second"]:
+            second = int(session.state["second"])
+            time_delta_str += "%d秒"%(second)
+        else:
+            second = 0
+        
+        output_str = "喵喵喵~你%s前设置的闹钟响啦~"%(time_delta_str)
+
+        if session.state["text"]:
+            text = session.state["text"]
+            output_str += "内容为'%s'"%(text)
+
+        # 创建触发器
+        delta = datetime.timedelta(hours=hour, minutes=minute, seconds=second)
+        trigger = DateTrigger(
+            run_date=datetime.datetime.now() + delta
+        )
+
+        # 添加任务
+        scheduler.add_job(
+            func=session.send,  # 要添加任务的函数，不要带参数
+            trigger=trigger,  # 触发器
+            args=(output_str,),  # 函数的参数列表，注意：只有一个值时，不能省略末尾的逗号
+            # kwargs=None,
+            misfire_grace_time=60,  # 允许的误差时间，建议不要省略
+            # jobstore='default',  # 任务储存库
+        )
+
+        await session.send('收到~凯露酱会在%s后提醒你~'%(time_delta_str))
+    except Exception as e:
+        await session.send("遇到了奇怪的错误...请检查输入格式再试一次，或联系管理员")
+
+    
 
 @clock.args_parser
 async def clock_parser(session: CommandSession):
