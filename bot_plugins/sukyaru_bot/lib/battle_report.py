@@ -30,14 +30,6 @@ def report(battle_record_dict):
     except:
         return False, "报刀失败：出现异常错误，请再试一次或联系管理员"
     
-    # TODO: 烂代码：获取今日出刀数
-    try:
-        user_today_battle_record_set = NowBattleRecord.objects.filter(
-            user_info__user_qq_id=battle_record_dict["user_qq"],
-            record_date__gte=record_date.day_begin(),
-            record_date__lt=record_date.day_end(),
-        ).order_by("record_date")
-    
     return True, "报刀成功：[记录id: %d]%s对BOSS%s(%d-%d)造成了%d点伤害，BOSS当前血量：%d/%d，今日第%d/3刀"%(
         upload_record.id,
         user_info.nickname,
