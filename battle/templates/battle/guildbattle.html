@@ -69,12 +69,18 @@
                                     {% for d in battle_date_list %}
                                     <h3 id="tabhead{{forloop.counter}}">{{d}}</h3>
                                     {% endfor %}
-                                    <h3 id="tabhead{{forloop.counter}}">总记录</h3>
+                                    <h3 id="tabhead_all">总记录</h3>
                                 </div>
                                 <script>
                                     var now_day_id = {{now_day_id}};
-                                    tab = document.getElementById('tabhead' + now_day_id.toString());
-                                    tab.className = 'selected'
+                                    if (now_day_id < 0){
+                                        tab = document.getElementById('tabhead_all');
+                                        tab.className = 'selected'
+                                    }
+                                    else{
+                                        tab = document.getElementById('tabhead' + now_day_id.toString());
+                                        tab.className = 'selected'
+                                    }
                                 </script>
                             </div>
                         </div>

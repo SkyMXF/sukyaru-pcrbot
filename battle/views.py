@@ -188,7 +188,7 @@ def guildbattle(request):
         battle_record_list_by_day.append(now_date_battle_record_list)
     
     if now_day_id > len(battle_date_list):  # 访问时间已过公会战期间
-        now_day_id = 1
+        now_day_id = -1
 
     # 计算总记录中积分/伤害倍率
     for user_stat_dict in user_battle_stat_list:
