@@ -192,7 +192,10 @@ def guildbattle(request):
 
     # 计算总记录中积分/伤害倍率
     for user_stat_dict in user_battle_stat_list:
-        user_stat_dict["score_fac"] = "%.2f"%(user_stat_dict["total_score"] / user_stat_dict["total_damage"])
+        if user_stat_dict["total_damage"] > 0:
+            user_stat_dict["score_fac"] = "%.2f"%(user_stat_dict["total_score"] / user_stat_dict["total_damage"])
+        else:
+            user_stat_dict["score_fac"] = "0.0"
 
     show_dict = {
         "battle_date_list": battle_date_list,
