@@ -172,7 +172,7 @@ def upload_battle_record(record_dict):
         print(e)
         raise ValueError("数据提交给凯露酱时发生错误，请重新提交试试，如果依然出现错误，请联系管理员")
 
-    return upload_record
+    return upload_record, len(user_today_battle_record_set)
 
 def redo_battle_record(record_id:int, operator_qq:int):
     # 撤销报刀记录
