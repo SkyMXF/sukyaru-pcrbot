@@ -155,7 +155,6 @@ def guildbattle(request):
             for now_user_date_battle_record in now_user_date_battle_record_set:
                 
                 # 全期统计数据
-                user_battle_stat_list[temp_index]["total_report_num"] += 1
                 if now_user_date_battle_record.boss_info.high_difficulty:
                     user_battle_stat_list[temp_index]["difficult_report_num"] += 1
                 user_battle_stat_list[temp_index]["total_damage"] += now_user_date_battle_record.damage
@@ -166,6 +165,9 @@ def guildbattle(request):
                     # 非补偿刀时下标+1
                     battle_counter += 1
                     record_type = "damage"
+
+                    # 全期统计数据
+                    user_battle_stat_list[temp_index]["total_report_num"] += 1
 
                 if battle_counter < 0: continue     # TODO: 罕见报刀：今日第一刀是补偿刀，需要计入前一日的最后一刀
                 if battle_counter > 2: continue     # 异常：该用户该日正常报刀数>3
