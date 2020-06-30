@@ -94,6 +94,26 @@ def guildbattle(request):
     battle_dates = models.BattleDate.objects.order_by("battle_date")
     all_battle_record = models.NowBattleRecord.objects.all()
     user_set = UserInfo.objects.filter(active_guild_member=True).order_by("user_auth")
+
+    # 统计整个公会战期间数据
+    user_battle_stat_list = []
+    user_battle_stat_index_dict = {}
+    temp_index = 0
+    for now_user_info in user_set:
+        user_battle_stat_list.append(
+            {
+                "user_name": now_user_info.nickname,
+                "user_qq": now_user_info.user_qq_id,
+                "total_report_num": 0,
+                "difficult_report_num": 0,
+                "max_report_num": 0,
+                "total_damage": 0,
+                "total_score": 0,
+            }
+        )
+        user_battle_stat_index_dict["%d"%(now_user_info.user_qq_id)] = temp_index
+        temp_index += 1
+
     # 按日期分表
     for now_battle_date in battle_dates:
         now_battle_pcr_date = utils.PCRDate(now_battle_date.battle_date, tzinfo=get_default_timezone())
@@ -112,6 +132,10 @@ def guildbattle(request):
         # 按user分行
         now_date_battle_record_list = []
         for now_user_info in user_set:
+
+            # 累加全期统计数据
+            temp_index = user_battle_stat_index_dict["%d"%(now_user_info.user_qq_id)]
+
             now_user_date_battle_record_set = now_date_battle_record_set.filter(
                 user_info=now_user_info
             ).order_by("record_date")
@@ -129,6 +153,14 @@ def guildbattle(request):
             battle_counter = -1      # 现在计算第x刀及补偿刀
             score = 0.0
             for now_user_date_battle_record in now_user_date_battle_record_set:
+                
+                # 全期统计数据
+                user_battle_stat_list[temp_index]["total_report_num"] += 1
+                if now_user_date_battle_record.boss_info.high_difficulty:
+                    user_battle_stat_list[temp_index]["difficult_report_num"] += 1
+                user_battle_stat_list[temp_index]["total_damage"] += now_user_date_battle_record.damage
+
+                # 当日数据
                 record_type = "comp"    # 补偿刀
                 if not now_user_date_battle_record.comp_flag:
                     # 非补偿刀时下标+1
@@ -147,6 +179,10 @@ def guildbattle(request):
                 score += now_user_date_battle_record.boss_info.score_fac * now_user_date_battle_record.damage
             row_dict["score"] = int(score)
             now_date_battle_record_list.append(row_dict)
+
+            # 累加全期统计数据
+            user_battle_stat_list[temp_index]["max_report_num"] += 3
+            user_battle_stat_list[temp_index]["total_score"] += int(score)
         
         # 该页加入总list
         battle_record_list_by_day.append(now_date_battle_record_list)
@@ -154,10 +190,15 @@ def guildbattle(request):
     if now_day_id > len(battle_date_list):  # 访问时间已过公会战期间
         now_day_id = 1
 
+    # 计算总记录中积分/伤害倍率
+    for user_stat_dict in user_battle_stat_list:
+        user_stat_dict["score_fac"] = "%.2f"%(user_stat_dict["total_score"] / user_stat_dict["total_damage"])
+
     show_dict = {
         "battle_date_list": battle_date_list,
         "battle_record_list_by_day": battle_record_list_by_day,
-        "now_day_id": now_day_id
+        "now_day_id": now_day_id,
+        "user_battle_stat_list": user_battle_stat_list
     }
 
     return render(request, 'battle/guildbattle.html', show_dict)

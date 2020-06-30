@@ -69,6 +69,7 @@
                                     {% for d in battle_date_list %}
                                     <h3 id="tabhead{{forloop.counter}}">{{d}}</h3>
                                     {% endfor %}
+                                    <h3 id="tabhead{{forloop.counter}}">总记录</h3>
                                 </div>
                                 <script>
                                     var now_day_id = {{now_day_id}};
@@ -119,6 +120,37 @@
                                 </div>
                             </div>
                             {% endfor %}
+                            <div id="tabcontent_all">
+                                <div class="table-wrapper">
+                                    <table class="alt">
+                                        <thead>
+                                            <tr>
+                                                <th>昵称</th>
+                                                <th>困难boss出刀数</th>
+                                                <th>累积出刀数</th>
+                                                <th>应出刀数</th>
+                                                <th>总伤害</th>
+                                                <th>总积分</th>
+                                                <th>积分/伤害</th>
+                                        </thead>
+                                        <tbody>
+                                            {% for user_stat in user_battle_stat_list %}
+                                            <tr>
+                                                <td><a href="/battle/mybattle?queryqq={{user_stat.user_qq}}">{{user_stat.user_name}}</a></td>
+                                                <td>{{user_stat.difficult_report_num}}</td>
+                                                <td>{{user_stat.total_report_num}}</td>
+                                                <td>{{user_stat.max_report_num}}</td>
+                                                <td>{{user_stat.total_damage}}</td>
+                                                <td>{{user_stat.total_score}}</td>
+                                                <td>{{user_stat.score_fac}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
                             <script>
                                 var now_day_id = {{now_day_id}};
                                 content = document.getElementById('tabcontent' + now_day_id.toString());
