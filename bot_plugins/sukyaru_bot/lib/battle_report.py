@@ -39,7 +39,7 @@ def report(battle_record_dict):
         battle_record_dict["damage"],
         boss_status.health,
         boss_status.boss_info.total_health,
-        today_report_num + 1
+        today_report_num if battle_record_dict["comp_flag"] else today_report_num+1
     )
 
 def redo(record_id, operator_qq):
