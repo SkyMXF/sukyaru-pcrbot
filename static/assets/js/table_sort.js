@@ -32,6 +32,7 @@ function getCellValue(row, index){
             value = parseFloat(text_value)
             console.log("匹配失败", value)
             if (isNaN(value)){
+                console.log("发现NaN")
                 value = text_value;
             }
         }
