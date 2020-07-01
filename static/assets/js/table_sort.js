@@ -22,11 +22,16 @@ function getCellValue(row, index){
         if (match_array !== null){
             // 匹配成功，伤害部分转int
             value = parseInt(match_array[0])
+            console.log("匹配成功", value)
         }
         else{
             // 匹配失败，直接转int
             value = parseInt(text_value)
+            console.log("匹配失败", value)
         }
+    }
+    else{
+        console.log("空字符", value)
     }
     console.log(value)
     return value;
