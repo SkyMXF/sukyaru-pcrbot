@@ -18,7 +18,7 @@ function getCellValue(row, index){
     var value = 0
     if (text_value !== ""){
         // 非空字符串，尝试匹配boss名+伤害的re
-        var match_array = name_damage_re.match(text_value)
+        var match_array = text_value.match(name_damage_re)
         if (match_array !== null){
             // 匹配成功，伤害部分转int
             value = parseInt(match_array[0])
