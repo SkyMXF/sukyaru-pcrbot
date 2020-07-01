@@ -1,6 +1,5 @@
 $(document).on('click','th',function(){
     var table = $(this).parents('table').eq(0);
-    console.log(table.find('tr:gt(1)').toArray())
     var rows = table.find('tr:gt(1)').toArray().sort(comparer($(this).index()));
     this.asc = !this.asc;
     if (!this.asc){rows = rows.reverse();}
@@ -15,6 +14,7 @@ function comparer(index) {
 }
 var name_damage_re = /\(\d\-\d\)(\d+)/;
 function getCellValue(row, index){
+    console.log(row)
     var text_value = $(row).children('td').eq(index).text()
     console.log("元素", text_value)
     var value = 0
