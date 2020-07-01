@@ -31,7 +31,7 @@ function getCellValue(row, index){
             // 匹配失败，直接转int
             value = parseFloat(text_value)
             console.log("匹配失败", value)
-            if (value === NaN){
+            if (isNaN(value)){
                 value = text_value;
             }
         }
