@@ -15,6 +15,7 @@ function comparer(index) {
 var name_damage_re = /\(\d\-\d\)(\d+)/;
 function getCellValue(row, index){
     var text_value = $(row).children('td').eq(index).text()
+    console.log("元素", text_value)
     var value = 0
     if (text_value !== ""){
         // 非空字符串，尝试匹配boss名+伤害的re
