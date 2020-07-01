@@ -1,6 +1,7 @@
 $(document).on('click','th',function(){
     var table = $(this).parents('table').eq(0);
     var rows = table.find('tr:gt(1)').toArray().sort(comparer($(this).index()));
+    console.log(table.find('tr:gt(1)').toArray())
     this.asc = !this.asc;
     if (!this.asc){rows = rows.reverse();}
     table.children('tbody').empty().html(rows);
@@ -22,12 +23,12 @@ function getCellValue(row, index){
         var match_array = text_value.match(name_damage_re)
         if (match_array !== null){
             // 匹配成功，伤害部分转int
-            value = parseInt(match_array[0])
+            value = parseFloat(match_array[0])
             console.log("匹配成功", value)
         }
         else{
             // 匹配失败，直接转int
-            value = parseInt(text_value)
+            value = parseFloat(text_value)
             console.log("匹配失败", value)
         }
     }
