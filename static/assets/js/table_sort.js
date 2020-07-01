@@ -28,5 +28,6 @@ function getCellValue(row, index){
             value = parseInt(text_value)
         }
     }
+    console.log(value)
     return value;
 }
