@@ -13,7 +13,7 @@ class BossInfo(models.Model):
     detail = models.CharField(max_length=2000)   # 其他文字介绍
 
     def __str__(self):
-        return "%s(%d-%d)"%(self.boss_name, self.boss_stage, self.boss_id)
+        return "%s(%d-%d), %d, %.1f, 高难度:%s"%(self.boss_name, self.boss_stage, self.boss_id, self.total_health, self.score_fac, self.high_difficulty)
 
 class BossStatus(models.Model):
     # Boss状态
@@ -26,7 +26,7 @@ class BossStatus(models.Model):
     killed = models.BooleanField(default=False)      # 已击杀           # 弃用
     
     def __str__(self):
-        return "%s(%d-%d)"%(self.boss_info.boss_name, self.boss_real_stage, self.boss_info.boss_id)
+        return "%s(%d-%d), %d"%(self.boss_info.boss_name, self.boss_real_stage, self.boss_info.boss_id, self.health)
 
 class BattleDate(models.Model):
     # 当前公会战举行日期列表
