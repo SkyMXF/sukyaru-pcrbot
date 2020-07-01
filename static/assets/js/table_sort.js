@@ -12,6 +12,21 @@ function comparer(index) {
             valA - valB : valA.localeCompare(valB);
     };
 }
+var name_damage_re = /\(\d\-\d\)(\d+)/;
 function getCellValue(row, index){
-    return $(row).children('td').eq(index).text();
+    var text_value = $(row).children('td').eq(index).text()
+    var value = 0
+    if (text_value !== ""){
+        // 非空字符串，尝试匹配boss名+伤害的re
+        var match_array = name_damage_re.match(text_value)
+        if (match_array !== null){
+            // 匹配成功，伤害部分转int
+            value = parseInt(match_array[0])
+        }
+        else{
+            // 匹配失败，直接转int
+            value = parseInt(text_value)
+        }
+    }
+    return value;
 }
