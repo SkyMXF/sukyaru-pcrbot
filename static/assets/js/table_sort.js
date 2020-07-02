@@ -13,19 +13,25 @@ $(document).on('click','th',function(){
             case 0:
                 if (col_name_in_html === "昵称") real_index = 0;    // 昵称
                 else if (col_name_in_html === "伤害") real_index = 1; // 第一刀伤害
+                break;
             case 1:
                 if (col_name_in_html === "第一刀") real_index = 1;    // 第一刀伤害
                 else if (col_name_in_html === "补偿刀") real_index = 2; // 第一刀补偿刀
+                break;
             case 2:
                 real_index = 3; // 第二刀伤害
+                break;
             case 3:
                 if (col_name_in_html === "第三刀") real_index = 5;    // 第三刀伤害
                 else if (col_name_in_html === "补偿刀") real_index = 4; // 第二刀补偿刀
+                break;
             case 4:
                 if (col_name_in_html === "积分") real_index = 7;    // 积分
                 else if (col_name_in_html === "伤害") real_index = 5; // 第三刀伤害
+                break;
             case 5:
                 real_index = 6; // 第三刀补偿刀
+                break;
         }
     }
     console.log("选择和实际排序: ",index_in_html,col_name_in_html,real_index)
@@ -46,9 +52,7 @@ function comparer(index) {
 var name_damage_re = /\(\d\-\d\)(\d+)/;
 var only_number_re = /^(\d+)(\.\d+)?$/;
 function getCellValue(row, index){
-    console.log("行列", row, index)
     var text_value = $(row).children('td').eq(index).text()
-    console.log("元素", text_value)
     var value = 0
     if (text_value !== ""){
         // 非空字符串，尝试匹配boss名+伤害的re
@@ -56,7 +60,6 @@ function getCellValue(row, index){
         if (match_array !== null){
             // 匹配成功，伤害部分转int
             value = parseFloat(match_array[0])
-            console.log("匹配成功", value)
         }
         else{
             // 匹配boss名+伤害的re失败, 尝试匹配纯数字
@@ -69,6 +72,5 @@ function getCellValue(row, index){
             }
         }
     }
-    console.log(value)
     return value;
 }
