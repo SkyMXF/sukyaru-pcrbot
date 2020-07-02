@@ -1,6 +1,6 @@
 $(document).on('click','th',function(){
     var table = $(this).parents('table').eq(0);
-    console.log($(this).index())
+    console.log("index表",$(this).index())
     var rows = table.find('tr:gt(1)').toArray().sort(comparer($(this).index()));
     this.asc = !this.asc;
     if (!this.asc){rows = rows.reverse();}
@@ -9,21 +9,13 @@ $(document).on('click','th',function(){
 function comparer(index) {
     return function(a, b) {
         var valA = getCellValue(a, index), valB = getCellValue(b, index);
-        try {
-            return $.isNumeric(valA) && $.isNumeric(valB) ?
-            valA - valB : valA.localeCompare(valB);
-        } catch {
-            console.log("ERROR value a: ", valA)
-        }
-        finally{
-            return true
-        }
+        return $.isNumeric(valA) && $.isNumeric(valB) ?
+        valA - valB : valA.localeCompare(valB);
     };
 }
 var name_damage_re = /\(\d\-\d\)(\d+)/;
 function getCellValue(row, index){
-    console.log(row)
-    console.log(index)
+    console.log("行列", row, index)
     var text_value = $(row).children('td').eq(index).text()
     console.log("元素", text_value)
     var value = 0
