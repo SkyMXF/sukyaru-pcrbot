@@ -9,8 +9,15 @@ $(document).on('click','th',function(){
 function comparer(index) {
     return function(a, b) {
         var valA = getCellValue(a, index), valB = getCellValue(b, index);
-        return $.isNumeric(valA) && $.isNumeric(valB) ?
+        try {
+            return $.isNumeric(valA) && $.isNumeric(valB) ?
             valA - valB : valA.localeCompare(valB);
+        } catch () {
+            console.log("ERROR value a: ", valA)
+        }
+        finally{
+            return True
+        }
     };
 }
 var name_damage_re = /\(\d\-\d\)(\d+)/;
