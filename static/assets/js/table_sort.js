@@ -49,7 +49,7 @@ function comparer(index) {
         valA - valB : valA.localeCompare(valB);
     };
 }
-var name_damage_re = /^.*?\(\d\-\d\)(\d+)$/;
+var name_damage_re = /^.*?\(\d\-\d\)\s(\d+)$/;
 var only_number_re = /^(\d+)(\.\d+)?$/;
 function getCellValue(row, index){
     var text_value = $(row).children('td').eq(index).text()
