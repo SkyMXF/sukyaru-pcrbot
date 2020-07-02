@@ -1,6 +1,7 @@
 $(document).on('click','th',function(){
     var table = $(this).parents('table').eq(0);
     console.log("index表",$(this).index())
+    console.log("this信息", $(this).text())
     var rows = table.find('tr:gt(1)').toArray().sort(comparer($(this).index()));
     this.asc = !this.asc;
     if (!this.asc){rows = rows.reverse();}
