@@ -36,7 +36,7 @@ $(document).on('click','th',function(){
     }
 
     // 排序
-    var rows = table.find("tbody").find('tr').toArray().sort(comparer(real_index));
+    var rows = table.find("tbody").find('tr').toArray().sort(comparer(real_index)).reverse();
     this.asc = !this.asc;
     if (!this.asc){rows = rows.reverse();}
     table.children('tbody').empty().html(rows);
