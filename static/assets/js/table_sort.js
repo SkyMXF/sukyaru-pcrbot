@@ -34,7 +34,6 @@ $(document).on('click','th',function(){
                 break;
         }
     }
-    console.log("选择和实际排序: ",index_in_html,col_name_in_html,real_index)
 
     // 排序
     var rows = table.find("tbody").find('tr').toArray().sort(comparer(real_index));
@@ -59,8 +58,7 @@ function getCellValue(row, index){
         var match_array = text_value.match(name_damage_re)
         if (match_array !== null){
             // 匹配成功，伤害部分转int
-            value = parseFloat(match_array[0])
-            console.log("匹配字符", match_array[0], match_array)
+            value = parseFloat(match_array[1])
         }
         else{
             // 匹配boss名+伤害的re失败, 尝试匹配纯数字
