@@ -36,7 +36,7 @@ $(document).on('click','th',function(){
     }
 
     // 排序
-    var rows = table.find("tbody").find('tr').toArray().sort(comparer(real_index));
+    var rows = table.find("tbody").find('tr').toArray().sort(comparer(real_index)).reverse();
     this.asc = !this.asc;
     if (!this.asc){rows = rows.reverse();}
     table.children('tbody').empty().html(rows);
@@ -44,8 +44,8 @@ $(document).on('click','th',function(){
 function comparer(index) {
     return function(a, b) {
         var valA = getCellValue(a, index), valB = getCellValue(b, index);
-        return !($.isNumeric(valA) && $.isNumeric(valB) ?
-        valA - valB : valA.localeCompare(valB));
+        return $.isNumeric(valA) && $.isNumeric(valB) ?
+        valA - valB : valA.localeCompare(valB);
     };
 }
 var name_damage_re = /^.*?\(\d\-\d\)\s(\d+)$/;
