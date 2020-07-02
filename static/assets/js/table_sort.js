@@ -16,7 +16,7 @@ function comparer(index) {
             console.log("ERROR value a: ", valA)
         }
         finally{
-            return True
+            return true
         }
     };
 }
