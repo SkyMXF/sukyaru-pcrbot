@@ -28,6 +28,7 @@ $(document).on('click','th',function(){
                 real_index = 6; // 第三刀补偿刀
         }
     }
+    console.log("选择和实际排序: ",index_in_html,col_name_in_html,real_index)
 
     // 排序
     var rows = table.find("tbody").find('tr').toArray().sort(comparer(real_index));
