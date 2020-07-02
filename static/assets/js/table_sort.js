@@ -12,7 +12,7 @@ function comparer(index) {
         try {
             return $.isNumeric(valA) && $.isNumeric(valB) ?
             valA - valB : valA.localeCompare(valB);
-        } catch () {
+        } catch {
             console.log("ERROR value a: ", valA)
         }
         finally{
