@@ -60,6 +60,7 @@ function getCellValue(row, index){
         if (match_array !== null){
             // 匹配成功，伤害部分转int
             value = parseFloat(match_array[0])
+            console.log("匹配字符", match_array[0], match_array)
         }
         else{
             // 匹配boss名+伤害的re失败, 尝试匹配纯数字
