@@ -87,7 +87,7 @@ def guildbattle(request):
         return redirect('/user/login')
     
     # 获取出刀记录
-    now_datetime = utils.PCRDate(datetime.datetime.utcnow(), tzinfo=get_default_timezone())
+    now_datetime = utils.PCRDate(datetime.datetime.now(), tzinfo=get_default_timezone())
     now_day_id = 1
     battle_record_list_by_day = []         # 每个列表元素为一天的记录
     battle_date_list = []                       # 每个列表元素为一个日期
