@@ -16,45 +16,45 @@
         <!--Load the AJAX API-->
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
+            console.log("script start")
+            // Load the Visualization API and the corechart package.
+            google.charts.load('current', {'packages':['corechart']});
 
-        // Load the Visualization API and the corechart package.
-        google.charts.load('current', {'packages':['corechart']});
+            // Set a callback to run when the Google Visualization API is loaded.
+            google.charts.setOnLoadCallback(drawChart);
 
-        // Set a callback to run when the Google Visualization API is loaded.
-        google.charts.setOnLoadCallback(drawChart);
-        console.log("setCallback")
+            // Callback that creates and populates a data table,
+            // instantiates the pie chart, passes in the data and
+            // draws it.
+            function drawChart() {
 
-        // Callback that creates and populates a data table,
-        // instantiates the pie chart, passes in the data and
-        // draws it.
-        function drawChart() {
+                // Create the data table.
+                raw_data_table = {{ damage_bar_data }};
+                raw_data_table[0].push({ role: 'annotation' });
+                var data = raw_data_table;
+                console.log("data_table: ", data)
+                /*var data = google.visualization.arrayToDataTable([
+                    ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
+                    'Western', 'Literature', { role: 'annotation' } ],
+                    ['2010', 10, 24, 20, 32, 18, 5, ''],
+                    ['2020', 16, 22, 23, 30, 16, 9, ''],
+                    ['2030', 28, 19, 29, 30, 12, 13, '']
+                ]);*/
 
-            // Create the data table.
-            raw_data_table = {{ damage_bar_data }};
-            raw_data_table[0].push({ role: 'annotation' });
-            var data = raw_data_table;
-            console.log("data_table: ", data)
-            /*var data = google.visualization.arrayToDataTable([
-                ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
-                'Western', 'Literature', { role: 'annotation' } ],
-                ['2010', 10, 24, 20, 32, 18, 5, ''],
-                ['2020', 16, 22, 23, 30, 16, 9, ''],
-                ['2030', 28, 19, 29, 30, 12, 13, '']
-            ]);*/
+                // Set chart options
+                var options = {
+                    width: 600,
+                    height: 400,
+                    legend: { position: 'top', maxLines: 3 },
+                    bar: { groupWidth: '75%' },
+                    isStacked: true
+                };
 
-            // Set chart options
-            var options = {
-                width: 600,
-                height: 400,
-                legend: { position: 'top', maxLines: 3 },
-                bar: { groupWidth: '75%' },
-                isStacked: true
+                // Instantiate and draw our chart, passing in some options.
+                var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
             };
-
-            // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
-        }
+            console.log("endscript");
         </script>
 	</head>
 	<body class="is-preload">
