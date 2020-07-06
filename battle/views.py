@@ -4,6 +4,7 @@ from django.utils.timezone import get_default_timezone
 from django.db import transaction
 
 import datetime
+import json
 
 from . import models
 from . import forms
@@ -215,7 +216,7 @@ def guildbattle(request):
         "battle_record_list_by_day": battle_record_list_by_day,
         "now_day_id": now_day_id,
         "user_battle_stat_list": user_battle_stat_list,
-        "damage_bar_data": damage_bar_data
+        "damage_bar_data": json.dumps(damage_bar_data)
     }
 
     return render(request, 'battle/guildbattle.html', show_dict)

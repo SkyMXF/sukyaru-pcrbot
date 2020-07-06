@@ -29,8 +29,7 @@
             function drawChart() {
 
                 // Create the data table.
-                //raw_data_table = {{ damage_bar_data }};
-                raw_data_table = 1;
+                raw_data_table = {{ damage_bar_data|safe }};
                 raw_data_table[0].push({ role: 'annotation' });
                 var data = raw_data_table;
                 console.log("data_table: ", data)
