@@ -31,7 +31,7 @@
                 // Create the data table.
                 raw_data_table = {{ damage_bar_data|safe }};
                 raw_data_table[0].push({ role: 'annotation' });
-                console.log("data_table: ", data)
+                console.log("data_table: ", raw_data_table)
                 var data = google.visualization.arrayToDataTable(raw_data_table);
                 /*var data = google.visualization.arrayToDataTable([
                     ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
