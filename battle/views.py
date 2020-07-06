@@ -123,7 +123,7 @@ def guildbattle(request):
         user_battle_stat_index_dict["%d"%(now_user_info.user_qq_id)] = temp_index
         temp_index += 1
 
-        damage_bar_data.append([now_user_info.nickname] + ([0] * len(boss_info_set)))
+        damage_bar_data.append([now_user_info.nickname] + ([0] * len(boss_info_set)) + [""])
 
     # 按日期分表
     for now_battle_date in battle_dates:
