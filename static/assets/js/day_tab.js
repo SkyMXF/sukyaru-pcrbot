@@ -10,7 +10,7 @@ contents = document.getElementsByClassName('tab-content')[0].getElementsByTagNam
 function showTab() {
     var content_pos = 0
     for(var i = 0, len = tabs.length; i < len; i++) {
-        while (contents[content_pos].className === "table-wrapper" || contents[content_pos].id === "chart_div") {
+        while (contents[content_pos].className === "table-wrapper" || contents[content_pos].className === "damage_chart") {
             content_pos += 1;
         }
         if(tabs[i] === this) {
