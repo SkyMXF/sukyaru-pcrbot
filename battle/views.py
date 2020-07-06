@@ -211,6 +211,9 @@ def guildbattle(request):
         else:
             user_stat_dict["score_fac"] = "0.0"
 
+    # 伤害图表按总伤害排序
+    damage_bar_data[1:] = sorted(damage_bar_data[1:], key=lambda l:sum(l[1:-1]), reverse=True)
+
     show_dict = {
         "battle_date_list": battle_date_list,
         "battle_record_list_by_day": battle_record_list_by_day,
