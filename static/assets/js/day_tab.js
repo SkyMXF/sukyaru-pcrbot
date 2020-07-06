@@ -18,7 +18,7 @@ function showTab() {
             contents[content_pos].className = 'show';
         } else {
             tabs[i].className = '';
-            contents[content_pos].className = '';
+            contents[content_pos].className = 'hide';
         }
         content_pos++;
     }

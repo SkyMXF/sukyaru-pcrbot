@@ -129,7 +129,7 @@
                         </div>
                         <div class="tab-content">
                             {% for records in battle_record_list_by_day %}
-                            <div id="tabcontent{{forloop.counter}}">
+                            <div class="hide" id="tabcontent{{forloop.counter}}">
                                 <div class="table-wrapper">
                                     <table class="alt">
                                         <thead>
@@ -169,7 +169,7 @@
                                 </div>
                             </div>
                             {% endfor %}
-                            <div id="tabcontent_all">
+                            <div class="hide" id="tabcontent_all">
                                 <div class="table-wrapper">
                                     <table class="alt">
                                         <thead>
