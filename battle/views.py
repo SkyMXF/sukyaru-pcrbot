@@ -95,6 +95,14 @@ def guildbattle(request):
     all_battle_record = models.NowBattleRecord.objects.all()
     user_set = UserInfo.objects.filter(active_guild_member=True).order_by("user_auth")
 
+    # 总伤害柱状图数据
+    damage_bar_data = []
+    boss_info_set = models.BossInfo.objects.filter(boss_stage=1).order_by("boss_id")
+    boss_name_list = ["Boss"]
+    for boss_info in boss_info_set:
+        boss_name_list.append(boss_info.boss_name)
+    damage_bar_data.append(boss_name_list)  # 柱状图数据第一行, 列名
+
     # 统计整个公会战期间数据
     user_battle_stat_list = []
     user_battle_stat_index_dict = {}
@@ -113,6 +121,8 @@ def guildbattle(request):
         )
         user_battle_stat_index_dict["%d"%(now_user_info.user_qq_id)] = temp_index
         temp_index += 1
+
+        damage_bar_data.append([now_user_info.nickname] + ([0] * len(boss_info_set)))
 
     # 按日期分表
     for now_battle_date in battle_dates:
@@ -158,6 +168,7 @@ def guildbattle(request):
                 if now_user_date_battle_record.boss_info.high_difficulty:
                     user_battle_stat_list[temp_index]["difficult_report_num"] += 1
                 user_battle_stat_list[temp_index]["total_damage"] += now_user_date_battle_record.damage
+                damage_bar_data[temp_index + 1][now_user_date_battle_record.boss_info.boss_id] += now_user_date_battle_record.damage
 
                 # 当日数据
                 record_type = "comp"    # 补偿刀
@@ -203,7 +214,8 @@ def guildbattle(request):
         "battle_date_list": battle_date_list,
         "battle_record_list_by_day": battle_record_list_by_day,
         "now_day_id": now_day_id,
-        "user_battle_stat_list": user_battle_stat_list
+        "user_battle_stat_list": user_battle_stat_list,
+        "damage_bar_data": damage_bar_data
     }
 
     return render(request, 'battle/guildbattle.html', show_dict)
