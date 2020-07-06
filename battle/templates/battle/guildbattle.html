@@ -16,7 +16,6 @@
         <!--Load the AJAX API-->
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
-            console.log("script start")
             // Load the Visualization API and the corechart package.
             google.charts.load('current', {'packages':['corechart']});
 
@@ -29,17 +28,16 @@
             function drawChart() {
 
                 // Create the data table.
-                /*raw_data_table = {{ damage_bar_data|safe }};
+                raw_data_table = {{ damage_bar_data|safe }};
                 raw_data_table[0].push({ role: 'annotation' });
-                console.log("data_table: ", raw_data_table)
-                var data = google.visualization.arrayToDataTable(raw_data_table);*/
-                var data = google.visualization.arrayToDataTable([
+                var data = google.visualization.arrayToDataTable(raw_data_table);
+                /*var data = google.visualization.arrayToDataTable([
                     ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
                     'Western', 'Literature', { role: 'annotation' } ],
                     ['2010', 10, 24, 20, 32, 18, 5, ''],
                     ['2020', 16, 22, 23, 30, 16, 9, ''],
                     ['2030', 28, 19, 29, 30, 12, 13, '']
-                ]);
+                ]);*/
 
                 // Set chart options
                 var options = {
@@ -54,7 +52,6 @@
                 var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
                 chart.draw(data, options);
             };
-            console.log("endscript");
         </script>
 	</head>
 	<body class="is-preload">
@@ -201,7 +198,7 @@
                                     </table>
                                 </div>
                                 <h2><br>伤害图表</h2>
-                                <div class="damage_chart" id="chart_div">111</div>
+                                <div class="damage_chart" id="chart_div"></div>
                             </div>
                             <script>
                                 var now_day_id = {{now_day_id}};
