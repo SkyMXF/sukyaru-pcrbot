@@ -29,21 +29,17 @@
             function drawChart() {
 
                 // Create the data table.
-                /*
-                raw_data_table = {{ damage_bar_data|safe }};
+                /*raw_data_table = {{ damage_bar_data|safe }};
                 raw_data_table[0].push({ role: 'annotation' });
                 console.log("data_table: ", raw_data_table)
                 var data = google.visualization.arrayToDataTable(raw_data_table);*/
-                
-                raw_data_table = [
+                var data = google.visualization.arrayToDataTable([
                     ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
                     'Western', 'Literature', { role: 'annotation' } ],
                     ['2010', 10, 24, 20, 32, 18, 5, ''],
                     ['2020', 16, 22, 23, 30, 16, 9, ''],
                     ['2030', 28, 19, 29, 30, 12, 13, '']
-                ]
-                console.log("data_table: ", raw_data_table)
-                var data = google.visualization.arrayToDataTable(raw_data_table);
+                ]);
 
                 // Set chart options
                 var options = {
