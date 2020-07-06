@@ -33,8 +33,9 @@
                 var data = google.visualization.arrayToDataTable(raw_data_table);
 
                 // Set chart options
+                var chartwidth = $('#chartparent').width();
                 var options = {
-                    width: 1500,
+                    width: chartwidth,
                     height: 1000,
                     //legend: { position: 'top'},
                     //bar: { groupWidth: '75%' },
