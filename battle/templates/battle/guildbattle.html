@@ -202,8 +202,14 @@
                             </div>
                             <script>
                                 var now_day_id = {{now_day_id}};
-                                content = document.getElementById('tabcontent' + now_day_id.toString());
-                                content.className = 'show'
+                                if(now_day_id < 0){
+                                    content = document.getElementById('tabcontent_all');
+                                    content.className = 'show'
+                                }
+                                else{
+                                    content = document.getElementById('tabcontent' + now_day_id.toString());
+                                    content.className = 'show'
+                                }
                             </script>
                         </div>
                     </div>
